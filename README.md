@@ -10,6 +10,12 @@ teams and enabling cooperation between organizations.
 
 ## How to Use
 
+### Installation
+
+```bash
+$ gem install contentful_bootstrap
+```
+
 ### First Usage
 
 ```bash
