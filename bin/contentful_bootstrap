@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'contentful_bootstrap/commands'
+
+options = {}
+global = OptionParser.new do |opts|
+  opts.banner = "Usage: contentful_bootstrap <command> <space_name> [--template TEMPLATE_NAME]"
+  opts.separator ""
+  opts.separator =<<-HELP
+    Available commands are:
+      init
+      create_space
+  HELP
+end
+
+subcommands = {
+  'init' => OptionParser.new do |opts|
+    opts.banner = "Usage: init <space_name> [--template TEMPLATE_NAME]"
+    opts.on_tail("-t", "--template", "Specify Template", "blog, catalogue, gallery") do |t|
+      options[:template] = t
+    end
+  end,
+  'create_space' => OptionParser.new do |opts|
+    opts.banner = "Usage: init <space_name> [--template TEMPLATE_NAME]"
+    opts.on_tail("-t", "--template", "Specify Template", "blog, catalogue, gallery") do |t|
+      options[:template] = t
+    end
+  end
+}
+
+global.order!
+command = ARGV.shift
+space_name = ARGV.shift
+subcommands[commands].order!
+
+ContentfulBootstrap::Commands.new.send(command, space_name, options.fetch(:template, nil))
