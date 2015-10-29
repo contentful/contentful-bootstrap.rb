@@ -1,5 +1,8 @@
 # Change Log
 ## Unreleased
+### Added
+* Added support for users with multiple Organizations
+
 ### Changed
 * Removed `deklarativna` dependency
 * Removed `sinatra` dependency

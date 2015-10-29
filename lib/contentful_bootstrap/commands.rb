@@ -25,7 +25,15 @@ module ContentfulBootstrap
       management_client_init
 
       puts "Creating Space '#{space_name}'"
-      space = Contentful::Management::Space.create(name: space_name)
+      space = nil
+      begin
+        space = Contentful::Management::Space.create(name: space_name)
+      rescue Contentful::Management::NotFound
+        puts "Your account has multiple organizations"
+        print "Please insert the Organization ID you'd want to create the spaces for: "
+        organization_id = gets.chomp
+        space = Contentful::Management::Space.create(name: space_name, organization_id: organization_id)
+      end
       puts "Space '#{space_name}' created!"
 
       return if template_name.nil?
