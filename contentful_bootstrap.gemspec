@@ -22,5 +22,4 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "sinatra"
   spec.add_runtime_dependency "launchy"
   spec.add_runtime_dependency "contentful-management"
-  spec.add_runtime_dependency "deklarativna"
 end

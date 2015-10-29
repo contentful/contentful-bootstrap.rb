@@ -1,37 +1,40 @@
 require "sinatra"
 require "launchy"
-require "deklarativna"
 require "thin"
 require "contentful_bootstrap/constants"
 require "contentful_bootstrap/token"
 
 module ContentfulBootstrap
-  class OAuthEchoView < BaseTemplate
-    def _body
-      script(type: "text/javascript") {
-        <<-JS
-          (function() {
-            var access_token = window.location.hash.split('&')[0].split('=')[1];
-            window.location.replace('http://localhost:5123/save_token/' + access_token);
-          })();
-        JS
-      }
+  class OAuthEchoView
+    def render
+      <<-JS
+      <html><head></head><body>
+      <script type="text/javascript">
+        (function() {
+          var access_token = window.location.hash.split('&')[0].split('=')[1];
+          window.location.replace('http://localhost:5123/save_token/' + access_token);
+        })();
+      </script>
+      </body></html>
+      JS
     end
   end
 
-  class ThanksView < BaseTemplate
-    def _head
-      link(rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
-    end
-
-    def _body
-      div(class: "container") {
-        div(class: "jumbotron") {[
-          h1 { "Contentful Bootstrap" },
-          h4 { "Thanks! The OAuth Token has been generated" },
-          p { "The Space you specified will now start to create. You can close this window freely" }
-        ]}
-      }
+  class ThanksView
+    def render
+      <<-HTML
+      <html><head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+      </head><body>
+        <div class="container">
+          <div class="jumbotron">
+            <h1>Contentful Bootstrap</h1>
+            <h4>Thanks! The OAuth Token has been generated</h4>
+            <p>The Space you specified will now start to create. You can close this window freely</p>
+          </div>
+        </div>
+      </body></html>
+      HTML
     end
   end
 
