@@ -2,6 +2,7 @@
 ## Unreleased
 ### Changed
 * Removed `deklarativna` dependency
+* Removed `sinatra` dependency
 * Removed unnecessary `Gemfile.lock` file
 
 ## v0.0.3

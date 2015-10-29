@@ -1,4 +1,3 @@
-require "thread"
 require "net/http"
 require "contentful/management"
 require "contentful_bootstrap/token"
@@ -48,9 +47,11 @@ module ContentfulBootstrap
 
     def get_token
       silence_stderr do # Don't show any Sinatra related stuff
-        t = Thread.new { Server.run! }
+        server = Server.new
 
-        while !Server.running? # Wait for Server Init
+        server.start
+
+        while !server.running? # Wait for Server Init
           sleep(1)
         end
 
@@ -60,7 +61,7 @@ module ContentfulBootstrap
           sleep(1)
         end
 
-        Server.quit!
+        server.stop
       end
     end
 

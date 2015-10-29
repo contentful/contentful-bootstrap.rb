@@ -1,6 +1,6 @@
-require "sinatra"
+require "thread"
+require "webrick"
 require "launchy"
-require "thin"
 require "contentful_bootstrap/constants"
 require "contentful_bootstrap/token"
 
@@ -12,7 +12,7 @@ module ContentfulBootstrap
       <script type="text/javascript">
         (function() {
           var access_token = window.location.hash.split('&')[0].split('=')[1];
-          window.location.replace('http://localhost:5123/save_token/' + access_token);
+          window.location.replace('http://localhost:5123/save_token?token=' + access_token);
         })();
       </script>
       </body></html>
@@ -38,29 +38,54 @@ module ContentfulBootstrap
     end
   end
 
-  class Server < Sinatra::Base
-    configure do
-      set :port, 5123
-      set :logging, nil
-      set :quiet, true
-      Thin::Logging.silent = true # Silence Thin startup message
-    end
-
-    get '/' do
+  class IndexController < WEBrick::HTTPServlet::AbstractServlet
+    def do_GET(request, response)
       client_id = ContentfulBootstrap::Constants::OAUTH_APP_ID
       redirect_uri = ContentfulBootstrap::Constants::OAUTH_CALLBACK_URL
       scope = "content_management_manage"
       Launchy.open("https://be.contentful.com/oauth/authorize?response_type=token&client_id=#{client_id}&redirect_uri=#{redirect_uri}&scope=#{scope}")
-      ""
+      response.status = 200
+      response.body = ""
+    end
+  end
+
+  class OAuthCallbackController < WEBrick::HTTPServlet::AbstractServlet
+    def do_GET(request, response)
+      #get '/oauth_callback' do
+      response.status = 200
+      response.content_type = "text/html"
+      response.body = OAuthEchoView.new.render
+    end
+  end
+
+  class SaveTokenController < WEBrick::HTTPServlet::AbstractServlet
+    def do_GET(request, response)
+      Token.write(request.query["token"])
+      response.status = 200
+      response.content_type = "text/html"
+      response.body = ThanksView.new.render
+    end
+  end
+
+  class Server
+    attr_reader :server
+    def initialize
+      @server = WEBrick::HTTPServer.new(:Port => 5123)
+      @server.mount "/", IndexController
+      @server.mount "/oauth_callback", OAuthCallbackController
+      @server.mount "/save_token", SaveTokenController
     end
 
-    get '/oauth_callback' do
-      OAuthEchoView.new.render
+    def start
+      Thread.new { @server.start }
     end
 
-    get '/save_token/:token' do
-      Token.write(params[:token])
-      ThanksView.new.render
+    def stop
+      @server.shutdown
+    end
+
+    def running?
+      @server.status != :Stop
     end
   end
 end
