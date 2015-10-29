@@ -2,6 +2,7 @@
 ## Unreleased
 ### Added
 * Added support for users with multiple Organizations
+* Added `gallery` template
 
 ### Changed
 * Removed `deklarativna` dependency

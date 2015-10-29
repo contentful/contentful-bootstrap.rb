@@ -1,5 +1,5 @@
 require "contentful_bootstrap/templates/base"
-require "contentful_bootstrap/templates/entry_link"
+require "contentful_bootstrap/templates/links"
 
 module ContentfulBootstrap
   module Templates
@@ -60,12 +60,12 @@ module ContentfulBootstrap
             {
               title: "Inferno",
               content: "Inferno is the last book in Dan Brown's collection...",
-              author: EntryLink.new("dan_brown")
+              author: Links::Entry.new("dan_brown")
             },
             {
               title: "Alturas de Macchu Picchu",
               content: "Alturas de Macchu Picchu is one of Pablo Neruda's most famous poetry books...",
-              author: EntryLink.new("pablo_neruda")
+              author: Links::Entry.new("pablo_neruda")
             }
           ]
         }
