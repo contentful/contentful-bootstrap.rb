@@ -68,6 +68,7 @@ module ContentfulBootstrap
         space = Contentful::Management::Space.find(space)
       end
 
+      puts
       puts "Creating Delivery API Token"
 
       response = Contentful::Management::Request.new(
@@ -79,6 +80,8 @@ module ContentfulBootstrap
       token = response.object["accessToken"]
 
       puts "Token '#{token_name}' created! - '#{token}'"
+
+      token
     end
 
     private

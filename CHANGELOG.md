@@ -1,5 +1,12 @@
 # Change Log
 ## Unreleased
+### Fixed
+* Token was not being returned on `generate_token` call
+
+### Added
+* `catalogue` template now available
+* Added small sleep window between asset processing and publishing
+
 
 ## v0.0.5
 ### Added

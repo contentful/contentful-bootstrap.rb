@@ -83,6 +83,7 @@ module ContentfulBootstrap
           puts "Creating Asset '#{asset[:title]}'"
           asset = space.assets.create(asset)
           asset.process_file
+          sleep(1) # Wait for Process
           asset.publish
         end
       end
