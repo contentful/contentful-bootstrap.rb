@@ -1,5 +1,7 @@
 # Change Log
 ## Unreleased
+
+## v0.0.5
 ### Added
 * API Token Generation
 * `generate_token` command added to binary
