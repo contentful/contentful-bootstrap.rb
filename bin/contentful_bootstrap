@@ -17,40 +17,47 @@ end
 subcommands = {
   'init' => OptionParser.new do |opts|
     opts.banner = "Usage: init <space_name> [--template TEMPLATE_NAME]"
-    opts.on("-t", "--template TEMPLATE", "Specify Template", "blog, catalogue, gallery") do |t|
-      options[:template] = t
+    opts.on("-t TEMPLATE", "--template TEMPLATE", "Specify Template", "blog, catalogue, gallery") do |t|
+      options[:name] = t
     end
   end,
   'create_space' => OptionParser.new do |opts|
     opts.banner = "Usage: init <space_name> [--template TEMPLATE_NAME]"
-    opts.on("-t", "--template TEMPLATE", "Specify Template", "blog, catalogue, gallery") do |t|
-      options[:template] = t
+    opts.on("-t TEMPLATE", "--template TEMPLATE", "Specify Template", "blog, catalogue, gallery") do |t|
+      options[:name] = t
+    end
+  end,
+  'generate_token' => OptionParser.new do |opts|
+    opts.banner = "Usage: generate_token <space_id> [--name TOKEN_NAME]"
+    opts.on("-n NAME", "--name TEMPLATE", "Specify Token Name") do |n|
+      options[:name] = n
     end
   end
 }
 
 global.order!
 command = ARGV.shift
-space_name = ARGV.shift
+space = ARGV.shift
 
 if subcommands.has_key? command
   subcommands[command].order!
 
-  if space_name.nil? || space_name.empty?
+  if space.nil? || space.empty?
     puts "Usage: contentful_bootstrap <command> <space_name> [--template TEMPLATE_NAME]"
     puts
     puts "You must provide a valid space name. Exiting!"
     exit
   end
 
-  ContentfulBootstrap::Commands.new.send(command, space_name, options.fetch(:template, nil))
+  ContentfulBootstrap::Commands.new.send(command, space, options.fetch(:name, nil))
 else
-  puts "Usage: contentful_bootstrap <command> <space_name> [--template TEMPLATE_NAME]"
+  puts "Usage: contentful_bootstrap <command> <space> [options]"
   puts
   puts <<-HELP
     Subcommand not available or missing
     Available commands are:
       init
       create_space
+      generate_token
   HELP
 end

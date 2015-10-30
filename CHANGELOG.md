@@ -1,5 +1,10 @@
 # Change Log
 ## Unreleased
+### Added
+* API Token Generation
+* `generate_token` command added to binary
+* Better Formatting of current steps
+* Space and Access Token Values displayed at end of command
 
 ## v0.0.4
 ### Added

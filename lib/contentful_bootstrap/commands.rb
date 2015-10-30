@@ -1,5 +1,7 @@
 require "net/http"
 require "contentful/management"
+require "contentful/management/request"
+require "contentful/management/error"
 require "contentful_bootstrap/token"
 require "contentful_bootstrap/server"
 require "contentful_bootstrap/support"
@@ -18,6 +20,8 @@ module ContentfulBootstrap
         puts "OAuth token found, moving on!"
       end
 
+      puts
+
       create_space(space_name, template_name)
     end
 
@@ -34,7 +38,9 @@ module ContentfulBootstrap
         organization_id = gets.chomp
         space = Contentful::Management::Space.create(name: space_name, organization_id: organization_id)
       end
+
       puts "Space '#{space_name}' created!"
+      puts
 
       return if template_name.nil?
 
@@ -46,6 +52,33 @@ module ContentfulBootstrap
       else
         puts "Template '#{template_name}' not found. Valid templates are '#{templates.keys.map(&:to_s).join('\', \'')}'"
       end
+
+      token = generate_token(space)
+      puts
+      puts "Space ID: '#{space.id}'"
+      puts "Access Token: '#{token}'"
+      puts
+      puts "You can now insert those values into your configuration blocks"
+    end
+
+    def generate_token(space, token_name = "Bootstrap Token")
+      management_client_init
+
+      if space.is_a?(String)
+        space = Contentful::Management::Space.find(space)
+      end
+
+      puts "Creating Delivery API Token"
+
+      response = Contentful::Management::Request.new(
+        "/#{space.id}/api_keys",
+        'name' => token_name,
+        'description' => "Created with 'contentful_bootstrap.rb'"
+      ).post
+      fail response if response.object.is_a?(Contentful::Management::Error)
+      token = response.object["accessToken"]
+
+      puts "Token '#{token_name}' created! - '#{token}'"
     end
 
     private
@@ -54,7 +87,7 @@ module ContentfulBootstrap
     end
 
     def get_token
-      silence_stderr do # Don't show any Sinatra related stuff
+      silence_stderr do # Don't show any WEBrick related stuff
         server = Server.new
 
         server.start
