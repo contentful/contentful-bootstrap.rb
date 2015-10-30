@@ -1,5 +1,7 @@
 # Change Log
 ## Unreleased
+
+## v0.0.6
 ### Fixed
 * Token was not being returned on `generate_token` call
 
