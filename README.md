@@ -53,6 +53,37 @@ catalogue
 This will get you started with Contentful by setting up a Space with some Demo Data to get you
 started as soon as possible with development using our API.
 
+### Using from within other applications
+
+Include `contentful_bootstrap` to your project's `Gemfile`
+
+```ruby
+gem "contentful_bootstrap"
+```
+
+Require `contentful_bootstrap`
+
+```ruby
+require 'contentful_bootstrap'
+```
+
+To do the complete `init` process
+
+```ruby
+ContentfulBootstrap::Commands.new.init("space_name", "template_name") # Template Name is optional
+```
+
+
+To create a new Space or Token. *This operations require a CMA Token located in `File.join(Dir.pwd, '.contentful_token')`*
+
+```ruby
+# Create a new Space
+ContentfulBootstrap::Commands.new.create_space("space_name", "template_name") # Template Name is optional
+
+# Create a new CDA Access Token
+ContentfulBootstrap::Commands.new.generate_token("space_id", "token_name") # Token Name is optional
+```
+
 ## Contributing
 
 Feel free to improve this tool by submitting a Pull Request. For more information,
