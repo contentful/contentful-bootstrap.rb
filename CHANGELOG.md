@@ -1,5 +1,7 @@
 # Change Log
 ## Unreleased
+### Fixed
+* Redirected Favicon fetch to Contentful's favicon, as some browsers would ping the server indefinitely
 
 ## v0.0.6
 ### Fixed

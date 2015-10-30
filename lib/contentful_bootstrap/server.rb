@@ -8,7 +8,10 @@ module ContentfulBootstrap
   class OAuthEchoView
     def render
       <<-JS
-      <html><head></head><body>
+      <html><head>
+        <link rel="shortcut icon" type="image/png" href="https://www.contentful.com/assets/images/favicons/favicon-47dc5f9d.png"/>
+        <link rel="shortcut icon" type="image/png" href="https://www.contentful.com/assets/images/favicons/favicon-47dc5f9d.png"/>
+      </head><body>
       <script type="text/javascript">
         (function() {
           var access_token = window.location.hash.split('&')[0].split('=')[1];
@@ -24,6 +27,8 @@ module ContentfulBootstrap
     def render
       <<-HTML
       <html><head>
+        <link rel="shortcut icon" type="image/png" href="https://www.contentful.com/assets/images/favicons/favicon-47dc5f9d.png"/>
+        <link rel="shortcut icon" type="image/png" href="https://www.contentful.com/assets/images/favicons/favicon-47dc5f9d.png"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
       </head><body>
         <div class="container">
