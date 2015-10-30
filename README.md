@@ -26,10 +26,18 @@ $ gem install contentful_bootstrap
 $ contentful_bootstrap init <space_name> [--template template_name]
 ```
 
+
 Then you can create other spaces by doing:
 
 ```bash
 $ contentful_bootstrap create_space <space_name> [--template template_name]
+```
+
+
+You can also generate new Delivery API Tokens by doing:
+
+```bash
+$ contentful_bootstrap generate_token <space_id> [--name token_name]
 ```
 
 ### Available templates
