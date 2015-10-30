@@ -51,7 +51,6 @@ module ContentfulBootstrap
 
   class OAuthCallbackController < WEBrick::HTTPServlet::AbstractServlet
     def do_GET(request, response)
-      #get '/oauth_callback' do
       response.status = 200
       response.content_type = "text/html"
       response.body = OAuthEchoView.new.render
