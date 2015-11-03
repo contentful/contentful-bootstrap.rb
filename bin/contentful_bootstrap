@@ -5,7 +5,7 @@ require 'contentful/bootstrap/commands'
 
 options = {}
 global = OptionParser.new do |opts|
-  opts.banner = "Usage: contentful_bootstrap <command> <space_name> [--template TEMPLATE_NAME] [--config CONFIG_PATH]"
+  opts.banner = "Usage: contentful_bootstrap <command> <space_name> [options]"
   opts.separator ""
   opts.separator <<-HELP
     Available commands are:
@@ -16,16 +16,19 @@ end
 
 subcommands = {
   'create_space' => OptionParser.new do |opts|
-    opts.banner = "Usage: init <space_name> [--template TEMPLATE_NAME]"
+    opts.banner = "Usage: init <space_name> [--template TEMPLATE_NAME] [--json-template JSON_PATH] [--config CONFIG_PATH]"
     opts.on("-t TEMPLATE", "--template TEMPLATE", "Specify Template", "blog, catalogue, gallery") do |t|
-      options[:name] = t
+      options[:template] = t
+    end
+    opts.on("-j JSON_PATH", "--json-template JSON_PATH", "Specify JSON Template Path") do |j|
+      options[:json_template] = j
     end
     opts.on("-c CONFIG_PATH", "--config CONFIG_PATH", "Specify Configuration Path") do |c|
       options[:config_path] = c
     end
   end,
   'generate_token' => OptionParser.new do |opts|
-    opts.banner = "Usage: generate_token <space_id> [--name TOKEN_NAME]"
+    opts.banner = "Usage: generate_token <space_id> [--name TOKEN_NAME] [--config CONFIG_PATH]"
     opts.on("-n NAME", "--name TEMPLATE", "Specify Token Name") do |n|
       options[:name] = n
     end
@@ -49,7 +52,9 @@ if subcommands.has_key? command
     exit
   end
 
-  Contentful::Bootstrap::Commands.new(options.fetch(:config_path, "")).send(command, space, options.fetch(:name, nil))
+  options[:trigger_oauth] = true
+
+  Contentful::Bootstrap::Commands.new(options.fetch(:config_path, "")).send(command, space, options)
 else
   puts "Usage: contentful_bootstrap <command> <space> [options]"
   puts

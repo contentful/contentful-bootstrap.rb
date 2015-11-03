@@ -8,58 +8,58 @@ module Contentful
         def content_types
           [
             {
-              id: 'author',
-              name: "Author",
-              display_field: "name",
-              fields: [
+              "id" => 'author',
+              "name" => "Author",
+              "display_field" => "name",
+              "fields" => [
                 {
-                  name: "Name",
-                  id: "name",
-                  type: "Symbol"
+                  "name" => "Name",
+                  "id" => "name",
+                  "type" => "Symbol"
                 }
               ]
             },
             {
-              id: 'image',
-              name: 'Image',
-              display_field: 'title',
-              fields: [
+              "id" => 'image',
+              "name" => 'Image',
+              "display_field" => 'title',
+              "fields" => [
                 {
-                  id: 'title',
-                  name: 'Title',
-                  type: 'Symbol'
+                  "id" => 'title',
+                  "name" => 'Title',
+                  "type" => 'Symbol'
                 },
                 {
-                  id: 'photo',
-                  name: 'Photo',
-                  type: 'Link',
-                  link_type: 'Asset'
+                  "id" => 'photo',
+                  "name" => 'Photo',
+                  "type" => 'Link',
+                  "link_type" => 'Asset'
                 }
               ]
             },
             {
-              id: 'gallery',
-              name: 'Gallery',
-              display_field: 'title',
-              fields: [
+              "id" => 'gallery',
+              "name" => 'Gallery',
+              "display_field" => 'title',
+              "fields" => [
                 {
-                  id: 'title',
-                  name: 'Title',
-                  type: 'Symbol'
+                  "id" => 'title',
+                  "name" => 'Title',
+                  "type" => 'Symbol'
                 },
                 {
-                  id: 'author',
-                  name: 'Author',
-                  type: 'Link',
-                  link_type: 'Entry'
+                  "id" => 'author',
+                  "name" => 'Author',
+                  "type" => 'Link',
+                  "link_type" => 'Entry'
                 },
                 {
-                  id: 'images',
-                  name: 'Images',
-                  type: 'Array',
-                  items: {
-                    type: 'Link',
-                    link_type: 'Entry'
+                  "id" => 'images',
+                  "name" => 'Images',
+                  "type" => 'Array',
+                  "items" => {
+                    "type" => 'Link',
+                    "link_type" => 'Entry'
                   }
                 }
               ]
@@ -70,14 +70,14 @@ module Contentful
         def assets
           [
             {
-              id: 'pie',
-              title: 'Pie in the Sky',
-              file: create_image('pie', 'https://c2.staticflickr.com/6/5245/5335909339_d307a7cbcf_b.jpg')
+              "id" => 'pie',
+              "title" => 'Pie in the Sky',
+              "file" => create_image('pie', 'https://c2.staticflickr.com/6/5245/5335909339_d307a7cbcf_b.jpg')
             },
             {
-              id: 'flower',
-              title: 'The Flower',
-              file: create_image('flower', 'http://c2.staticflickr.com/4/3922/15045568809_b24591e318_b.jpg')
+              "id" => 'flower',
+              "title" => 'The Flower',
+              "file" => create_image('flower', 'http://c2.staticflickr.com/4/3922/15045568809_b24591e318_b.jpg')
             }
           ]
         end
@@ -86,28 +86,28 @@ module Contentful
           {
             'author' => [
               {
-                id: 'dave',
-                name: 'Dave'
+                "id" => 'dave',
+                "name" => 'Dave'
               }
             ],
             'image' => [
               {
-                id: 'pie_entry',
-                title: 'A Pie in the Sky',
-                photo: Links::Asset.new('pie')
+                "id" => 'pie_entry',
+                "title" => 'A Pie in the Sky',
+                "photo" => Links::Asset.new('pie')
               },
               {
-                id: 'flower_entry',
-                title: 'The Flower',
-                photo: Links::Asset.new('flower')
+                "id" => 'flower_entry',
+                "title" => 'The Flower',
+                "photo" => Links::Asset.new('flower')
               }
             ],
             'gallery' => [
               {
-                id: 'gallery',
-                title: 'Photo Gallery',
-                author: Links::Entry.new('dave'),
-                images: [Links::Entry.new('pie_entry'), Links::Entry.new('flower_entry')]
+                "id" => 'gallery',
+                "title" => 'Photo Gallery',
+                "author" => Links::Entry.new('dave'),
+                "images" => [Links::Entry.new('pie_entry'), Links::Entry.new('flower_entry')]
               }
             ]
           }
