@@ -17,8 +17,12 @@ module Contentful
         Token.set_path!(config_path)
       end
 
-      def create_space(space_name, template_name = nil, from_command = true)
-        get_configuration if from_command
+      def create_space(space_name, options = {})
+        template_name = options.fetch(:template, nil)
+        json_template = options.fetch(:json_template, nil)
+        trigger_oauth = options.fetch(:trigger_oauth, true)
+
+        get_configuration if trigger_oauth
 
         management_client_init
 
@@ -45,9 +49,21 @@ module Contentful
           else
             puts "Template '#{template_name}' not found. Valid templates are '#{templates.keys.map(&:to_s).join('\', \'')}'"
           end
+          puts
         end
 
-        token = generate_token(space, "Bootstrap Token", false)
+        unless json_template.nil?
+          if File.exist?(json_template)
+            puts "Creating JSON Template '#{json_template}'"
+            Templates::JsonTemplate.new(space, json_template).run
+            puts "JSON Template '#{json_template}' created!"
+          else
+            puts "JSON Template '#{json_template}' does not exist. Please check that you specified the correct file name."
+          end
+          puts
+        end
+
+        token = generate_token(space, trigger_oauth: false)
         puts
         puts "Space ID: '#{space.id}'"
         puts "Access Token: '#{token}'"
@@ -55,9 +71,12 @@ module Contentful
         puts "You can now insert those values into your configuration blocks"
       end
 
-      def generate_token(space, token_name = "Bootstrap Token", from_command = true)
-        get_configuration if from_command
-        management_client_init if from_command
+      def generate_token(space, options = {})
+        token_name = options.fetch(:name, "Bootstrap Token")
+        trigger_oauth = options.fetch(:trigger_oauth, true)
+
+        get_configuration if trigger_oauth
+        management_client_init if trigger_oauth
 
         if space.is_a?(String)
           space = Contentful::Management::Space.find(space)

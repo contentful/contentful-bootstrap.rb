@@ -1,5 +1,12 @@
 # Change Log
 ## Unreleased
+### Added
+* JSON Template Parser
+* `catalogue.json` Template Example
+
+### Changed
+* Changed existing templates from using `Symbol` entries as keys to `String`
+* Changed command optional parameters to `Hash` to allow better flexibility in commands
 
 ## v1.1.0
 ### Removed

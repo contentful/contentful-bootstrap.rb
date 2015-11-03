@@ -8,37 +8,37 @@ module Contentful
         def content_types
           [
             {
-              id: 'author',
-              name: 'Author',
-              display_field: 'name',
-              fields: [
+              "id" => 'author',
+              "name" => 'Author',
+              "display_field" => 'name',
+              "fields" => [
                 {
-                  id: 'name',
-                  name: "Author Name",
-                  type: "Symbol"
+                  "id" => 'name',
+                  "name" => "Author Name",
+                  "type" => "Symbol"
                 }
               ]
             },
             {
-              id: 'post',
-              name: 'Post',
-              display_field: 'title',
-              fields: [
+              "id" => 'post',
+              "name" => 'Post',
+              "display_field" => 'title',
+              "fields" => [
                 {
-                  id: 'title',
-                  name: "Post Title",
-                  type: "Symbol"
+                  "id" => 'title',
+                  "name" => "Post Title",
+                  "type" => "Symbol"
                 },
                 {
-                  id: 'content',
-                  name: "Content",
-                  type: "Text"
+                  "id" => 'content',
+                  "name" => "Content",
+                  "type" => "Text"
                 },
                 {
-                  id: 'author',
-                  name: "Author",
-                  type: "Link",
-                  link_type: "Entry"
+                  "id" => 'author',
+                  "name" => "Author",
+                  "type" => "Link",
+                  "link_type" => "Entry"
                 }
               ]
             }
@@ -49,24 +49,24 @@ module Contentful
           {
             'author' => [
               {
-                id: "dan_brown",
-                name: "Dan Brown"
+                "id" => "dan_brown",
+                "name" => "Dan Brown"
               },
               {
-                id: "pablo_neruda",
-                name: "Pablo Neruda"
+                "id" => "pablo_neruda",
+                "name" => "Pablo Neruda"
               }
             ],
             'post' => [
               {
-                title: "Inferno",
-                content: "Inferno is the last book in Dan Brown's collection...",
-                author: Links::Entry.new("dan_brown")
+                "title" => "Inferno",
+                "content" => "Inferno is the last book in Dan Brown's collection...",
+                "author" => Links::Entry.new("dan_brown")
               },
               {
-                title: "Alturas de Macchu Picchu",
-                content: "Alturas de Macchu Picchu is one of Pablo Neruda's most famous poetry books...",
-                author: Links::Entry.new("pablo_neruda")
+                "title" => "Alturas de Macchu Picchu",
+                "content" => "Alturas de Macchu Picchu is one of Pablo Neruda's most famous poetry books...",
+                "author" => Links::Entry.new("pablo_neruda")
               }
             ]
           }
