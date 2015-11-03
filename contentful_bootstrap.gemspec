@@ -21,4 +21,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_runtime_dependency "launchy"
   spec.add_runtime_dependency "contentful-management"
+  spec.add_runtime_dependency "inifile"
 end
