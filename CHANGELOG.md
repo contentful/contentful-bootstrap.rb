@@ -1,5 +1,7 @@
 # Change Log
 ## Unreleased
+
+## v1.1.0
 ### Removed
 * Removed `init` command as `v1.0.0` refactor removed it's necessity
 
