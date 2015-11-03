@@ -1,5 +1,7 @@
 # Change Log
 ## Unreleased
+
+## v1.0.0
 ### Changed
 * Changed namespace from `ContentfulBootstrap` to `Contentful::Bootstrap` to mimic other libraries
 * Changed repository name from `contentful_bootstrap.rb` to `contentful-bootstrap.rb` to mimic other libraries
