@@ -13,21 +13,19 @@ module Contentful
     class Commands
       include Support
 
-      def init(space_name, template_name = nil)
-        if !Token.present?
-          puts "A new tab on your browser will open for requesting OAuth permissions"
-          get_token
-          puts "OAuth permissions successfully saved, your OAuth token is present in '.contentful_token'"
-        else
-          puts "OAuth token found, moving on!"
-        end
-
-        puts
-
-        create_space(space_name, template_name)
+      def initialize(config_path = "")
+        Token.set_path!(config_path)
       end
 
-      def create_space(space_name, template_name = nil)
+      def init(space_name, template_name = nil, from_command = true)
+        get_configuration if from_command
+
+        create_space(space_name, template_name, false)
+      end
+
+      def create_space(space_name, template_name = nil, from_command = true)
+        get_configuration if from_command
+
         management_client_init
 
         puts "Creating Space '#{space_name}'"
@@ -55,7 +53,7 @@ module Contentful
           end
         end
 
-        token = generate_token(space)
+        token = generate_token(space, "Bootstrap Token", false)
         puts
         puts "Space ID: '#{space.id}'"
         puts "Access Token: '#{token}'"
@@ -63,8 +61,9 @@ module Contentful
         puts "You can now insert those values into your configuration blocks"
       end
 
-      def generate_token(space, token_name = "Bootstrap Token")
-        management_client_init
+      def generate_token(space, token_name = "Bootstrap Token", from_command = true)
+        get_configuration if from_command
+        management_client_init if from_command
 
         if space.is_a?(String)
           space = Contentful::Management::Space.find(space)
@@ -82,11 +81,30 @@ module Contentful
         token = response.object["accessToken"]
 
         puts "Token '#{token_name}' created! - '#{token}'"
+        print "Do you want to write the Delivery Token to your configuration file? (Y/n): "
+        Token.write_access_token(token) unless gets.chomp.downcase == "n"
 
         token
       end
 
       private
+      def get_configuration
+        if !Token.present?
+          print "OAuth Token not found, do you want to create a new configuration file? (Y/n): "
+          if gets.chomp.downcase == "n"
+            puts "Exiting!"
+            return
+          end
+          puts "Configuration will be saved on #{Token.filename}"
+
+          puts "A new tab on your browser will open for requesting OAuth permissions"
+          get_token
+        else
+          puts "OAuth token found, moving on!"
+        end
+        puts
+      end
+
       def management_client_init
         Contentful::Management::Client.new(Token.read, raise_errors: true)
       end
