@@ -17,12 +17,6 @@ module Contentful
         Token.set_path!(config_path)
       end
 
-      def init(space_name, template_name = nil, from_command = true)
-        get_configuration if from_command
-
-        create_space(space_name, template_name, false)
-      end
-
       def create_space(space_name, template_name = nil, from_command = true)
         get_configuration if from_command
 

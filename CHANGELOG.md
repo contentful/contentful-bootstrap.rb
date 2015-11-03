@@ -1,11 +1,13 @@
 # Change Log
 ## Unreleased
+### Removed
+* Removed `init` command as `v1.0.0` refactor removed it's necessity
 
-## v1.0.1
+## v1.0.1 [YANKED]
 ### Fixed
 * Release is now on `master`
 
-## v1.0.0
+## v1.0.0 [YANKED]
 ### Changed
 * Changed namespace from `ContentfulBootstrap` to `Contentful::Bootstrap` to mimic other libraries
 * Changed repository name from `contentful_bootstrap.rb` to `contentful-bootstrap.rb` to mimic other libraries

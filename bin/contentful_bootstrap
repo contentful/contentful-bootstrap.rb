@@ -9,22 +9,12 @@ global = OptionParser.new do |opts|
   opts.separator ""
   opts.separator <<-HELP
     Available commands are:
-      init
       create_space
       generate_token
   HELP
 end
 
 subcommands = {
-  'init' => OptionParser.new do |opts|
-    opts.banner = "Usage: init <space_name> [--template TEMPLATE_NAME] [--config CONFIG_PATH]"
-    opts.on("-t TEMPLATE", "--template TEMPLATE", "Specify Template", "blog, catalogue, gallery") do |t|
-      options[:name] = t
-    end
-    opts.on("-c CONFIG_PATH", "--config CONFIG_PATH", "Specify Configuration Path") do |c|
-      options[:config_path] = c
-    end
-  end,
   'create_space' => OptionParser.new do |opts|
     opts.banner = "Usage: init <space_name> [--template TEMPLATE_NAME]"
     opts.on("-t TEMPLATE", "--template TEMPLATE", "Specify Template", "blog, catalogue, gallery") do |t|
@@ -66,7 +56,6 @@ else
   puts <<-HELP
     Subcommand not available or missing
     Available commands are:
-      init
       create_space
       generate_token
   HELP

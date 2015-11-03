@@ -20,14 +20,9 @@ in a single command
 $ gem install contentful_bootstrap
 ```
 
-### First Usage
+### Usage
 
-```bash
-$ contentful_bootstrap init <space_name> [--template template_name] [--config CONFIG_PATH]
-```
-
-
-Then you can create other spaces by doing:
+You can create spaces by doing
 
 ```bash
 $ contentful_bootstrap create_space <space_name> [--template template_name] [--config CONFIG_PATH]
@@ -67,20 +62,15 @@ Require `contentful_bootstrap`
 require 'contentful/bootstrap'
 ```
 
-To do the complete `init` process
+To Create a new Space
 
 ```ruby
-Contentful::Bootstrap::Commands.new.init("space_name", "template_name") # Template Name is optional
+Contentful::Bootstrap::Commands.new.create_space("space_name", "template_name") # Template Name is optional
 ```
 
-
-To create a new Space or Token
+To Create a new Delivery API Token
 
 ```ruby
-# Create a new Space
-Contentful::Bootstrap::Commands.new.create_space("space_name", "template_name") # Template Name is optional
-
-# Create a new CDA Access Token
 Contentful::Bootstrap::Commands.new.generate_token("space_id", "token_name") # Token Name is optional
 ```
 
