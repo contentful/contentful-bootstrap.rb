@@ -1,5 +1,12 @@
 # Change Log
 ## Unreleased
+### Changed
+* Changed namespace from `ContentfulBootstrap` to `Contentful::Bootstrap` to mimic other libraries
+* Changed repository name from `contentful_bootstrap.rb` to `contentful-bootstrap.rb` to mimic other libraries
+* Delivery API Token will always get created when using `contentful_bootstrap` commands to create a space
+
+### Added
+* `contentful-bootstrap.rb` version number to API Token description
 
 ## v0.0.7
 ### Fixed
