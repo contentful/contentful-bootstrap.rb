@@ -64,13 +64,13 @@ gem "contentful_bootstrap"
 Require `contentful_bootstrap`
 
 ```ruby
-require 'contentful_bootstrap'
+require 'contentful/bootstrap'
 ```
 
 To do the complete `init` process
 
 ```ruby
-ContentfulBootstrap::Commands.new.init("space_name", "template_name") # Template Name is optional
+Contentful::Bootstrap::Commands.new.init("space_name", "template_name") # Template Name is optional
 ```
 
 
@@ -78,10 +78,10 @@ To create a new Space or Token. *This operations require a CMA Token located in 
 
 ```ruby
 # Create a new Space
-ContentfulBootstrap::Commands.new.create_space("space_name", "template_name") # Template Name is optional
+Contentful::Bootstrap::Commands.new.create_space("space_name", "template_name") # Template Name is optional
 
 # Create a new CDA Access Token
-ContentfulBootstrap::Commands.new.generate_token("space_id", "token_name") # Token Name is optional
+Contentful::Bootstrap::Commands.new.generate_token("space_id", "token_name") # Token Name is optional
 ```
 
 ## Contributing

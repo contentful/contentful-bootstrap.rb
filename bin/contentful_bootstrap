@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'optparse'
-require 'contentful_bootstrap/commands'
+require 'contentful/bootstrap/commands'
 
 options = {}
 global = OptionParser.new do |opts|
@@ -49,7 +49,7 @@ if subcommands.has_key? command
     exit
   end
 
-  ContentfulBootstrap::Commands.new.send(command, space, options.fetch(:name, nil))
+  Contentful::Bootstrap::Commands.new.send(command, space, options.fetch(:name, nil))
 else
   puts "Usage: contentful_bootstrap <command> <space> [options]"
   puts

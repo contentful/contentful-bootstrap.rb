@@ -1,5 +1,0 @@
-require "contentful_bootstrap/version"
-require "contentful_bootstrap/server"
-require "contentful_bootstrap/commands"
-require "contentful_bootstrap/templates"
-require "contentful_bootstrap/token"
