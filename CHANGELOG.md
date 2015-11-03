@@ -1,6 +1,10 @@
 # Change Log
 ## Unreleased
 
+## v1.0.1
+### Fixed
+* Release is now on `master`
+
 ## v1.0.0
 ### Changed
 * Changed namespace from `ContentfulBootstrap` to `Contentful::Bootstrap` to mimic other libraries
