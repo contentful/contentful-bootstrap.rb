@@ -1,5 +1,7 @@
 # Change Log
 ## Unreleased
+
+## v1.2.0
 ### Added
 * JSON Template Parser
 * `catalogue.json` Template Example
