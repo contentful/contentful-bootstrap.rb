@@ -31,7 +31,8 @@ module Contentful
         begin
           space = Contentful::Management::Space.create(name: space_name)
         rescue Contentful::Management::NotFound
-          puts "Your account has multiple organizations"
+          puts "Your account has multiple organizations:"
+          puts get_organizations.join("\n")
           print "Please insert the Organization ID you'd want to create the spaces for: "
           organization_id = gets.chomp
           space = Contentful::Management::Space.create(name: space_name, organization_id: organization_id)
@@ -123,6 +124,15 @@ module Contentful
 
       def management_client_init
         Contentful::Management::Client.new(Token.read, raise_errors: true)
+      end
+
+      def get_organizations
+        client = management_client_init
+        url = client.base_url.sub('spaces', 'token')
+        response = Contentful::Management::Client.get_http(url, nil, client.request_headers)
+        JSON.load(response.body.to_s)["includes"]["Organization"].map { |org|
+          "%-20s #{org["sys"]["id"]}" % org["name"]
+        }.sort
       end
 
       def get_token
