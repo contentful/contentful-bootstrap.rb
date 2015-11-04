@@ -6,8 +6,9 @@ module Contentful
       CONFIG_ENV = "CONTENTFUL_ENV".freeze
       DEFAULT_SECTION = "global".freeze
       DEFAULT_PATH = ".contentfulrc".freeze
-      MANAGEMENT_TOKEN = "CONTENTFUL_MANAGEMENT_ACCESS_TOKEN"
-      DELIVERY_TOKEN = "CONTENTFUL_DELIVERY_ACCESS_TOKEN"
+      MANAGEMENT_TOKEN = "CONTENTFUL_MANAGEMENT_ACCESS_TOKEN".freeze
+      DELIVERY_TOKEN = "CONTENTFUL_DELIVERY_ACCESS_TOKEN".freeze
+      SPACE_ID = "SPACE_ID".freeze
 
       def self.set_path!(config_path = "")
         @@config_path = config_path
@@ -26,14 +27,18 @@ module Contentful
         end
       end
 
-      def self.write(token, key = MANAGEMENT_TOKEN)
+      def self.write(value, section = nil, key = MANAGEMENT_TOKEN)
         file = config_file
-        file[config_section][key] = token
+        file[section || config_section][key] = value
         file.save
       end
 
-      def self.write_access_token(token)
-        write(token, DELIVERY_TOKEN)
+      def self.write_access_token(space_name, token)
+        write(token, space_name, DELIVERY_TOKEN)
+      end
+
+      def self.write_space_id(space_name, space_id)
+        write(space_id, space_name, SPACE_ID)
       end
 
       def self.filename

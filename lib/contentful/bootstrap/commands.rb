@@ -95,7 +95,10 @@ module Contentful
 
         puts "Token '#{token_name}' created! - '#{token}'"
         print "Do you want to write the Delivery Token to your configuration file? (Y/n): "
-        Token.write_access_token(token) unless gets.chomp.downcase == "n"
+        unless gets.chomp.downcase == "n"
+          Token.write_access_token(space.name, token)
+          Token.write_space_id(space.name, space.id)
+        end
 
         token
       end
