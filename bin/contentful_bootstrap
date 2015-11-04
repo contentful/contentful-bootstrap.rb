@@ -17,7 +17,7 @@ end
 subcommands = {
   'create_space' => OptionParser.new do |opts|
     opts.banner = "Usage: init <space_name> [--template TEMPLATE_NAME] [--json-template JSON_PATH] [--config CONFIG_PATH]"
-    opts.on("-t TEMPLATE", "--template TEMPLATE", "Specify Template", "blog, catalogue, gallery") do |t|
+    opts.on("-t TEMPLATE", "--template TEMPLATE", "Specify Template", "Available Templates: blog, catalogue, gallery") do |t|
       options[:template] = t
     end
     opts.on("-j JSON_PATH", "--json-template JSON_PATH", "Specify JSON Template Path") do |j|
@@ -26,27 +26,39 @@ subcommands = {
     opts.on("-c CONFIG_PATH", "--config CONFIG_PATH", "Specify Configuration Path") do |c|
       options[:config_path] = c
     end
+    opts.on_tail("-h", "--help", "Print this message") do
+      puts opts
+    end
   end,
   'generate_token' => OptionParser.new do |opts|
     opts.banner = "Usage: generate_token <space_id> [--name TOKEN_NAME] [--config CONFIG_PATH]"
-    opts.on("-n NAME", "--name TEMPLATE", "Specify Token Name") do |n|
+    opts.on("-n NAME", "--name TOKEN_NAME", "Specify Token Name") do |n|
       options[:name] = n
     end
     opts.on("-c CONFIG_PATH", "--config CONFIG_PATH", "Specify Configuration Path") do |c|
       options[:config_path] = c
+    end
+    opts.on_tail("-h", "--help", "Print this message") do
+      puts opts
     end
   end
 }
 
 global.order!
 command = ARGV.shift
-space = ARGV.shift
+
+is_help = ARGV.include?("-h") || ARGV.include?("--help")
+space = ARGV.shift unless is_help
 
 if subcommands.has_key? command
   subcommands[command].order!
 
+  if is_help
+    exit
+  end
+
   if space.nil? || space.empty?
-    puts "Usage: contentful_bootstrap <command> <space_name> [--template TEMPLATE_NAME]"
+    puts "Usage: contentful_bootstrap <command> <space> [options]"
     puts
     puts "You must provide a valid space name. Exiting!"
     exit
