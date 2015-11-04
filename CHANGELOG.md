@@ -1,5 +1,10 @@
 # Change Log
 ## Unreleased
+### Added
+* Spaces now get their own section in `~/.contentfulrc`
+
+### Changed
+* Delivery API Tokens now saved per Space
 
 ## v1.2.0
 ### Added
