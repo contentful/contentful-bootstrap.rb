@@ -1,5 +1,7 @@
 # Change Log
 ## Unreleased
+
+## v1.3.0
 ### Added
 * Spaces now get their own section in `~/.contentfulrc`
 
