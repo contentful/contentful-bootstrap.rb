@@ -1,6 +1,10 @@
 # Change Log
 ## Unreleased
 
+## v1.5.0
+### Added
+* Multiple Organization ID fetch
+
 ## v1.4.0
 ### Added
 * Contentful Space URL after creation
