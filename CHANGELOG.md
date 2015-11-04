@@ -1,5 +1,7 @@
 # Change Log
 ## Unreleased
+
+## v1.4.0
 ### Added
 * Contentful Space URL after creation
 * Support for Array fields in JSON Templates
