@@ -2,6 +2,7 @@
 ## Unreleased
 ### Added
 * Contentful Space URL after creation
+* Support for Array fields in JSON Templates
 
 ## v1.3.2
 ### Added
