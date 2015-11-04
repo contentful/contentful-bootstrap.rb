@@ -50,6 +50,12 @@ command = ARGV.shift
 is_help = ARGV.include?("-h") || ARGV.include?("--help")
 space = ARGV.shift unless is_help
 
+unless STDIN.tty? && STDOUT.tty?
+  $stderr.write "This tool requires user interaction\n"
+  $stderr.write "Exiting!\n"
+  exit
+end
+
 if subcommands.has_key? command
   subcommands[command].order!
 

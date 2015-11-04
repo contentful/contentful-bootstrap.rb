@@ -1,5 +1,7 @@
 # Change Log
 ## Unreleased
+### Added
+* Error out when no STDIN is detected
 
 ## v1.3.1
 ### Fixed
