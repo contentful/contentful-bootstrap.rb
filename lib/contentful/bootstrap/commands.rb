@@ -69,6 +69,7 @@ module Contentful
         puts "Access Token: '#{token}'"
         puts
         puts "You can now insert those values into your configuration blocks"
+        puts "Manage your content at https://app.contentful.com/spaces/#{space.id}"
       end
 
       def generate_token(space, options = {})

@@ -1,5 +1,7 @@
 # Change Log
 ## Unreleased
+### Added
+* Contentful Space URL after creation
 
 ## v1.3.2
 ### Added
