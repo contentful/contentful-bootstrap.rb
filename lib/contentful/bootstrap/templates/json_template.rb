@@ -48,13 +48,22 @@ module Contentful
           unprocessed_entries.each do |content_type_id, entry_list|
             entries_for_content_type = []
             entry_list.each do |entry|
+              array_fields = []
               link_fields = []
+
               entry.each do |field, value|
                 link_fields << field if value.is_a? Hash
+                array_fields << field if value.is_a? Array
               end
 
               link_fields.each do |lf|
                 entry[lf] = create_link(entry[lf])
+              end
+
+              array_fields.each do |af|
+                entry[af].map! do |link|
+                  create_link(link)
+                end
               end
 
               entries_for_content_type << entry
