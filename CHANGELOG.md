@@ -1,5 +1,7 @@
 # Change Log
 ## Unreleased
+
+## v1.3.1
 ### Fixed
 * Fix help messages. [#5](https://github.com/contentful-labs/contentful-bootstrap.rb/issues/5)
 
