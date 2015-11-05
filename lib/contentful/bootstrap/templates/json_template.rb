@@ -61,8 +61,12 @@ module Contentful
               end
 
               array_fields.each do |af|
-                entry[af].map! do |link|
-                  create_link(link)
+                entry[af].map! do |item|
+                  if item.is_a? Hash
+                    create_link(item)
+                  else
+                    item
+                  end
                 end
               end
 
