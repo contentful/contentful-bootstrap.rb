@@ -1,5 +1,7 @@
 # Change Log
 ## Unreleased
+
+## v1.6.0
 ### Added
 * Support for Symbols in Array fields
 * Support for Links of other Entries that are not yet saved
