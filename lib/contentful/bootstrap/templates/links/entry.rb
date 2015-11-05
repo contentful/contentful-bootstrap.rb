@@ -1,3 +1,4 @@
+require "contentful/management"
 require "contentful/bootstrap/templates/links/base"
 
 module Contentful
@@ -5,8 +6,8 @@ module Contentful
     module Templates
       module Links
         class Entry < Base
-          def kind
-            :entries
+          def management_class
+            Contentful::Management::Entry
           end
         end
       end

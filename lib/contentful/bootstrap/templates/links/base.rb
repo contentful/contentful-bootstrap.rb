@@ -11,15 +11,21 @@ module Contentful
           end
 
           def link_type
-            self.class.name
-          end
-
-          def kind
-            raise "must implement"
+            self.class.name.split("::").last
           end
 
           def type
             Contentful::Management::ContentType::LINK
+          end
+
+          def to_management_object
+            object = management_class.new
+            object.id = id
+            object
+          end
+
+          def management_class
+            raise "must implement"
           end
         end
       end

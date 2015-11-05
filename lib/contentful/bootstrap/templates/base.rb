@@ -1,6 +1,5 @@
 require "contentful/management"
 require "contentful/bootstrap/templates/links/base"
-require "contentful/bootstrap/extensions/array"
 
 module Contentful
   module Bootstrap
@@ -116,15 +115,14 @@ module Contentful
               end
 
               array_fields.each do |af|
-                #e[af].map! do |f|
-                  #if f.is_a? Links::Base
-                    #space.send(f.kind).find(f.id)
-                  #else
-                    #f
-                  #end
-                #end
+                e[af].map! do |item|
+                  if item.is_a? Links::Base
+                    item.to_management_object
+                  else
+                    item
+                  end
+                end
                 e[af.to_sym] = e.delete(af)
-                e[af.to_sym].extend Contentful::Bootstrap::Extensions::Array
               end
 
               regular_fields.each do |rf|
@@ -137,9 +135,7 @@ module Contentful
           end
 
           content_types.each do |content_type|
-            content_type.entries.all do |entry|
-              entry.publish
-            end
+            content_type.entries.all.map(&:publish)
           end
         end
       end
