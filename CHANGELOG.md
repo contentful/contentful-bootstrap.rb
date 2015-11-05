@@ -1,5 +1,7 @@
 # Change Log
 ## Unreleased
+
+## v1.5.1
 ### Fixed
 * Array fields were getting overwritten with `nil`
 
