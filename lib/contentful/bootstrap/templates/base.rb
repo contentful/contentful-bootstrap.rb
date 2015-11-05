@@ -1,4 +1,6 @@
 require "contentful/management"
+require "contentful/bootstrap/templates/links/base"
+require "contentful/bootstrap/extensions/array"
 
 module Contentful
   module Bootstrap
@@ -94,8 +96,11 @@ module Contentful
         end
 
         def create_entries
+          content_types = []
           entries.each do |content_type_id, entry_list|
             content_type = space.content_types.find(content_type_id)
+            content_types << content_type
+
             entry_list.each_with_index do |e, index|
               puts "Creating Entry #{index} for #{content_type_id.capitalize}"
 
@@ -111,18 +116,28 @@ module Contentful
               end
 
               array_fields.each do |af|
-                e[af].map! do |f|
-                  space.send(f.kind).find(f.id)
-                end
+                #e[af].map! do |f|
+                  #if f.is_a? Links::Base
+                    #space.send(f.kind).find(f.id)
+                  #else
+                    #f
+                  #end
+                #end
                 e[af.to_sym] = e.delete(af)
+                e[af.to_sym].extend Contentful::Bootstrap::Extensions::Array
               end
 
               regular_fields.each do |rf|
                 e[rf.to_sym] = e.delete(rf)
               end
 
-              entry = content_type.entries.create(e)
+              entry = content_type.entries.create(e.clone)
               entry.save
+            end
+          end
+
+          content_types.each do |content_type|
+            content_type.entries.all do |entry|
               entry.publish
             end
           end
