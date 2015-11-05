@@ -102,7 +102,11 @@ module Contentful
               array_fields = []
               regular_fields = []
               e.each do |field_name, value|
-                array_fields << field_name if value.is_a? Array
+                if value.is_a? Array
+                  array_fields << field_name if value.is_a? Array
+                  next
+                end
+
                 regular_fields << field_name
               end
 
