@@ -1,5 +1,7 @@
 # Change Log
 ## Unreleased
+### Added
+* More robust mechanism for waiting on processed assets
 
 ## v1.6.0
 ### Added

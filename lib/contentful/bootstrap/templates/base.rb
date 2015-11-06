@@ -89,8 +89,17 @@ module Contentful
               file: asset["file"]
             )
             asset.process_file
-            sleep(1) # Wait for Process
-            asset.publish
+
+            attempts = 0
+            while attempts < 5
+              unless space.assets.find(asset.id).file.url.nil?
+                asset.publish
+                break
+              end
+
+              sleep(1) # Wait for Process
+              attempts += 1
+            end
           end
         end
 
