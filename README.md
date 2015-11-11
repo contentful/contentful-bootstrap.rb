@@ -9,8 +9,7 @@ and publish it anywhere via powerful API. Contentful offers tools for managing e
 teams and enabling cooperation between organizations.
 
 ## What does `contentful_bootstrap` do?
-The aim of `contentful_bootstrap` is to have developers setting up their Contentful environment
-in a single command
+`contentful_bootstrap` let's you set up a new Contentful environment with a single command.
 
 ## How to Use
 
@@ -35,9 +34,9 @@ You can also generate new Delivery API Tokens by doing:
 $ contentful_bootstrap generate_token <space_id> [--name token_name] [--config CONFIG_PATH]
 ```
 
-### Available templates
+### Built-in templates
 
-The available templates for your spaces are:
+Just getting started with Contentful? We have included the following built-in templates:
 
 ```
 blog
@@ -45,8 +44,9 @@ gallery
 catalogue
 ```
 
-This will get you started with Contentful by setting up a Space with some Demo Data to get you
-started as soon as possible with development using our API.
+You can use these with the `--template` option to create some demo data and start developing
+against our APIs right away. Once you've gotten comfortable, you can
+[create your own templates](#json-templates) for quickly replicating testing & development spaces.
 
 ### Using from within other applications
 
@@ -119,7 +119,9 @@ CONTENTFUL_DELIVERY_ACCESS_TOKEN = a_delivery_acces_token      ; Delivery Access
 
 ### JSON Templates
 
-You can find a complete example [here](./examples/templates/catalogue.json)
+Using the `--json-template` option, you can create spaces with your own predefined content.
+This can be useful for creating testing & development spaces or just starting new projects from
+a common baseline. You can find a complete example [here](./examples/templates/catalogue.json)
 
 ## Contributing
 
