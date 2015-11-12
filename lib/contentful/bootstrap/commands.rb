@@ -7,6 +7,7 @@ require "contentful/bootstrap/server"
 require "contentful/bootstrap/support"
 require "contentful/bootstrap/templates"
 require "contentful/bootstrap/version"
+require "contentful/bootstrap/generator"
 
 module Contentful
   module Bootstrap
@@ -103,6 +104,29 @@ module Contentful
         end
 
         token
+      end
+
+      def generate_json(space_id, options = {})
+        filename = options.fetch(:filename, space_id)
+        access_token = options.fetch(:access_token)
+
+        if access_token.nil?
+          puts "Access Token not specified"
+          puts "Exiting!"
+          exit
+        end
+
+        puts "Generating JSON Template '#{filename}' for Space: '#{space_id}'"
+
+        json = Contentful::Bootstrap::Generator.new(space_id, access_token).generate_json
+
+        if options.fetch(:filename, false)
+          puts "Saving JSON template to '#{filename}'"
+          ::File.write(filename, json)
+        else
+          puts
+          puts json
+        end
       end
 
       private

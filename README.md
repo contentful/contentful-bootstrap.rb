@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/contentful-labs/contentful-bootstrap.rb.svg)](https://travis-ci.org/contentful-labs/contentful-bootstrap.rb)
+
 # Contentful Bootstrap
 
 A small CLI tool for getting started with Contentful
@@ -21,17 +23,22 @@ $ gem install contentful_bootstrap
 
 ### Usage
 
-You can create spaces by doing
+You can create spaces by doing:
 
 ```bash
 $ contentful_bootstrap create_space <space_name> [--template template_name] [--json-template template_path] [--config CONFIG_PATH]
 ```
 
-
 You can also generate new Delivery API Tokens by doing:
 
 ```bash
 $ contentful_bootstrap generate_token <space_id> [--name token_name] [--config CONFIG_PATH]
+```
+
+You can also generate JSON Templates from existing spaces by doing:
+
+```bash
+$ contentful_bootstrap generate_json <space_id> <access_token> [--output-file OUTPUT PATH]
 ```
 
 ### Built-in templates
@@ -92,7 +99,24 @@ options = {
   name: "Some Nice Token Name", # Will Create the Delivery API Token with the specified name
   trigger_oauth: true # if true will trigger OAuth process
 }
-Contentful::Bootstrap::Commands.new.create_space("space_name", options)
+Contentful::Bootstrap::Commands.new.generate_token("space_id", options)
+```
+
+To Generate a JSON Template from an exising Space
+
+```ruby
+Contentful::Bootstrap::Commands.new.generate_json("space_id", access_token: "access_token")
+```
+
+Additionally, you can send an options hash with the following keys:
+**NOTE**: The `:access_token` key is required in the options hash
+
+```ruby
+options = {
+  access_token: "access_token" # REQUIRED
+  filename: "template.json" # Will save the JSON to the specified file
+}
+Contentful::Bootstrap::Commands.new.generate_json("space_id", options)
 ```
 
 Optionally, `Commands#new` will take a parameter for specifying a configuration path

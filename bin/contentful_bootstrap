@@ -4,19 +4,10 @@ require 'optparse'
 require 'contentful/bootstrap/commands'
 
 options = {}
-global = OptionParser.new do |opts|
-  opts.banner = "Usage: contentful_bootstrap <command> <space_name> [options]"
-  opts.separator ""
-  opts.separator <<-HELP
-    Available commands are:
-      create_space
-      generate_token
-  HELP
-end
 
 subcommands = {
   'create_space' => OptionParser.new do |opts|
-    opts.banner = "Usage: init <space_name> [--template TEMPLATE_NAME] [--json-template JSON_PATH] [--config CONFIG_PATH]"
+    opts.banner = "Usage: create_space <space_name> [--template TEMPLATE_NAME] [--json-template JSON_PATH] [--config CONFIG_PATH]"
     opts.on("-t TEMPLATE", "--template TEMPLATE", "Specify Template", "Available Templates: blog, catalogue, gallery") do |t|
       options[:template] = t
     end
@@ -41,8 +32,26 @@ subcommands = {
     opts.on_tail("-h", "--help", "Print this message") do
       puts opts
     end
-  end
+  end,
+  'generate_json' => OptionParser.new do |opts|
+    opts.banner = "Usage: generate_json <space_id> <access_token> [--output-file OUTPUT_PATH]"
+    opts.on("-o OUTPUT_PATH", "--output-file OUTPUT_PATH", "Specify Output File") do |f|
+      options[:filename] = f
+    end
+    opts.on_tail("-h", "--help", "Print this message") do
+      puts opts
+    end
+  end,
 }
+
+global = OptionParser.new do |opts|
+  opts.banner = "Usage: contentful_bootstrap <command> <space_name> [options]"
+  opts.separator ""
+  opts.separator <<-HELP
+    Available commands are:
+    \t#{subcommands.keys.sort.join("\n\t")}
+  HELP
+end
 
 global.order!
 command = ARGV.shift
@@ -50,14 +59,16 @@ command = ARGV.shift
 is_help = ARGV.include?("-h") || ARGV.include?("--help")
 space = ARGV.shift unless is_help
 
-unless STDIN.tty? && STDOUT.tty?
-  $stderr.write "This tool requires user interaction\n"
-  $stderr.write "Exiting!\n"
-  exit
-end
+options[:access_token] = ARGV.shift if command == "generate_json" && !is_help
 
 if subcommands.has_key? command
   subcommands[command].order!
+
+  unless STDIN.tty? && STDOUT.tty?
+    $stderr.write "This tool requires user interaction\n"
+    $stderr.write "Exiting!\n"
+    exit
+  end
 
   if is_help
     exit
@@ -79,7 +90,6 @@ else
   puts <<-HELP
     Subcommand not available or missing
     Available commands are:
-      create_space
-      generate_token
   HELP
+  puts "\t#{subcommands.keys.sort.join("\n\t")}"
 end

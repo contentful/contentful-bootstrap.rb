@@ -2,6 +2,7 @@
 ## Unreleased
 ### Added
 * More robust mechanism for waiting on processed assets
+* JSON Template generator `generate_json` command
 
 ## v1.6.0
 ### Added
