@@ -1,4 +1,4 @@
-require "contentful/management"
+require 'contentful/management'
 
 module Contentful
   module Bootstrap
@@ -11,7 +11,7 @@ module Contentful
           end
 
           def link_type
-            self.class.name.split("::").last
+            self.class.name.split('::').last
           end
 
           def type
@@ -25,7 +25,7 @@ module Contentful
           end
 
           def management_class
-            raise "must implement"
+            fail 'must implement'
           end
         end
       end

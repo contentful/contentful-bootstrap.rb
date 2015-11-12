@@ -1,8 +1,18 @@
 # Change Log
+
 ## Unreleased
+### Changed
+* Refactored `Commands` into new classes
+* Renamed `Commands` to `CommandRunner`, kept external interface, moved internal logic to new `Commands` classes
+* Refactored `Token` to be an Object instead of a collection of static behavior
+* General code refactoring and cleanup
+
 ### Added
 * More robust mechanism for waiting on processed assets
 * JSON Template generator `generate_json` command
+* Entries are now first created empty, then populated on second run to avoid Link failures
+* Added Specs for almost all the code
+* Applied Rubocop Style guide
 
 ## v1.6.0
 ### Added

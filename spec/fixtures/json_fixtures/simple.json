@@ -1,0 +1,34 @@
+{
+  "content_types": [
+    {
+      "id": "cat",
+      "name": "Cat",
+      "displayField": "name",
+      "fields": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "Symbol"
+        }
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "cat_asset",
+      "title": "Cat",
+      "file": {
+        "filename": "cat",
+        "url": "https://somecat.com/my_cat.jpeg"
+      }
+    }
+  ],
+  "entries": {
+    "cat": [
+      {
+        "id": "nyancat",
+        "name": "Nyan Cat"
+      }
+    ]
+  }
+}
