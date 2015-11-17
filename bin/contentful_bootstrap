@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'optparse'
-require 'contentful/bootstrap/commands'
+require 'contentful/bootstrap/command_runner'
 
 options = {}
 
@@ -83,7 +83,7 @@ if subcommands.has_key? command
 
   options[:trigger_oauth] = true
 
-  Contentful::Bootstrap::Commands.new(options.fetch(:config_path, "")).send(command, space, options)
+  Contentful::Bootstrap::CommandRunner.new(options.fetch(:config_path, "")).send(command, space, options)
 else
   puts "Usage: contentful_bootstrap <command> <space> [options]"
   puts

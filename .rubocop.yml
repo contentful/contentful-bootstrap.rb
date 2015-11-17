@@ -1,0 +1,26 @@
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+    - 'lib/contentful/bootstrap/templates/blog.rb'
+    - 'lib/contentful/bootstrap/templates/catalogue.rb'
+    - 'lib/contentful/bootstrap/templates/gallery.rb'
+
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'lib/contentful/bootstrap/commands.rb'
+    - 'lib/contentful/bootstrap/constants.rb'
+    - 'lib/contentful/bootstrap/generator.rb'
+    - 'lib/contentful/bootstrap/server.rb'
+    - 'lib/contentful/bootstrap/support.rb'
+    - 'lib/contentful/bootstrap/templates/base.rb'
+    - 'lib/contentful/bootstrap/templates/blog.rb'
+    - 'lib/contentful/bootstrap/templates/catalogue.rb'
+    - 'lib/contentful/bootstrap/templates/gallery.rb'
+    - 'lib/contentful/bootstrap/templates/json_template.rb'
+    - 'lib/contentful/bootstrap/templates/links/asset.rb'
+    - 'lib/contentful/bootstrap/templates/links/base.rb'
+    - 'lib/contentful/bootstrap/templates/links/entry.rb'
+    - 'lib/contentful/bootstrap/token.rb'
+    - 'lib/contentful/bootstrap/version.rb'

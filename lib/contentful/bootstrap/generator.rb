@@ -21,16 +21,19 @@ module Contentful
       private
 
       def assets
-        @client.assets.map do |asset|
+        proccessed_assets = @client.assets.map do |asset|
           result = { 'id' => asset.sys[:id], 'title' => asset.title }
-          result['file'] = {'filename' => ::File.basename(asset.file.file_name, '.*'),
-                            'url' => "https:#{asset.file.url}"}
+          result['file'] = {
+            'filename' => ::File.basename(asset.file.file_name, '.*'),
+            'url' => "https:#{asset.file.url}"
+          }
           result
-        end.sort_by { |item| item['id'] }
+        end
+        proccessed_assets.sort_by { |item| item['id'] }
       end
 
       def content_types
-        @client.content_types.map do |type|
+        proccessed_content_types = @client.content_types.map do |type|
           result = { 'id' => type.sys[:id], 'name' => type.name }
           result['display_field'] = type.display_field unless type.display_field.nil?
 
@@ -39,7 +42,8 @@ module Contentful
           end
 
           result
-        end.sort_by { |item| item['id'] }
+        end
+        proccessed_content_types.sort_by { |item| item['id'] }
       end
 
       def entries
@@ -62,17 +66,16 @@ module Contentful
       end
 
       def map_field(value)
-        if value.is_a? ::Array
-          return value.map { |v| map_field(v) }
-        end
+        return value.map { |v| map_field(v) } if value.is_a? ::Array
 
         if value.is_a?(Contentful::Asset) || value.is_a?(Contentful::Entry)
-          return { 'link_type' => value.class.name.split('::').last, 'id' => value.sys[:id] }
+          return {
+            'link_type' => value.class.name.split('::').last,
+            'id' => value.sys[:id]
+          }
         end
 
-        if value.is_a?(Contentful::Link)
-          return nil
-        end
+        return nil if value.is_a?(Contentful::Link)
 
         value
       end

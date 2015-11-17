@@ -1,10 +1,11 @@
-require "stringio"
+require 'stringio'
 
 module Contentful
   module Bootstrap
     module Support
       def silence_stderr
-        old_stderr, $stderr = $stderr, StringIO.new
+        old_stderr = $stderr
+        $stderr = StringIO.new
         yield
       ensure
         $stderr = old_stderr

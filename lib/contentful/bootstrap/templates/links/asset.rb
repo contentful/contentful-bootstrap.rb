@@ -1,5 +1,5 @@
-require "contentful/management"
-require "contentful/bootstrap/templates/links/base"
+require 'contentful/management'
+require 'contentful/bootstrap/templates/links/base'
 
 module Contentful
   module Bootstrap

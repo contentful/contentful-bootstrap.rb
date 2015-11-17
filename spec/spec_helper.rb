@@ -20,3 +20,32 @@ def vcr(cassette)
     yield if block_given?
   end
 end
+
+def ini(ini_file)
+  file = IniFile.load(ini_file)
+  yield file if block_given?
+  file
+end
+
+class SpaceDouble
+  def id
+    'foobar'
+  end
+
+  def name
+    'foobar'
+  end
+end
+
+class ServerDouble
+  def [](key)
+  end
+end
+
+class RequestDouble
+  attr_accessor :query
+end
+
+class ResponseDouble
+  attr_accessor :body, :status, :content_type
+end

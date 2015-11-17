@@ -1,5 +1,5 @@
-require "contentful/management"
-require "contentful/bootstrap/templates/links/base"
+require 'contentful/management'
+require 'contentful/bootstrap/templates/links/base'
 
 module Contentful
   module Bootstrap
@@ -30,6 +30,7 @@ module Contentful
         end
 
         protected
+
         def create_image(name, url)
           image = Contentful::Management::File.new
           image.properties[:contentType] = 'image/jpeg'
@@ -39,27 +40,28 @@ module Contentful
         end
 
         private
+
         def create_content_types
           content_types.each do |ct|
-            puts "Creating Content Type '#{ct["name"]}'"
+            puts "Creating Content Type '#{ct['name']}'"
 
             fields = []
             content_type = space.content_types.new
-            content_type.id = ct["id"]
-            content_type.name = ct["name"]
-            content_type.display_field = ct["display_field"]
+            content_type.id = ct['id']
+            content_type.name = ct['name']
+            content_type.display_field = ct['display_field']
 
-            ct["fields"].each do |f|
+            ct['fields'].each do |f|
               field = Contentful::Management::Field.new
-              field.id = f["id"]
-              field.name = f["name"]
-              field.type = f["type"]
-              field.link_type = f["link_type"] if is_link?(f)
+              field.id = f['id']
+              field.name = f['name']
+              field.type = f['type']
+              field.link_type = f['link_type'] if link?(f)
 
-              if is_array?(f)
+              if array?(f)
                 array_field = Contentful::Management::Field.new
-                array_field.type = f["items"]["type"]
-                array_field.link_type = f["items"]["link_type"]
+                array_field.type = f['items']['type']
+                array_field.link_type = f['items']['link_type']
                 field.items = array_field
               end
 
@@ -72,21 +74,21 @@ module Contentful
           end
         end
 
-        def is_link?(field)
-          field.has_key?("link_type")
+        def link?(field)
+          field.key?('link_type')
         end
 
-        def is_array?(field)
-          field.has_key?("items")
+        def array?(field)
+          field.key?('items')
         end
 
         def create_assets
           assets.each do |asset|
-            puts "Creating Asset '#{asset["title"]}'"
+            puts "Creating Asset '#{asset['title']}'"
             asset = space.assets.create(
-              id: asset["id"],
-              title: asset["title"],
-              file: asset["file"]
+              id: asset['id'],
+              title: asset['title'],
+              file: asset['file']
             )
             asset.process_file
 
@@ -111,6 +113,11 @@ module Contentful
 
             entry_list.each_with_index do |e, index|
               puts "Creating Entry #{index} for #{content_type_id.capitalize}"
+              entry = content_type.entries.create(id: e.clone['id'])
+            end
+
+            entry_list.each_with_index do |e, index|
+              puts "Populating Entry #{index} for #{content_type_id.capitalize}"
 
               array_fields = []
               regular_fields = []

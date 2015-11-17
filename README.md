@@ -72,7 +72,7 @@ require 'contentful/bootstrap'
 To Create a new Space
 
 ```ruby
-Contentful::Bootstrap::Commands.new.create_space("space_name")
+Contentful::Bootstrap::CommandRunner.new.create_space("space_name")
 ```
 
 Additionally, you can send an options hash with the following keys:
@@ -83,13 +83,13 @@ options = {
   json_template: "/path/to/template.json", # Will use the JSON file specified as a Template
   trigger_oauth: true # if true will trigger OAuth process
 }
-Contentful::Bootstrap::Commands.new.create_space("space_name", options)
+Contentful::Bootstrap::CommandRunner.new.create_space("space_name", options)
 ```
 
 To Create a new Delivery API Token
 
 ```ruby
-Contentful::Bootstrap::Commands.new.generate_token("space_id")
+Contentful::Bootstrap::CommandRunner.new.generate_token("space_id")
 ```
 
 Additionally, you can send an options hash with the following keys:
@@ -99,13 +99,13 @@ options = {
   name: "Some Nice Token Name", # Will Create the Delivery API Token with the specified name
   trigger_oauth: true # if true will trigger OAuth process
 }
-Contentful::Bootstrap::Commands.new.generate_token("space_id", options)
+Contentful::Bootstrap::CommandRunner.new.generate_token("space_id", options)
 ```
 
 To Generate a JSON Template from an exising Space
 
 ```ruby
-Contentful::Bootstrap::Commands.new.generate_json("space_id", access_token: "access_token")
+Contentful::Bootstrap::CommandRunner.new.generate_json("space_id", access_token: "access_token")
 ```
 
 Additionally, you can send an options hash with the following keys:
@@ -116,10 +116,10 @@ options = {
   access_token: "access_token" # REQUIRED
   filename: "template.json" # Will save the JSON to the specified file
 }
-Contentful::Bootstrap::Commands.new.generate_json("space_id", options)
+Contentful::Bootstrap::CommandRunner.new.generate_json("space_id", options)
 ```
 
-Optionally, `Commands#new` will take a parameter for specifying a configuration path
+Optionally, `CommandRunner#new` will take a parameter for specifying a configuration path
 
 ### Configuration
 
