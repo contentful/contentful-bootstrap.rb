@@ -55,7 +55,7 @@ module Contentful
         end
 
         unless json_template.nil?
-          if File.exist?(json_template)
+          if ::File.exist?(json_template)
             puts "Creating JSON Template '#{json_template}'"
             Templates::JsonTemplate.new(space, json_template).run
             puts "JSON Template '#{json_template}' created!"
