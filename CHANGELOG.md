@@ -1,6 +1,8 @@
 # Change Log
 
 ## Unreleased
+
+## v2.0.0
 ### Changed
 * Refactored `Commands` into new classes
 * Renamed `Commands` to `CommandRunner`, kept external interface, moved internal logic to new `Commands` classes
