@@ -45,7 +45,7 @@ module Contentful
             new_space = Contentful::Management::Space.create(name: @space)
           rescue Contentful::Management::NotFound
             puts 'Your account has multiple organizations:'
-            puts organizations.join('\n')
+            puts organizations.join("\n")
             print 'Please insert the Organization ID you\'d want to create the spaces for: '
             organization_id = gets.chomp
             new_space = Contentful::Management::Space.create(

@@ -10,7 +10,6 @@
 ### Added
 * More robust mechanism for waiting on processed assets
 * JSON Template generator `generate_json` command
-* Entries are now first created empty, then populated on second run to avoid Link failures
 * Added Specs for almost all the code
 * Applied Rubocop Style guide
 

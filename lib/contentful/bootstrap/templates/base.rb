@@ -113,11 +113,6 @@ module Contentful
 
             entry_list.each_with_index do |e, index|
               puts "Creating Entry #{index} for #{content_type_id.capitalize}"
-              entry = content_type.entries.create(id: e.clone['id'])
-            end
-
-            entry_list.each_with_index do |e, index|
-              puts "Populating Entry #{index} for #{content_type_id.capitalize}"
 
               array_fields = []
               regular_fields = []
