@@ -15,7 +15,7 @@ module Contentful
       end
 
       def self.present?
-        return false unless File.exists? filename
+        return false unless ::File.exists? filename
         config_file[config_section].has_key? MANAGEMENT_TOKEN
       end
 
@@ -42,8 +42,8 @@ module Contentful
       end
 
       def self.filename
-        return config_path if File.exist?(config_path)
-        File.join(ENV['HOME'], DEFAULT_PATH)
+        return config_path if ::File.exist?(config_path)
+        ::File.join(ENV['HOME'], DEFAULT_PATH)
       end
 
       def self.config_section
@@ -52,7 +52,7 @@ module Contentful
       end
 
       def self.config_file
-        File.exist?(filename) ? IniFile.load(filename) : IniFile.new(filename: filename)
+        ::File.exist?(filename) ? IniFile.load(filename) : IniFile.new(filename: filename)
       end
 
       def self.config_path

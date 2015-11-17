@@ -28,7 +28,7 @@ module Contentful
 
         private
         def json
-          @json ||= JSON.parse(File.read(@file))
+          @json ||= JSON.parse(::File.read(@file))
         end
 
         def process_assets
