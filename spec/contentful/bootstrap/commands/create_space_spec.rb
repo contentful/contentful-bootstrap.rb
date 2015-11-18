@@ -54,4 +54,19 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
       expect(subject.json_template).to eq 'baz'
     end
   end
+
+  describe 'issues' do
+    it 'Importing asset array values does not work #22' do
+      json_path = File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'issue_22.json'))
+
+      allow_any_instance_of(subject.class).to receive(:gets).and_return('y')
+      allow_any_instance_of(Contentful::Bootstrap::Commands::GenerateToken).to receive(:gets).and_return('n')
+
+      command = subject.class.new(token, 'issue_22', nil, json_path)
+
+      vcr('issue_22') {
+        command.run
+      }
+    end
+  end
 end
