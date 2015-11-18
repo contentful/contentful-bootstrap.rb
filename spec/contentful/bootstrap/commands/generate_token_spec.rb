@@ -79,4 +79,18 @@ describe Contentful::Bootstrap::Commands::GenerateToken do
       expect(subject.token_name).to eq 'bar'
     end
   end
+
+  describe 'integration' do
+    before do
+      allow_any_instance_of(subject.class).to receive(:gets).and_return('n')
+    end
+
+    it 'generates a token for a given space' do
+      command = subject.class.new token, 'zred3m25k5em', 'foo'
+
+      vcr('generate_token') {
+        command.run
+      }
+    end
+  end
 end

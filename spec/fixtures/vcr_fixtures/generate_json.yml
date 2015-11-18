@@ -10,7 +10,7 @@ http_interactions:
       User-Agent:
       - RubyContentfulGem/0.7.0
       Authorization:
-      - Bearer 48d7db7d4cd9d09df573c251d456f4acc72141b92f36e57f8684b36cf5cfff6e
+      - Bearer foobar
       Content-Type:
       - application/vnd.contentful.delivery.v1+json
       Accept-Encoding:
@@ -101,7 +101,7 @@ http_interactions:
       User-Agent:
       - RubyContentfulGem/0.7.0
       Authorization:
-      - Bearer 48d7db7d4cd9d09df573c251d456f4acc72141b92f36e57f8684b36cf5cfff6e
+      - Bearer foobar
       Content-Type:
       - application/vnd.contentful.delivery.v1+json
       Accept-Encoding:
@@ -209,7 +209,7 @@ http_interactions:
       User-Agent:
       - RubyContentfulGem/0.7.0
       Authorization:
-      - Bearer 48d7db7d4cd9d09df573c251d456f4acc72141b92f36e57f8684b36cf5cfff6e
+      - Bearer foobar
       Content-Type:
       - application/vnd.contentful.delivery.v1+json
       Accept-Encoding:
