@@ -6,7 +6,7 @@
 ### Changed
 * Scoped File Usage on GenerateJson Command
 
-## v2.0.0
+## v2.0.0 [YANKED]
 ### Changed
 * Refactored `Commands` into new classes
 * Renamed `Commands` to `CommandRunner`, kept external interface, moved internal logic to new `Commands` classes
