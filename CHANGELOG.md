@@ -1,6 +1,8 @@
 # Change Log
 
 ## Unreleased
+
+## v2.0.1
 ### Changed
 * Scoped File Usage on GenerateJson Command
 
