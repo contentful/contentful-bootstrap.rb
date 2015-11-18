@@ -75,9 +75,10 @@ if subcommands.has_key? command
   end
 
   if space.nil? || space.empty?
-    puts "Usage: contentful_bootstrap <command> <space> [options]"
+    ARGV << '-h'
+    subcommands[command].order!
     puts
-    puts "You must provide a valid space name. Exiting!"
+    puts "Required Arguments not specified. Exiting!"
     exit
   end
 
