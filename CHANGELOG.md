@@ -4,6 +4,9 @@
 ### Fixed
 * Array and Link handling
 
+### Changed
+* Command now provide better help on incomplete command
+
 ## v2.0.1
 ### Changed
 * Scoped File Usage on GenerateJson Command
