@@ -1,13 +1,15 @@
 # Change Log
 
 ## Unreleased
+
+## v2.0.2
 ### Fixed
 * Array and Link handling
 
 ### Changed
 * Command now provide better help on incomplete command
 
-## v2.0.1
+## v2.0.1 [YANKED]
 ### Changed
 * Scoped File Usage on GenerateJson Command
 
