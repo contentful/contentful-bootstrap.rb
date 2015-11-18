@@ -1,0 +1,77 @@
+{
+  "content_types": [
+    {
+    "id": "1VX60jHERm6yuem8I2agWG",
+    "name": "yolo",
+    "display_field": "title",
+    "fields": [
+      {
+        "id": "title",
+        "name": "title",
+        "type": "Symbol"
+      },
+      {
+        "id": "assets",
+        "name": "assets",
+        "type": "Array",
+        "items": {
+          "type": "Link",
+          "link_type": "Asset"
+        }
+      }
+    ]
+  }
+  ],
+  "assets": [
+    {
+      "id": "2cMU9UUngYMqAEmw4Cm8Iw",
+      "title": "Screen Shot 2015-11-18 at 11.42.12",
+      "file": {
+        "filename": "Screen Shot 2015-11-18 at 11.42.12",
+        "url": "https://images.contentful.com/o2n5bdfcee61/2cMU9UUngYMqAEmw4Cm8Iw/466d36d31bb59d487115b7be995438e1/Screen_Shot_2015-11-18_at_11.42.12.png"
+      }
+    },
+    {
+      "id": "4D5sv49qaAoMIkWgAW8g0I",
+      "title": "Screen Shot 2015-11-16 at 21.37.19",
+      "file": {
+        "filename": "Screen Shot 2015-11-16 at 21.37.19",
+        "url": "https://images.contentful.com/o2n5bdfcee61/4D5sv49qaAoMIkWgAW8g0I/b61adc1bc26a74ac9b65e19365747cf9/Screen_Shot_2015-11-16_at_21.37.19.png"
+      }
+    },
+    {
+      "id": "4eX9aQsDdeqweg6Si00KaW",
+      "title": "Screen Shot 2015-11-17 at 17.57.00",
+      "file": {
+        "filename": "Screen Shot 2015-11-17 at 17.57.00",
+        "url": "https://images.contentful.com/o2n5bdfcee61/4eX9aQsDdeqweg6Si00KaW/16646165346d59974fbfd4e0223ea89e/Screen_Shot_2015-11-17_at_17.57.00.png"
+      }
+    },
+    {
+      "id": "7i1Ck3BG4o4KeIEUGosEeU",
+      "title": "Screen Shot 2015-11-17 at 18.04.02",
+      "file": {
+        "filename": "Screen Shot 2015-11-17 at 18.04.02",
+        "url": "https://images.contentful.com/o2n5bdfcee61/7i1Ck3BG4o4KeIEUGosEeU/4db1a207ec69f99f0d795c48a59cbcd1/Screen_Shot_2015-11-17_at_18.04.02.png"
+      }
+    }
+  ],
+  "entries": {
+    "1VX60jHERm6yuem8I2agWG": [
+      {
+        "id": "5nQB3z8RgW8CUG6uGyCsEw",
+        "title": "yolo",
+        "assets": [
+          {
+            "link_type": "Asset",
+            "id": "4eX9aQsDdeqweg6Si00KaW"
+          },
+          {
+            "link_type": "Asset",
+            "id": "4D5sv49qaAoMIkWgAW8g0I"
+          }
+        ]
+      }
+    ]
+  }
+}

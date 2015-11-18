@@ -1,3 +1,4 @@
+require 'json'
 require 'contentful/management'
 require 'contentful/bootstrap/templates/links/base'
 
@@ -12,9 +13,18 @@ module Contentful
         end
 
         def run
-          create_content_types
-          create_assets
-          create_entries
+          begin
+            create_content_types
+            create_assets
+            create_entries
+          rescue Contentful::Management::Error => e
+            error = e.error
+            puts "Error at: #{error[:url]}"
+            puts "Message: #{error[:message]}"
+            puts "Details: #{error[:details]}"
+
+            raise e
+          end
         end
 
         def content_types
@@ -93,7 +103,7 @@ module Contentful
             asset.process_file
 
             attempts = 0
-            while attempts < 5
+            while attempts < 10
               unless space.assets.find(asset.id).file.url.nil?
                 asset.publish
                 break
@@ -117,8 +127,8 @@ module Contentful
               array_fields = []
               regular_fields = []
               e.each do |field_name, value|
-                if value.is_a? Array
-                  array_fields << field_name if value.is_a? Array
+                if value.is_a? ::Array
+                  array_fields << field_name
                   next
                 end
 
@@ -127,7 +137,7 @@ module Contentful
 
               array_fields.each do |af|
                 e[af].map! do |item|
-                  if item.is_a? Links::Base
+                  if item.is_a? ::Contentful::Bootstrap::Templates::Links::Base
                     item.to_management_object
                   else
                     item

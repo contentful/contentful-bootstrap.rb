@@ -1,6 +1,8 @@
 # Change Log
 
 ## Unreleased
+### Fixed
+* Array and Link handling
 
 ## v2.0.1
 ### Changed

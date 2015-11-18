@@ -53,8 +53,8 @@ module Contentful
               link_fields = []
 
               entry.each do |field, value|
-                link_fields << field if value.is_a? Hash
-                array_fields << field if value.is_a? Array
+                link_fields << field if value.is_a? ::Hash
+                array_fields << field if value.is_a? ::Array
               end
 
               link_fields.each do |lf|
@@ -63,7 +63,7 @@ module Contentful
 
               array_fields.each do |af|
                 entry[af].map! do |item|
-                  if item.is_a? Hash
+                  if item.is_a? ::Hash
                     create_link(item)
                   else
                     item
@@ -83,7 +83,12 @@ module Contentful
         def create_link(link_properties)
           link_type = link_properties['link_type'].capitalize
           id = link_properties['id']
-          Object.const_get("Contentful::Bootstrap::Templates::Links::#{link_type}").new(id)
+          case link_type
+          when 'Entry'
+            Contentful::Bootstrap::Templates::Links::Entry.new(id)
+          when 'Asset'
+            Contentful::Bootstrap::Templates::Links::Asset.new(id)
+          end
         end
       end
     end
