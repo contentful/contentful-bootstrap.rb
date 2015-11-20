@@ -69,4 +69,47 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
       }
     end
   end
+
+  describe 'integration' do
+    before do
+      allow_any_instance_of(subject.class).to receive(:gets).and_return('y')
+      allow_any_instance_of(Contentful::Bootstrap::Commands::GenerateToken).to receive(:gets).and_return('n')
+    end
+
+    it 'create space' do
+      command = subject.class.new token, 'some_space'
+
+      vcr('create_space') {
+        command.run
+      }
+    end
+
+    it 'create space with blog template' do
+      command = subject.class.new token, 'blog_space', 'blog'
+
+      vcr('create_space_with_blog_template') {
+        command.run
+      }
+    end
+
+    it 'create space with gallery template' do
+      command = subject.class.new token, 'gallery_space', 'gallery'
+
+      vcr('create_space_with_gallery_template') {
+        command.run
+      }
+    end
+
+    it 'create space with catalogue template' do
+      command = subject.class.new token, 'catalogue_space', 'catalogue'
+
+      vcr('create_space_with_catalogue_template') {
+        command.run
+      }
+    end
+
+    it 'create space with json template' do
+      skip 'covered by create_space_spec:issues/#22'
+    end
+  end
 end
