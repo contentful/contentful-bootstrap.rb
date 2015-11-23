@@ -64,7 +64,7 @@ module Contentful
           url = client.base_url.sub('spaces', 'token')
           response = Contentful::Management::Client.get_http(url, nil, client.request_headers)
           organization_ids = JSON.load(response.body.to_s)['includes']['Organization'].map do |org|
-            "#{org['name']} - #{org['sys']['id']}"
+            sprintf('%-20s %s', org['name'], org['sys']['id'])
           end
           organization_ids.sort
         end
