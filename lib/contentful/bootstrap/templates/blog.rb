@@ -59,11 +59,13 @@ module Contentful
             ],
             'post' => [
               {
+                'id' => 'inferno',
                 'title' => 'Inferno',
                 'content' => 'Inferno is the last book in Dan Brown\'s collection...',
                 'author' => Links::Entry.new('dan_brown')
               },
               {
+                'id' => 'alturas',
                 'title' => 'Alturas de Macchu Picchu',
                 'content' => 'Alturas de Macchu Picchu is one of Pablo Neruda\'s most famous poetry books...',
                 'author' => Links::Entry.new('pablo_neruda')
