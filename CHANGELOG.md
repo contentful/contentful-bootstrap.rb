@@ -1,6 +1,8 @@
 # Change Log
 
 ## Unreleased
+### Changed
+* Change JSON Template format to resemble the API more closely
 
 ## v2.0.2
 ### Fixed

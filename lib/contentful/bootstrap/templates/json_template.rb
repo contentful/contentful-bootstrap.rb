@@ -15,7 +15,7 @@ module Contentful
         end
 
         def content_types
-          json.fetch('content_types', [])
+          json.fetch('contentTypes', [])
         end
 
         def assets
@@ -49,29 +49,32 @@ module Contentful
           unprocessed_entries.each do |content_type_id, entry_list|
             entries_for_content_type = []
             entry_list.each do |entry|
+              processed_entry = {}
               array_fields = []
               link_fields = []
 
-              entry.each do |field, value|
+              processed_entry['id'] = entry['sys']['id'] if entry.key?('sys') && entry['sys'].key?('id')
+
+              entry.fetch('fields', {}).each do |field, value|
                 link_fields << field if value.is_a? ::Hash
                 array_fields << field if value.is_a? ::Array
-              end
 
-              link_fields.each do |lf|
-                entry[lf] = create_link(entry[lf])
-              end
-
-              array_fields.each do |af|
-                entry[af].map! do |item|
-                  if item.is_a? ::Hash
-                    create_link(item)
-                  else
-                    item
-                  end
+                unless link_fields.include?(field) || array_fields.include?(field)
+                  processed_entry[field] = value
                 end
               end
 
-              entries_for_content_type << entry
+              link_fields.each do |lf|
+                processed_entry[lf] = create_link(entry[lf])
+              end
+
+              array_fields.each do |af|
+                processed_entry[af] = entry['fields'][af].map do |item|
+                  item.is_a?(::Hash) ? create_link(item) : item
+                end
+              end
+
+              entries_for_content_type << processed_entry
             end
 
             processed_entries[content_type_id] = entries_for_content_type
@@ -81,7 +84,7 @@ module Contentful
         end
 
         def create_link(link_properties)
-          link_type = link_properties['link_type'].capitalize
+          link_type = link_properties['linkType'].capitalize
           id = link_properties['id']
           case link_type
           when 'Entry'

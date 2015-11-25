@@ -1,5 +1,5 @@
 {
-  "content_types": [
+  "contentTypes": [
     {
       "id": "cat",
       "name": "Cat",
@@ -26,8 +26,12 @@
   "entries": {
     "cat": [
       {
-        "id": "nyancat",
-        "name": "Nyan Cat"
+        "sys": {
+          "id": "nyancat"
+        },
+        "fields": {
+          "name": "Nyan Cat"
+        }
       }
     ]
   }

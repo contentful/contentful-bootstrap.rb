@@ -1,9 +1,9 @@
 {
-  "content_types": [
+  "contentTypes": [
     {
     "id": "1VX60jHERm6yuem8I2agWG",
     "name": "yolo",
-    "display_field": "title",
+    "displayField": "title",
     "fields": [
       {
         "id": "title",
@@ -16,7 +16,7 @@
         "type": "Array",
         "items": {
           "type": "Link",
-          "link_type": "Asset"
+          "linkType": "Asset"
         }
       }
     ]
@@ -59,18 +59,22 @@
   "entries": {
     "1VX60jHERm6yuem8I2agWG": [
       {
-        "id": "5nQB3z8RgW8CUG6uGyCsEw",
-        "title": "yolo",
-        "assets": [
-          {
-            "link_type": "Asset",
-            "id": "4eX9aQsDdeqweg6Si00KaW"
-          },
-          {
-            "link_type": "Asset",
-            "id": "4D5sv49qaAoMIkWgAW8g0I"
-          }
-        ]
+        "sys": {
+          "id": "5nQB3z8RgW8CUG6uGyCsEw"
+        },
+        "fields": {
+          "title": "yolo",
+          "assets": [
+            {
+              "linkType": "Asset",
+              "id": "4eX9aQsDdeqweg6Si00KaW"
+            },
+            {
+              "linkType": "Asset",
+              "id": "4D5sv49qaAoMIkWgAW8g0I"
+            }
+          ]
+        }
       }
     ]
   }

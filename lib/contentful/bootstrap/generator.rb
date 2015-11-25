@@ -12,7 +12,7 @@ module Contentful
 
       def generate_json
         template = {}
-        template['content_types'] = content_types
+        template['contentTypes'] = content_types
         template['assets'] = assets
         template['entries'] = entries
         JSON.pretty_generate(template)
@@ -35,7 +35,7 @@ module Contentful
       def content_types
         proccessed_content_types = @client.content_types.map do |type|
           result = { 'id' => type.sys[:id], 'name' => type.name }
-          result['display_field'] = type.display_field unless type.display_field.nil?
+          result['displayField'] = type.display_field unless type.display_field.nil?
 
           result['fields'] = type.fields.map do |field|
             map_field_properties(field.properties)
@@ -50,11 +50,11 @@ module Contentful
         entries = {}
 
         @client.entries(limit: 1000).each do |entry|
-          result = { 'id' => entry.sys[:id] }
+          result = { 'sys' => { 'id' => entry.sys[:id] }, 'fields' => {} }
 
           entry.fields.each do |key, value|
             value = map_field(value)
-            result[key] = value unless value.nil?
+            result['fields'][key] = value unless value.nil?
           end
 
           ct_id = entry.content_type.sys[:id]
@@ -70,7 +70,7 @@ module Contentful
 
         if value.is_a?(Contentful::Asset) || value.is_a?(Contentful::Entry)
           return {
-            'link_type' => value.class.name.split('::').last,
+            'linkType' => value.class.name.split('::').last,
             'id' => value.sys[:id]
           }
         end
@@ -81,8 +81,6 @@ module Contentful
       end
 
       def map_field_properties(properties)
-        properties['link_type'] = properties.delete(:linkType) unless properties[:linkType].nil?
-
         items = properties[:items]
         properties[:items] = map_field_properties(items.properties) unless items.nil?
 
