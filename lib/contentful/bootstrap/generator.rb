@@ -21,7 +21,7 @@ module Contentful
       private
 
       def assets
-        proccessed_assets = @client.assets.map do |asset|
+        proccessed_assets = @client.assets(limit: 1000).map do |asset|
           result = { 'id' => asset.sys[:id], 'title' => asset.title }
           result['file'] = {
             'filename' => ::File.basename(asset.file.file_name, '.*'),
@@ -49,7 +49,7 @@ module Contentful
       def entries
         entries = {}
 
-        @client.entries.each do |entry|
+        @client.entries(limit: 1000).each do |entry|
           result = { 'id' => entry.sys[:id] }
 
           entry.fields.each do |key, value|

@@ -1,0 +1,394 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.contentful.com/spaces/zred3m25k5em
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - RubyContentfulManagementGem/0.7.2
+      Authorization:
+      - Bearer foobar
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Content-Length:
+      - '0'
+      Connection:
+      - close
+      Host:
+      - api.contentful.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation
+      Access-Control-Allow-Methods:
+      - DELETE,GET,HEAD,POST,PUT,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '1728000'
+      Cache-Control:
+      - max-age=0
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Date:
+      - Wed, 18 Nov 2015 15:34:49 GMT
+      Etag:
+      - '"56404e690e6b747ae9040984175e4dcf"'
+      Server:
+      - nginx
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Request-Id:
+      - 0b5-124665217
+      Content-Length:
+      - '453'
+      Connection:
+      - Close
+    body:
+      encoding: UTF-8
+      string: |+
+        {
+          "sys":{
+            "type":"Space",
+            "id":"zred3m25k5em",
+            "version":1,
+            "createdBy":{
+              "sys":{
+                "type":"Link",
+                "linkType":"User",
+                "id":"4SejVrWT96dvL9IV4Nb7sQ"
+              }
+            },
+            "createdAt":"2015-11-18T15:24:35Z",
+            "updatedBy":{
+              "sys":{
+                "type":"Link",
+                "linkType":"User",
+                "id":"4SejVrWT96dvL9IV4Nb7sQ"
+              }
+            },
+            "updatedAt":"2015-11-18T15:24:35Z"
+          },
+          "name":"blog_space"
+        }
+
+    http_version: 
+  recorded_at: Wed, 18 Nov 2015 15:34:49 GMT
+- request:
+    method: get
+    uri: https://api.contentful.com/spaces/zred3m25k5em/content_types
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - RubyContentfulManagementGem/0.7.2
+      Authorization:
+      - Bearer foobar
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Content-Length:
+      - '0'
+      Connection:
+      - close
+      Host:
+      - api.contentful.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation
+      Access-Control-Allow-Methods:
+      - DELETE,GET,HEAD,POST,PUT,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '1728000'
+      Cf-Space-Id:
+      - zred3m25k5em
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Date:
+      - Wed, 18 Nov 2015 15:34:50 GMT
+      Etag:
+      - '"387198c35ab64967986cc9172368effb"'
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Request-Id:
+      - content-api:2EQAGg103aSAAiick8EwCu
+      X-Powered-By:
+      - Express
+      Content-Length:
+      - '3069'
+      Connection:
+      - Close
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "sys": {
+            "type": "Array"
+          },
+          "total": 2,
+          "skip": 0,
+          "limit": 100,
+          "items": [
+            {
+              "displayField": "title",
+              "name": "Post",
+              "description": null,
+              "fields": [
+                {
+                  "id": "title",
+                  "name": "Post Title",
+                  "type": "Symbol",
+                  "localized": false,
+                  "validations": []
+                },
+                {
+                  "id": "content",
+                  "name": "Content",
+                  "type": "Text",
+                  "localized": false,
+                  "validations": []
+                },
+                {
+                  "id": "author",
+                  "name": "Author",
+                  "type": "Link",
+                  "linkType": "Entry",
+                  "localized": false,
+                  "validations": []
+                }
+              ],
+              "sys": {
+                "id": "post",
+                "type": "ContentType",
+                "createdAt": "2015-11-18T15:24:40.401Z",
+                "createdBy": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "User",
+                    "id": "4SejVrWT96dvL9IV4Nb7sQ"
+                  }
+                },
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "zred3m25k5em"
+                  }
+                },
+                "firstPublishedAt": "2015-11-18T15:24:41.217Z",
+                "publishedCounter": 1,
+                "publishedAt": "2015-11-18T15:24:41.217Z",
+                "publishedBy": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "User",
+                    "id": "4SejVrWT96dvL9IV4Nb7sQ"
+                  }
+                },
+                "publishedVersion": 1,
+                "version": 2,
+                "updatedAt": "2015-11-18T15:24:41.241Z",
+                "updatedBy": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "User",
+                    "id": "4SejVrWT96dvL9IV4Nb7sQ"
+                  }
+                }
+              }
+            },
+            {
+              "displayField": "name",
+              "name": "Author",
+              "description": null,
+              "fields": [
+                {
+                  "id": "name",
+                  "name": "Author Name",
+                  "type": "Symbol",
+                  "localized": false,
+                  "validations": []
+                }
+              ],
+              "sys": {
+                "id": "author",
+                "type": "ContentType",
+                "createdAt": "2015-11-18T15:24:38.141Z",
+                "createdBy": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "User",
+                    "id": "4SejVrWT96dvL9IV4Nb7sQ"
+                  }
+                },
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "zred3m25k5em"
+                  }
+                },
+                "firstPublishedAt": "2015-11-18T15:24:38.894Z",
+                "publishedCounter": 1,
+                "publishedAt": "2015-11-18T15:24:38.894Z",
+                "publishedBy": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "User",
+                    "id": "4SejVrWT96dvL9IV4Nb7sQ"
+                  }
+                },
+                "publishedVersion": 1,
+                "version": 2,
+                "updatedAt": "2015-11-18T15:24:38.958Z",
+                "updatedBy": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "User",
+                    "id": "4SejVrWT96dvL9IV4Nb7sQ"
+                  }
+                }
+              }
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Wed, 18 Nov 2015 15:34:50 GMT
+- request:
+    method: post
+    uri: https://api.contentful.com/spaces/zred3m25k5em/api_keys
+    body:
+      encoding: UTF-8
+      string: '{"name":"foo","description":"Created with ''contentful_bootstrap.rb
+        v2.0.2''"}'
+    headers:
+      User-Agent:
+      - RubyContentfulManagementGem/0.7.2
+      Authorization:
+      - Bearer foobar
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Connection:
+      - close
+      Host:
+      - api.contentful.com
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation
+      Access-Control-Allow-Methods:
+      - DELETE,GET,HEAD,POST,PUT,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '1728000'
+      Cache-Control:
+      - max-age=0
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Date:
+      - Wed, 18 Nov 2015 15:34:51 GMT
+      Etag:
+      - '"3fba19f57c03dadb077012fcc155d4a6"'
+      Location:
+      - https://api.contentful.com/spaces/zred3m25k5em/api_keys/6tOSB3eQMWp8G3f3uuhKJr
+      Server:
+      - nginx
+      Status:
+      - 201 Created
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Request-Id:
+      - 9e1-615657197
+      Content-Length:
+      - '942'
+      Connection:
+      - Close
+    body:
+      encoding: UTF-8
+      string: |+
+        {
+          "sys":{
+            "type":"ApiKey",
+            "id":"6tOSB3eQMWp8G3f3uuhKJr",
+            "version":0,
+            "space":{
+              "sys":{
+                "type":"Link",
+                "linkType":"Space",
+                "id":"zred3m25k5em"
+              }
+            },
+            "createdBy":{
+              "sys":{
+                "type":"Link",
+                "linkType":"User",
+                "id":"4SejVrWT96dvL9IV4Nb7sQ"
+              }
+            },
+            "createdAt":"2015-11-18T15:34:51Z",
+            "updatedBy":{
+              "sys":{
+                "type":"Link",
+                "linkType":"User",
+                "id":"4SejVrWT96dvL9IV4Nb7sQ"
+              }
+            },
+            "updatedAt":"2015-11-18T15:34:51Z"
+          },
+          "name":"foo",
+          "description":"Created with 'contentful_bootstrap.rb v2.0.2'",
+          "accessToken":"a9e9179c91c944ef8607f468d53a59ab546b3fd9a303c214a2081dd525f9a1fb",
+          "policies":[
+            {
+              "effect":"allow",
+              "actions":"all"
+            }
+          ],
+          "preview_api_key":{
+            "sys":{
+              "type":"Link",
+              "linkType":"PreviewApiKey",
+              "id":"6tPYRIwJXP9I2KY0fQKgP7"
+            }
+          }
+        }
+
+    http_version: 
+  recorded_at: Wed, 18 Nov 2015 15:34:51 GMT
+recorded_with: VCR 2.9.3
