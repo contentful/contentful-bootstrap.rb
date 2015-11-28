@@ -18,7 +18,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
       end
 
       it 'does not create template when template_name is nil' do
-        create_space_command = subject.class.new(token, 'foo', nil, 'baz', false)
+        create_space_command = described_class.new(token, 'foo', nil, 'baz', false)
 
         expect(create_space_command.template_name).to eq nil
 
@@ -31,7 +31,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
       end
 
       it 'does not create json template when json_template is nil' do
-        create_space_command = subject.class.new(token, 'foo', 'bar', nil, false)
+        create_space_command = described_class.new(token, 'foo', 'bar', nil, false)
 
         expect(create_space_command.json_template).to eq nil
 
@@ -59,10 +59,10 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
     it 'Importing asset array values does not work #22' do
       json_path = File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'issue_22.json'))
 
-      allow_any_instance_of(subject.class).to receive(:gets).and_return('y')
+      allow_any_instance_of(described_class).to receive(:gets).and_return('y')
       allow_any_instance_of(Contentful::Bootstrap::Commands::GenerateToken).to receive(:gets).and_return('n')
 
-      command = subject.class.new(token, 'issue_22', nil, json_path)
+      command = described_class.new(token, 'issue_22', nil, json_path)
 
       vcr('issue_22') {
         command.run
@@ -72,12 +72,12 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
 
   describe 'integration' do
     before do
-      allow_any_instance_of(subject.class).to receive(:gets).and_return('y')
+      allow_any_instance_of(described_class).to receive(:gets).and_return('y')
       allow_any_instance_of(Contentful::Bootstrap::Commands::GenerateToken).to receive(:gets).and_return('n')
     end
 
     it 'create space' do
-      command = subject.class.new token, 'some_space'
+      command = described_class.new token, 'some_space'
 
       vcr('create_space') {
         command.run
@@ -85,7 +85,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
     end
 
     it 'create space with blog template' do
-      command = subject.class.new token, 'blog_space', 'blog'
+      command = described_class.new token, 'blog_space', 'blog'
 
       vcr('create_space_with_blog_template') {
         command.run
@@ -93,7 +93,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
     end
 
     it 'create space with gallery template' do
-      command = subject.class.new token, 'gallery_space', 'gallery'
+      command = described_class.new token, 'gallery_space', 'gallery'
 
       vcr('create_space_with_gallery_template') {
         command.run
@@ -101,7 +101,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
     end
 
     it 'create space with catalogue template' do
-      command = subject.class.new token, 'catalogue_space', 'catalogue'
+      command = described_class.new token, 'catalogue_space', 'catalogue'
 
       vcr('create_space_with_catalogue_template') {
         command.run
@@ -110,6 +110,15 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
 
     it 'create space with json template' do
       skip 'covered by create_space_spec:issues/#22'
+    end
+
+    it 'create space with json template with no ids' do
+      json_path = File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'no_ids.json'))
+      command = described_class.new token, 'no_ids_space', nil, json_path
+
+      vcr('no_ids') {
+        command.run
+      }
     end
   end
 end
