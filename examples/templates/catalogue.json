@@ -1,9 +1,10 @@
 {
+  "version": 3,
   "content_types": [
     {
       "id": "brand",
       "name": "Brand",
-      "display_field": "name",
+      "displayField": "name",
       "fields": [
         {
           "id": "name",
@@ -19,14 +20,14 @@
           "id": "logo",
           "name": "Logo",
           "type": "Link",
-          "link_type": "Asset"
+          "linkType": "Asset"
         }
       ]
     },
     {
       "id": "category",
       "name": "Category",
-      "display_field": "title",
+      "displayField": "title",
       "fields": [
         {
           "id": "title",
@@ -42,14 +43,14 @@
           "id": "icon",
           "name": "Icon",
           "type": "Link",
-          "link_type": "Asset"
+          "linkType": "Asset"
         }
       ]
     },
     {
       "id": "product",
       "name": "Product",
-      "display_field": "name",
+      "displayField": "name",
       "fields": [
         {
           "id": "name",
@@ -65,19 +66,19 @@
           "id": "image",
           "name": "Image",
           "type": "Link",
-          "link_type": "Asset"
+          "linkType": "Asset"
         },
         {
           "id": "brand",
           "name": "Brand",
           "type": "Link",
-          "link_type": "Entry"
+          "linkType": "Entry"
         },
         {
           "id": "category",
           "name": "Category",
           "type": "Link",
-          "link_type": "Entry"
+          "linkType": "Entry"
         },
         {
           "id": "url",
@@ -140,80 +141,104 @@
   "entries": {
     "brand": [
       {
-        "id": "playsam",
-        "name": "Playsam, Inc",
-        "website": "http://www.playsam.com",
-        "logo": {
-          "link_type": "Asset",
-          "id": "playsam_image"
+        "sys": {
+          "id": "playsam"
+        },
+        "fields": {
+          "name": "Playsam, Inc",
+          "website": "http://www.playsam.com",
+          "logo": {
+            "link_type": "Asset",
+            "id": "playsam_image"
+          }
         }
       },
       {
-        "id": "normann",
-        "name": "Normann Copenhagen, Inc",
-        "website": "http://www.normann-copenhagen.com/",
-        "logo": {
-          "link_type": "Asset",
-          "id": "normann_image"
+        "sys": {
+          "id": "normann"
+        },
+        "fields": {
+          "name": "Normann Copenhagen, Inc",
+          "website": "http://www.normann-copenhagen.com/",
+          "logo": {
+            "linkType": "Asset",
+            "id": "normann_image"
+          }
         }
       }
     ],
     "category": [
       {
-        "id": "toys",
-        "title": "Toys",
-        "description": "Toys for children",
-        "icon": {
-          "link_type": "Asset",
-          "id": "toy_image"
+        "sys": {
+          "id": "toys"
+        },
+        "fields": {
+          "title": "Toys",
+          "description": "Toys for children",
+          "icon": {
+            "linkType": "Asset",
+            "id": "toy_image"
+          }
         }
       },
       {
-        "id": "kitchen",
-        "title": "House and Kitchen",
-        "description": "House and Kitchen accessories",
-        "icon": {
-          "link_type": "Asset",
-          "id": "kitchen_image"
+        "sys": {
+          "id": "kitchen"
+        },
+        "fields": {
+          "title": "House and Kitchen",
+          "description": "House and Kitchen accessories",
+          "icon": {
+            "linkType": "Asset",
+            "id": "kitchen_image"
+          }
         }
       }
     ],
     "product": [
       {
-        "id": "playsam_car",
-        "name": "Playsam Streamliner Classic Car, Espresso",
-        "description": "A classic Playsam design, the Streamliner Classic Car has been selected as Swedish Design Classic by the Swedish National Museum for its inventive style and sleek surface. It's no wonder that this wooden car has also been a long-standing favorite for children both big and small!",
-        "image": {
-          "link_type": "Asset",
-          "id": "toy_car"
+        "sys": {
+          "id": "playsam_car"
         },
-        "brand": {
-          "link_type": "Entry",
-          "id": "playsam"
-        },
-        "category": {
-          "link_type": "Entry",
-          "id": "toys"
-        },
-        "url": "http://www.amazon.com/dp/B001R6JUZ2/"
+        "fields": {
+          "name": "Playsam Streamliner Classic Car, Espresso",
+          "description": "A classic Playsam design, the Streamliner Classic Car has been selected as Swedish Design Classic by the Swedish National Museum for its inventive style and sleek surface. It's no wonder that this wooden car has also been a long-standing favorite for children both big and small!",
+          "image": {
+            "linkType": "Asset",
+            "id": "toy_car"
+          },
+          "brand": {
+            "linkType": "Entry",
+            "id": "playsam"
+          },
+          "category": {
+            "linkType": "Entry",
+            "id": "toys"
+          },
+          "url": "http://www.amazon.com/dp/B001R6JUZ2/"
+        }
       },
       {
-        "id": "whisk_beater",
-        "name": "Whisk Beater",
-        "description": "A creative little whisk that comes in 8 different colors. Handy and easy to clean after use. A great gift idea.",
-        "image": {
-          "link_type": "Asset",
-          "id": "whiskers"
+        "sys": {
+          "id": "whisk_beater"
         },
-        "brand": {
-          "link_type": "Entry",
-          "id": "normann"
-        },
-        "category": {
-          "link_type": "Entry",
-          "id": "kitchen"
-        },
-        "url": "http://www.amazon.com/dp/B0081F2CCK/"
+        "fields": {
+          "name": "Whisk Beater",
+          "description": "A creative little whisk that comes in 8 different colors. Handy and easy to clean after use. A great gift idea.",
+          "image": {
+            "linkType": "Asset",
+            "id": "whiskers"
+          },
+          "brand": {
+            "linkType": "Entry",
+            "id": "normann"
+          },
+          "category": {
+            "linkType": "Entry",
+            "id": "kitchen"
+          },
+          "url": "http://www.amazon.com/dp/B0081F2CCK/"
+        }
       }
     ]
   }
