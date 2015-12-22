@@ -117,13 +117,11 @@ module Contentful
 
         def create_entries
           content_types = []
-          entries.each do |content_type_id, entry_list|
+          entry_list = entries.map do |content_type_id, entry_list|
             content_type = space.content_types.find(content_type_id)
             content_types << content_type
 
-            entry_list.each_with_index do |e, index|
-              puts "Creating Entry #{index} for #{content_type_id.capitalize}"
-
+            entry_list.each_with_index.map do |e, index|
               array_fields = []
               regular_fields = []
               e.each do |field_name, value|
@@ -147,17 +145,39 @@ module Contentful
               end
 
               regular_fields.each do |rf|
-                e[rf.to_sym] = e.delete(rf)
+                value = e.delete(rf)
+                if value.is_a? ::Contentful::Bootstrap::Templates::Links::Base
+                  value = value.to_management_object
+                end
+                e[rf.to_sym] = value
               end
 
-              entry = content_type.entries.create(e.clone)
+              entry = content_type.entries.create({:id => e[:id]})
               entry.save
+
+              e = e.clone
+              e[:id] = entry.id # in case no ID was specified in template
+              e
             end
+          end.flatten
+
+          entry_list = entry_list.map do |e|
+            puts "Creating Entry #{e[:id]}"
+
+            entry = space.entries.find(e[:id])
+            e.delete(:id)
+            entry.update(e)
+            entry.save
+
+            10.times do |attempt|
+              break if space.entries.find(entry.id).sys[:version] >= 4
+              sleep(1)
+            end
+
+            entry.id
           end
 
-          content_types.each do |content_type|
-            content_type.entries.all.map(&:publish)
-          end
+          entry_list.each { |e| space.entries.find(e).publish }
         end
       end
     end

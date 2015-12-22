@@ -6,4 +6,4 @@ gemspec
 gem "launchy"
 gem "inifile"
 gem "contentful-management"
-gem "contentful", "~> 0.7"
+gem "contentful", "~> 0.7", ">= 0.7.3"
