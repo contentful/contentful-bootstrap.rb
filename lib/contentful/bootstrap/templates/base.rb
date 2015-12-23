@@ -13,18 +13,16 @@ module Contentful
         end
 
         def run
-          begin
-            create_content_types
-            create_assets
-            create_entries
-          rescue Contentful::Management::Error => e
-            error = e.error
-            puts "Error at: #{error[:url]}"
-            puts "Message: #{error[:message]}"
-            puts "Details: #{error[:details]}"
+          create_content_types
+          create_assets
+          create_entries
+        rescue Contentful::Management::Error => e
+          error = e.error
+          puts "Error at: #{error[:url]}"
+          puts "Message: #{error[:message]}"
+          puts "Details: #{error[:details]}"
 
-            raise e
-          end
+          raise e
         end
 
         def content_types
@@ -117,11 +115,11 @@ module Contentful
 
         def create_entries
           content_types = []
-          entry_list = entries.map do |content_type_id, entry_list|
+          processed_entries = entries.map do |content_type_id, entry_list|
             content_type = space.content_types.find(content_type_id)
             content_types << content_type
 
-            entry_list.each_with_index.map do |e, index|
+            entry_list.each.map do |e|
               array_fields = []
               regular_fields = []
               e.each do |field_name, value|
@@ -161,7 +159,7 @@ module Contentful
             end
           end.flatten
 
-          entry_list = entry_list.map do |e|
+          processed_entries = processed_entries.map do |e|
             puts "Creating Entry #{e[:id]}"
 
             entry = space.entries.find(e[:id])
@@ -169,7 +167,7 @@ module Contentful
             entry.update(e)
             entry.save
 
-            10.times do |attempt|
+            10.times do
               break if space.entries.find(entry.id).sys[:version] >= 4
               sleep(1)
             end
@@ -177,7 +175,7 @@ module Contentful
             entry.id
           end
 
-          entry_list.each { |e| space.entries.find(e).publish }
+          processed_entries.each { |e| space.entries.find(e).publish }
         end
       end
     end

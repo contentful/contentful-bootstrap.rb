@@ -12,6 +12,8 @@ module Contentful
           @assets = nil
           @entries = nil
           json
+
+          check_version
         end
 
         def content_types
@@ -27,6 +29,14 @@ module Contentful
         end
 
         private
+
+        def check_version
+          json_version = json.fetch('version', 0)
+          gem_major_version = Contentful::Bootstrap.major_version
+          unless gem_major_version == json_version
+            fail "JSON Templates Version Mismatch. Current Version: #{gem_major_version}"
+          end
+        end
 
         def json
           @json ||= ::JSON.parse(::File.read(@file))

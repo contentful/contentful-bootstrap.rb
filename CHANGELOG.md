@@ -3,6 +3,8 @@
 ## Unreleased
 ### Changed
 * Change JSON Template format to resemble the API more closely
+* Create Entries on 2 Steps [#27](https://github.com/contentful-labs/contentful-bootstrap.rb/pull/27)
+* Add JSON Template Version Check [#31](https://github.com/contentful-labs/contentful-bootstrap.rb/issues/31)
 
 ## v2.0.2
 ### Fixed

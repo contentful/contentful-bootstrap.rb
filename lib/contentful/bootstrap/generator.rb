@@ -2,6 +2,7 @@ require 'contentful'
 require 'inifile'
 require 'json'
 require 'zlib'
+require 'contentful/bootstrap/version'
 
 module Contentful
   module Bootstrap
@@ -12,6 +13,7 @@ module Contentful
 
       def generate_json
         template = {}
+        template['version'] = Contentful::Bootstrap.major_version
         template['contentTypes'] = content_types
         template['assets'] = assets
         template['entries'] = entries

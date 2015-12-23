@@ -16,9 +16,9 @@ module Contentful
         @config_path = config_path
       end
 
-      def ==(other_token)
-        return false unless other_token.is_a?(Contentful::Bootstrap::Token)
-        other_token.config_path == @config_path
+      def ==(other)
+        return false unless other.is_a?(Contentful::Bootstrap::Token)
+        other.config_path == @config_path
       end
 
       def present?
