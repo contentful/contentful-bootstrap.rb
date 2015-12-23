@@ -1,0 +1,18 @@
+{
+  "version": 3,
+  "content_types": [],
+  "assets": [],
+  "entries": {
+    "cat": [
+      {
+        "sys": { "id": "foo" },
+        "fields": {
+          "link": {
+            "id": "foobar",
+            "linkType": "Entry"
+          }
+        }
+      }
+    ]
+  }
+}

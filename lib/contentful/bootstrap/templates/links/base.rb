@@ -27,6 +27,11 @@ module Contentful
           def management_class
             fail 'must implement'
           end
+
+          def ==(other)
+            return false unless other.is_a? self.class
+            other.id == id
+          end
         end
       end
     end

@@ -19,5 +19,19 @@ describe Contentful::Bootstrap::Templates::Links::Asset do
     it '#management_class' do
       expect(subject.management_class).to eq Contentful::Management::Asset
     end
+
+    describe '#==' do
+      it 'false when different type' do
+        expect(subject == 2).to be_falsey
+      end
+
+      it 'false when different id' do
+        expect(subject == described_class.new('bar')).to be_falsey
+      end
+
+      it 'true when same id' do
+        expect(subject == described_class.new('foo')).to be_truthy
+      end
+    end
   end
 end
