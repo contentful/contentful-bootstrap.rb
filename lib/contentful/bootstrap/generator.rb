@@ -13,7 +13,7 @@ module Contentful
 
       def generate_json
         template = {}
-        template['version'] = Contentful::Bootstrap::VERSION.split('.').first.to_i
+        template['version'] = Contentful::Bootstrap.major_version
         template['contentTypes'] = content_types
         template['assets'] = assets
         template['entries'] = entries

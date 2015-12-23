@@ -57,18 +57,18 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
     let(:ok_version_path) { File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'ok_version.json')) }
 
     it 'rejects templates without version' do
-      expect { described_class.new space, invalid_version_path }.to raise_error "JSON Templates Version Mismatch"
+      expect { described_class.new space, invalid_version_path }.to raise_error "JSON Templates Version Mismatch. Current Version: 3"
     end
 
     it 'rejects templates with previous versions' do
-      expect { described_class.new space, low_version_path }.to raise_error "JSON Templates Version Mismatch"
+      expect { described_class.new space, low_version_path }.to raise_error "JSON Templates Version Mismatch. Current Version: 3"
     end
 
-    it 'rejects templates with never versions' do
-      expect { described_class.new space, high_version_path }.to raise_error "JSON Templates Version Mismatch"
+    it 'rejects templates with newer versions' do
+      expect { described_class.new space, high_version_path }.to raise_error "JSON Templates Version Mismatch. Current Version: 3"
     end
 
-    it 'accepts templates with never versions' do
+    it 'accepts templates with correct version' do
       expect { described_class.new space, ok_version_path }.not_to raise_error
     end
   end

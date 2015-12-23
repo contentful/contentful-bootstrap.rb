@@ -32,8 +32,10 @@ module Contentful
 
         def check_version
           json_version = json.fetch('version', 0)
-          gem_major_version = Contentful::Bootstrap::VERSION.split('.').first.to_i
-          fail "JSON Templates Version Mismatch" unless gem_major_version == json_version
+          gem_major_version = Contentful::Bootstrap.major_version
+          unless gem_major_version == json_version
+            fail "JSON Templates Version Mismatch. Current Version: #{gem_major_version}"
+          end
         end
 
         def json
