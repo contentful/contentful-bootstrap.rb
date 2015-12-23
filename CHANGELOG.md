@@ -1,6 +1,8 @@
 # Change Log
 
 ## Unreleased
+
+## v3.0.0
 ### Changed
 * Change JSON Template format to resemble the API more closely
 * Create Entries on 2 Steps [#27](https://github.com/contentful-labs/contentful-bootstrap.rb/pull/27)
