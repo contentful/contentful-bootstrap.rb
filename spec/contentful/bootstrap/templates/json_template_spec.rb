@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Contentful::Bootstrap::Templates::JsonTemplate do
   let(:space) { Contentful::Management::Space.new }
   let(:path) { File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'simple.json')) }
-  subject { Contentful::Bootstrap::Templates::JsonTemplate.new space, path }
+  subject { described_class.new space, path }
 
   describe 'instance methods' do
     it '#content_types' do
@@ -70,6 +70,21 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
 
     it 'accepts templates with correct version' do
       expect { described_class.new space, ok_version_path }.not_to raise_error
+    end
+  end
+
+  describe 'issues' do
+    let(:link_entry_path) { File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'links.json')) }
+
+    it 'links are not properly getting processed - #33' do
+      subject = described_class.new space, link_entry_path
+
+      expect(subject.entries["cat"].first).to eq(
+        {
+          "id" => "foo",
+          "link" => Contentful::Bootstrap::Templates::Links::Entry.new('foobar')
+        }
+      )
     end
   end
 end
