@@ -75,7 +75,7 @@ module Contentful
               end
 
               link_fields.each do |lf|
-                processed_entry[lf] = create_link(entry[lf])
+                processed_entry[lf] = create_link(entry['fields'][lf])
               end
 
               array_fields.each do |af|
