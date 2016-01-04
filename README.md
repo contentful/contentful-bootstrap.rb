@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/contentful-labs/contentful-bootstrap.rb.svg)](https://travis-ci.org/contentful-labs/contentful-bootstrap.rb)
+[![Build Status](https://travis-ci.org/contentful/contentful-bootstrap.rb.svg)](https://travis-ci.org/contentful/contentful-bootstrap.rb)
 
 # Contentful Bootstrap
 
