@@ -4,6 +4,9 @@
 ### Fixed
 * Version Locked Webmock causing all our VCRs to fail
 
+### Added
+* Custom User-Agent header
+
 ## v3.0.0
 ### Changed
 * Change JSON Template format to resemble the API more closely
