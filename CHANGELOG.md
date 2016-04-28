@@ -1,6 +1,8 @@
 # Change Log
 
 ## Unreleased
+### Fixed
+* Version Locked Webmock causing all our VCRs to fail
 
 ## v3.0.0
 ### Changed
