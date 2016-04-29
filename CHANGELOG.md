@@ -1,8 +1,11 @@
 # Change Log
 
 ## Unreleased
+
+## v3.1.0
 ### Fixed
 * Version Locked Webmock causing all our VCRs to fail
+* Version Locked Contentful Management SDK
 
 ### Added
 * Custom User-Agent header
