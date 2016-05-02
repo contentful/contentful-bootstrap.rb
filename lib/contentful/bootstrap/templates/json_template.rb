@@ -17,7 +17,12 @@ module Contentful
         end
 
         def content_types
-          json.fetch('contentTypes', [])
+          processed_content_types = json.fetch('contentTypes', [])
+          processed_content_types.each do |content_type|
+            content_type['display_field'] = content_type.key?('displayField') ? content_type.delete('displayField') : content_type['display_field']
+          end
+
+          processed_content_types
         end
 
         def assets
