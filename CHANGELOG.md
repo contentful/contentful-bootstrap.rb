@@ -1,6 +1,8 @@
 # Change Log
 
 ## Unreleased
+
+## v3.1.1
 ### Fixed
 * Fixes a bug where `display_field` was not properly populated when being generated from JSON templates [#35](https://github.com/contentful/contentful-bootstrap.rb/issues/35)
 
