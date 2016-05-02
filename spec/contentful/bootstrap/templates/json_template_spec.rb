@@ -6,23 +6,35 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
   subject { described_class.new space, path }
 
   describe 'instance methods' do
-    it '#content_types' do
-      expect(subject.content_types.first).to eq(
-        {
-          "id" => "cat",
-          "name" => "Cat",
-          "displayField" => "name",
-          "fields" => [
-            {
-              "id" => "name",
-              "name" => "Name",
-              "type" => "Symbol"
-            }
-          ]
-        }
-      )
+    describe '#content_types' do
+      it 'fetches content types' do
+        expect(subject.content_types.first).to eq(
+          {
+            "id" => "cat",
+            "name" => "Cat",
+            "display_field" => "name",
+            "fields" => [
+              {
+                "id" => "name",
+                "name" => "Name",
+                "type" => "Symbol"
+              }
+            ]
+          }
+        )
 
-      expect(subject.content_types.size).to eq(1)
+        expect(subject.content_types.size).to eq(1)
+      end
+
+      it 'uses displayField if found' do
+        expect(subject.content_types.first['display_field']).to eq 'name'
+      end
+
+      it 'uses display_field if not' do
+        subject = described_class.new(space, File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'display_field.json')))
+
+        expect(subject.content_types.first['display_field']).to eq 'name'
+      end
     end
 
     it '#assets' do
