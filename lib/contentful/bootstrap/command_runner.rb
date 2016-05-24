@@ -14,10 +14,21 @@ module Contentful
       def create_space(space_name, options = {})
         template_name = options.fetch(:template, nil)
         json_template = options.fetch(:json_template, nil)
+        mark_processed = options.fetch(:mark_processed, false)
         trigger_oauth = options.fetch(:trigger_oauth, true)
 
         Contentful::Bootstrap::Commands::CreateSpace.new(
-          @token, space_name, template_name, json_template, trigger_oauth
+          @token, space_name, template_name, json_template, mark_processed, trigger_oauth
+        ).run
+      end
+
+      def update_space(space_id, options = {})
+        json_template = options.fetch(:json_template, nil)
+        mark_processed = options.fetch(:mark_processed, false)
+        trigger_oauth = options.fetch(:trigger_oauth, true)
+
+        Contentful::Bootstrap::Commands::UpdateSpace.new(
+          @token, space_id, json_template, mark_processed, trigger_oauth
         ).run
       end
 

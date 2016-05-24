@@ -16,6 +16,8 @@ module Contentful
           create_content_types
           create_assets
           create_entries
+
+          after_run
         rescue Contentful::Management::Error => e
           error = e.error
           puts "Error at: #{error[:url]}"
@@ -35,6 +37,9 @@ module Contentful
 
         def assets
           []
+        end
+
+        def after_run
         end
 
         protected
@@ -58,6 +63,7 @@ module Contentful
             content_type.id = ct['id']
             content_type.name = ct['name']
             content_type.display_field = ct['display_field']
+            content_type.description = ct['description']
 
             ct['fields'].each do |f|
               field = Contentful::Management::Field.new
@@ -169,7 +175,7 @@ module Contentful
 
             10.times do
               break if space.entries.find(entry.id).sys[:version] >= 4
-              sleep(1)
+              sleep(0.5)
             end
 
             entry.id

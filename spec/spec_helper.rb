@@ -5,12 +5,16 @@ require 'vcr'
 require 'json'
 
 VCR.configure do |config|
-  config.cassette_library_dir = "spec/fixtures/vcr_fixtures"
+  config.cassette_library_dir = File.join('spec', 'fixtures', 'vcr_fixtures')
   config.hook_into :webmock
 end
 
+def json_path(name)
+  File.join('spec', 'fixtures', 'json_fixtures', "#{name}.json")
+end
+
 def json_fixture(name)
-  json = JSON.load(File.read("spec/fixtures/json_fixtures/#{name}.json"))
+  json = JSON.load(File.read(File.expand_path(json_path(name))))
   yield json if block_given?
   json
 end
@@ -40,6 +44,14 @@ end
 class ServerDouble
   def [](key)
   end
+end
+
+class ErrorRequestDouble
+  def request; self; end
+  def endpoint; self; end
+  def error_message; self; end
+  def raw; self; end
+  def body; self; end
 end
 
 class RequestDouble
