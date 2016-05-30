@@ -56,35 +56,40 @@ module Contentful
 
         def create_content_types
           content_types.each do |ct|
-            puts "Creating Content Type '#{ct['name']}'"
+            begin
+              puts "Creating Content Type '#{ct['name']}'"
 
-            fields = []
-            content_type = space.content_types.new
-            content_type.id = ct['id']
-            content_type.name = ct['name']
-            content_type.display_field = ct['display_field']
-            content_type.description = ct['description']
+              fields = []
+              content_type = space.content_types.new
+              content_type.id = ct['id']
+              content_type.name = ct['name']
+              content_type.display_field = ct['display_field']
+              content_type.description = ct['description']
 
-            ct['fields'].each do |f|
-              field = Contentful::Management::Field.new
-              field.id = f['id']
-              field.name = f['name']
-              field.type = f['type']
-              field.link_type = f['linkType'] if link?(f)
+              ct['fields'].each do |f|
+                field = Contentful::Management::Field.new
+                field.id = f['id']
+                field.name = f['name']
+                field.type = f['type']
+                field.link_type = f['linkType'] if link?(f)
 
-              if array?(f)
-                array_field = Contentful::Management::Field.new
-                array_field.type = f['items']['type']
-                array_field.link_type = f['items']['linkType']
-                field.items = array_field
+                if array?(f)
+                  array_field = Contentful::Management::Field.new
+                  array_field.type = f['items']['type']
+                  array_field.link_type = f['items']['linkType']
+                  field.items = array_field
+                end
+
+                fields << field
               end
 
-              fields << field
+              content_type.fields = fields
+              content_type.save
+              content_type.activate
+            rescue Contentful::Management::Conflict
+              puts "ContentType '#{ct['id']}' already created! Skipping"
+              next
             end
-
-            content_type.fields = fields
-            content_type.save
-            content_type.activate
           end
         end
 
@@ -98,23 +103,28 @@ module Contentful
 
         def create_assets
           assets.each do |asset|
-            puts "Creating Asset '#{asset['title']}'"
-            asset = space.assets.create(
-              id: asset['id'],
-              title: asset['title'],
-              file: asset['file']
-            )
-            asset.process_file
+            begin
+              puts "Creating Asset '#{asset['title']}'"
+              asset = space.assets.create(
+                id: asset['id'],
+                title: asset['title'],
+                file: asset['file']
+              )
+              asset.process_file
 
-            attempts = 0
-            while attempts < 10
-              unless space.assets.find(asset.id).file.url.nil?
-                asset.publish
-                break
+              attempts = 0
+              while attempts < 10
+                unless space.assets.find(asset.id).file.url.nil?
+                  asset.publish
+                  break
+                end
+
+                sleep(1) # Wait for Process
+                attempts += 1
               end
-
-              sleep(1) # Wait for Process
-              attempts += 1
+            rescue Contentful::Management::Conflict
+              puts "Asset '#{asset['id']}' already created! Skipping"
+              next
             end
           end
         end
@@ -156,17 +166,23 @@ module Contentful
                 e[rf.to_sym] = value
               end
 
-              entry = content_type.entries.create({:id => e[:id]})
-              entry.save
+              begin
+                puts "Creating Entry #{e[:id]}"
+                entry = content_type.entries.create({:id => e[:id]})
+                entry.save
 
-              e = e.clone
-              e[:id] = entry.id # in case no ID was specified in template
-              e
+                e = e.clone
+                e[:id] = entry.id # in case no ID was specified in template
+              rescue Contentful::Management::Conflict
+                puts "Entry '#{e[:id]}' already exists! Skipping"
+              ensure
+                next e
+              end
             end
           end.flatten
 
           processed_entries = processed_entries.map do |e|
-            puts "Creating Entry #{e[:id]}"
+            puts "Populating Entry #{e[:id]}"
 
             entry = space.entries.find(e[:id])
             e.delete(:id)

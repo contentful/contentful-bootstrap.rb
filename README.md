@@ -44,7 +44,7 @@ $ contentful_bootstrap generate_json <space_id> <access_token> [--output-file OU
 You can update existing spaces from JSON Templates by doing:
 
 ```bash
-$ contentful_bootstrap update_sapce <space_id> -j template_path [--mark-processed]
+$ contentful_bootstrap update_space <space_id> -j template_path [--mark-processed]
 ```
 
 ### Built-in templates
@@ -87,7 +87,7 @@ Additionally, you can send an options hash with the following keys:
 options = {
   template: "blog", # Will use one of the predefined templates and create Content Types, Assets and Entries
   json_template: "/path/to/template.json", # Will use the JSON file specified as a Template
-  mark_processed: false, # if true will mark all items as 'bootstrapProcessed' and will be avoided for update_space calls (doesnt affect create_space)
+  mark_processed: false, # if true will mark all resources as 'bootstrapProcessed' and will be avoided for update_space calls (doesnt affect create_space)
   trigger_oauth: true # if true will trigger OAuth process
 }
 Contentful::Bootstrap::CommandRunner.new.create_space("space_name", options)
@@ -98,7 +98,7 @@ To Update an existing Space
 ```ruby
 options = {
   json_template: "/path/to/template.json", # Will use the JSON file specified as a Template
-  mark_processed: false, # if true will mark all items as 'bootstrapProcessed and will be avoided on future update_space calls
+  mark_processed: false, # if true will mark all resources as 'bootstrapProcessed and will be avoided on future update_space calls
   trigger_oauth: true # if true will trigger OAuth process
 }
 Contentful::Bootstrap::CommandRunner.new.update_space("space_id", options)
@@ -165,8 +165,8 @@ Using the `--json-template` option, you can create spaces with your own predefin
 This can be useful for creating testing & development spaces or just starting new projects from
 a common baseline. You can find a complete example [here](./examples/templates/catalogue.json)
 
-Using the `--mark-processed` option alongside `--json-template` will mark all items as `bootstrapProcessed`,
-which will make it so `update_space` calls avoid already created items. (An item being either a Content Type, Entry or Asset).
+Using the `--mark-processed` option alongside `--json-template` will mark all resources as `bootstrapProcessed`,
+which will make it so `update_space` calls avoid already created resources. (A resource being either a Content Type, Entry or Asset).
 
 ## Contributing
 
