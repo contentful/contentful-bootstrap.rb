@@ -1,6 +1,8 @@
 # Change Log
 
 ## Unreleased
+
+## v3.2.0
 ### Added
 * Adds `update_space` command to update already existing spaces using JSON Templates
 * Adds `--mark-processed` option to `create_space` and `update_space` to enforce marking which resources have already been processed
