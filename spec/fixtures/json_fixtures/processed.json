@@ -1,0 +1,72 @@
+{
+  "version": 3,
+  "contentTypes": [
+    {
+      "id": "cat",
+      "name": "Cat",
+      "displayField": "name",
+      "fields": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "Symbol"
+        }
+      ]
+    },
+    {
+      "id": "dog",
+      "bootstrapProcessed": true,
+      "name": "Dog",
+      "displayField": "name",
+      "fields": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "Symbol"
+        }
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "cat_asset",
+      "title": "Cat",
+      "file": {
+        "filename": "cat",
+        "url": "https://somecat.com/my_cat.jpeg"
+      }
+    },
+    {
+      "id": "dog_asset",
+      "bootstrapProcessed": true,
+      "title": "Dog",
+      "file": {
+        "filename": "Dog",
+        "url": "https://somedog.com/my_dog.jpeg"
+      }
+    }
+  ],
+  "entries": {
+    "cat": [
+      {
+        "sys": {
+          "id": "nyancat"
+        },
+        "fields": {
+          "name": "Nyan Cat"
+        }
+      }
+    ],
+    "dog": [
+      {
+        "sys": {
+          "id": "doge",
+          "bootstrapProcessed": true
+        },
+        "fields": {
+          "name": "Doge"
+        }
+      }
+    ]
+  }
+}

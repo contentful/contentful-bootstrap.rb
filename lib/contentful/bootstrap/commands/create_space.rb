@@ -9,10 +9,13 @@ module Contentful
     module Commands
       class CreateSpace < Base
         attr_reader :template_name, :json_template
-        def initialize(token, space_name, template_name = nil, json_template = nil, trigger_oauth = true)
+        def initialize(
+            token, space_name, template_name = nil,
+            json_template = nil, mark_processed = false, trigger_oauth = true)
           super(token, space_name, trigger_oauth)
           @template_name = template_name
           @json_template = json_template
+          @mark_processed = mark_processed
         end
 
         def run
@@ -92,7 +95,7 @@ module Contentful
         def create_json_template(space)
           if ::File.exist?(@json_template)
             puts "Creating JSON Template '#{@json_template}'"
-            Templates::JsonTemplate.new(space, @json_template).run
+            Templates::JsonTemplate.new(space, @json_template, @mark_processed).run
             puts "JSON Template '#{@json_template}' created!"
           else
             puts "JSON Template '#{@json_template}' does not exist. Please check that you specified the correct file name."

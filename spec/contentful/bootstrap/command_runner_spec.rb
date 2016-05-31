@@ -5,8 +5,6 @@ describe Contentful::Bootstrap::CommandRunner do
   subject { Contentful::Bootstrap::CommandRunner.new(path) }
 
   describe 'instance methods' do
-    before do
-    end
     describe '#create_space' do
       before do
         allow_any_instance_of(Contentful::Bootstrap::Commands::CreateSpace).to receive(:run)
@@ -14,7 +12,7 @@ describe Contentful::Bootstrap::CommandRunner do
 
       it 'default values' do
         expect(Contentful::Bootstrap::Commands::CreateSpace).to receive(:new).with(
-          subject.token, 'foo', nil, nil, true
+          subject.token, 'foo', nil, nil, false, true
         ).and_call_original
 
         subject.create_space('foo')
@@ -22,16 +20,44 @@ describe Contentful::Bootstrap::CommandRunner do
 
       it 'with options' do
         expect(Contentful::Bootstrap::Commands::CreateSpace).to receive(:new).with(
-          subject.token, 'foo', 'bar', 'baz', false
+          subject.token, 'foo', 'bar', 'baz', true, false
         ).and_call_original
 
-        subject.create_space('foo', template: 'bar', json_template: 'baz', trigger_oauth: false)
+        subject.create_space('foo', template: 'bar', json_template: 'baz', mark_processed: true, trigger_oauth: false)
       end
 
       it 'runs command' do
         expect_any_instance_of(Contentful::Bootstrap::Commands::CreateSpace).to receive(:run)
 
         subject.create_space('foo', template: 'bar', json_template: 'baz', trigger_oauth: false)
+      end
+    end
+
+    describe '#update_space' do
+      before do
+        allow_any_instance_of(Contentful::Bootstrap::Commands::UpdateSpace).to receive(:run)
+      end
+
+      it 'default values' do
+        expect(Contentful::Bootstrap::Commands::UpdateSpace).to receive(:new).with(
+          subject.token, 'foo', nil, false, true
+        ).and_call_original
+
+        subject.update_space('foo')
+      end
+
+      it 'with options' do
+        expect(Contentful::Bootstrap::Commands::UpdateSpace).to receive(:new).with(
+          subject.token, 'foo', 'bar', true, false
+        ).and_call_original
+
+        subject.update_space('foo', json_template: 'bar', mark_processed: true, trigger_oauth: false)
+      end
+
+      it 'runs command' do
+        expect_any_instance_of(Contentful::Bootstrap::Commands::UpdateSpace).to receive(:run)
+
+        subject.update_space('foo', json_template: 'bar', trigger_oauth: false)
       end
     end
 

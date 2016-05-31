@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "content_types": [
+  "contentTypes": [
     {
       "id": "brand",
       "name": "Brand",
@@ -148,7 +148,7 @@
           "name": "Playsam, Inc",
           "website": "http://www.playsam.com",
           "logo": {
-            "link_type": "Asset",
+            "linkType": "Asset",
             "id": "playsam_image"
           }
         }

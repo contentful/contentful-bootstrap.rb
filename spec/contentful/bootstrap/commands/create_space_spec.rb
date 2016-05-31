@@ -3,8 +3,12 @@ require 'spec_helper'
 describe Contentful::Bootstrap::Commands::CreateSpace do
   let(:path) { File.expand_path(File.join('spec', 'fixtures', 'ini_fixtures', 'contentfulrc.ini')) }
   let(:token) { Contentful::Bootstrap::Token.new path }
-  subject { Contentful::Bootstrap::Commands::CreateSpace.new token, 'foo', 'bar', 'baz', false }
+  subject { Contentful::Bootstrap::Commands::CreateSpace.new token, 'foo', 'bar', 'baz', false, false }
   let(:space_double) { SpaceDouble.new }
+
+  before do
+    allow(::File).to receive(:write)
+  end
 
   describe 'instance methods' do
     describe '#run' do
@@ -18,7 +22,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
       end
 
       it 'does not create template when template_name is nil' do
-        create_space_command = described_class.new(token, 'foo', nil, 'baz', false)
+        create_space_command = described_class.new(token, 'foo', nil, 'baz', false, false)
 
         expect(create_space_command.template_name).to eq nil
 
@@ -31,7 +35,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
       end
 
       it 'does not create json template when json_template is nil' do
-        create_space_command = described_class.new(token, 'foo', 'bar', nil, false)
+        create_space_command = described_class.new(token, 'foo', 'bar', nil, false, false)
 
         expect(create_space_command.json_template).to eq nil
 
@@ -62,7 +66,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
       allow_any_instance_of(described_class).to receive(:gets).and_return('y')
       allow_any_instance_of(Contentful::Bootstrap::Commands::GenerateToken).to receive(:gets).and_return('n')
 
-      command = described_class.new(token, 'issue_22', nil, json_path)
+      command = described_class.new(token, 'issue_22', nil, json_path, false)
 
       vcr('issue_22') {
         command.run

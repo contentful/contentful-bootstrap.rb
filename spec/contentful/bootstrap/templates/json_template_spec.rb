@@ -2,8 +2,12 @@ require 'spec_helper'
 
 describe Contentful::Bootstrap::Templates::JsonTemplate do
   let(:space) { Contentful::Management::Space.new }
-  let(:path) { File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'simple.json')) }
+  let(:path) { json_path('simple') }
   subject { described_class.new space, path }
+
+  before do
+    allow(::File).to receive(:write)
+  end
 
   describe 'instance methods' do
     describe '#content_types' do
@@ -63,10 +67,10 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
   end
 
   describe 'template version check' do
-    let(:invalid_version_path) { File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'invalid.json')) }
-    let(:low_version_path) { File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'low.json')) }
-    let(:high_version_path) { File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'high.json')) }
-    let(:ok_version_path) { File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'ok_version.json')) }
+    let(:invalid_version_path) { json_path('invalid') }
+    let(:low_version_path) { json_path('low') }
+    let(:high_version_path) { json_path('high') }
+    let(:ok_version_path) { json_path('ok_version') }
 
     it 'rejects templates without version' do
       expect { described_class.new space, invalid_version_path }.to raise_error "JSON Templates Version Mismatch. Current Version: 3"
@@ -86,7 +90,7 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
   end
 
   describe 'issues' do
-    let(:link_entry_path) { File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'links.json')) }
+    let(:link_entry_path) { json_path('links') }
 
     it 'links are not properly getting processed - #33' do
       subject = described_class.new space, link_entry_path
@@ -97,6 +101,71 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
           "link" => Contentful::Bootstrap::Templates::Links::Entry.new('foobar')
         }
       )
+    end
+  end
+
+  describe 'bootstrap processed' do
+    let(:processed_path) { json_path('processed') }
+
+    it 'filters content types that were already processed' do
+      json_fixture('processed') { |json|
+        expect(json['contentTypes'].size).to eq(2)
+        expect(json['contentTypes'].last['id']).to eq('dog')
+
+        subject = described_class.new(space, processed_path, false, false)
+
+        expect(subject.content_types.size).to eq(1)
+        expect(subject.content_types.first['id']).to eq('cat')
+      }
+    end
+
+    it 'filters assets that were already processed' do
+      json_fixture('processed') { |json|
+        expect(json['assets'].size).to eq(2)
+        expect(json['assets'].last['id']).to eq('dog_asset')
+
+        subject = described_class.new(space, processed_path, false, false)
+
+        expect(subject.assets.size).to eq(1)
+        expect(subject.assets.first['id']).to eq('cat_asset')
+      }
+    end
+
+    it 'filters entries that were already processed' do
+      json_fixture('processed') { |json|
+        expect(json['entries']['dog'].size).to eq(1)
+        expect(json['entries']['dog'].first['sys']['id']).to eq('doge')
+
+        subject = described_class.new(space, processed_path, false, false)
+
+        expect(subject.entries['dog'].size).to eq(0)
+      }
+    end
+  end
+
+  describe 'mark processed' do
+    it 'does not write file after run if not mark_processed' do
+      subject = described_class.new(space, path, false, false)
+      ['content_types', 'assets', 'entries'].each do |n|
+        allow(subject).to receive("create_#{n}".to_sym)
+      end
+
+      expect(subject).to receive(:after_run).and_call_original
+      expect(::File).not_to receive(:write)
+
+      subject.run
+    end
+
+    it 'writes file after run if mark_processed' do
+      subject = described_class.new(space, path, true, false)
+      ['content_types', 'assets', 'entries'].each do |n|
+        allow(subject).to receive("create_#{n}".to_sym)
+      end
+
+      expect(subject).to receive(:after_run).and_call_original
+      expect(::File).to receive(:write)
+
+      subject.run
     end
   end
 end
