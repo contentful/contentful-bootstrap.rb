@@ -4,6 +4,11 @@ require 'contentful/bootstrap'
 require 'vcr'
 require 'json'
 
+RSpec.configure do |config|
+  config.filter_run :focus => true
+  config.run_all_when_everything_filtered = true
+end
+
 VCR.configure do |config|
   config.cassette_library_dir = File.join('spec', 'fixtures', 'vcr_fixtures')
   config.hook_into :webmock

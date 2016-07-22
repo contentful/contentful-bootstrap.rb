@@ -16,7 +16,7 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
           {
             "id" => "cat",
             "name" => "Cat",
-            "display_field" => "name",
+            "displayField" => "name",
             "fields" => [
               {
                 "id" => "name",
@@ -31,13 +31,13 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
       end
 
       it 'uses displayField if found' do
-        expect(subject.content_types.first['display_field']).to eq 'name'
+        expect(subject.content_types.first['displayField']).to eq 'name'
       end
 
       it 'uses display_field if not' do
         subject = described_class.new(space, File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'display_field.json')))
 
-        expect(subject.content_types.first['display_field']).to eq 'name'
+        expect(subject.content_types.first['displayField']).to eq 'name'
       end
     end
 

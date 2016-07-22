@@ -10,7 +10,7 @@ module Contentful
             {
               'id' => 'brand',
               'name' => 'Brand',
-              'display_field' => 'name',
+              'displayField' => 'name',
               'fields' => [
                 {
                   'id' => 'name',
@@ -26,14 +26,14 @@ module Contentful
                   'id' => 'logo',
                   'name' => 'Logo',
                   'type' => 'Link',
-                  'link_type' => 'Asset'
+                  'linkType' => 'Asset'
                 }
               ]
             },
             {
               'id' => 'category',
               'name' => 'Category',
-              'display_field' => 'title',
+              'displayField' => 'title',
               'fields' => [
                 {
                   'id' => 'title',
@@ -49,14 +49,14 @@ module Contentful
                   'id' => 'icon',
                   'name' => 'Icon',
                   'type' => 'Link',
-                  'link_type' => 'Asset'
+                  'linkType' => 'Asset'
                 }
               ]
             },
             {
               'id' => 'product',
               'name' => 'Product',
-              'display_field' => 'name',
+              'displayField' => 'name',
               'fields' => [
                 {
                   'id' => 'name',
@@ -72,19 +72,19 @@ module Contentful
                   'id' => 'image',
                   'name' => 'Image',
                   'type' => 'Link',
-                  'link_type' => 'Asset'
+                  'linkType' => 'Asset'
                 },
                 {
                   'id' => 'brand',
                   'name' => 'Brand',
                   'type' => 'Link',
-                  'link_type' => 'Entry'
+                  'linkType' => 'Entry'
                 },
                 {
                   'id' => 'category',
                   'name' => 'Category',
                   'type' => 'Link',
-                  'link_type' => 'Entry'
+                  'linkType' => 'Entry'
                 },
                 {
                   'id' => 'url',
@@ -101,32 +101,32 @@ module Contentful
             {
               'id' => 'playsam_image',
               'title' => 'Playsam',
-              'file' => create_image('playsam_image', 'https://images.contentful.com/liicpxzmg1q0/4zj1ZOfHgQ8oqgaSKm4Qo2/3be82d54d45b5297e951aee9baf920da/playsam.jpg?h=250&')
+              'file' => create_file('playsam_image.jpg', 'https://images.contentful.com/liicpxzmg1q0/4zj1ZOfHgQ8oqgaSKm4Qo2/3be82d54d45b5297e951aee9baf920da/playsam.jpg?h=250&')
             },
             {
               'id' => 'normann_image',
               'title' => 'Normann',
-              'file' => create_image('normann_image', 'https://images.contentful.com/liicpxzmg1q0/3wtvPBbBjiMKqKKga8I2Cu/75c7c92f38f7953a741591d215ad61d4/zJYzDlGk.jpeg?h=250&')
+              'file' => create_file('normann_image.jpg', 'https://images.contentful.com/liicpxzmg1q0/3wtvPBbBjiMKqKKga8I2Cu/75c7c92f38f7953a741591d215ad61d4/zJYzDlGk.jpeg?h=250&')
             },
             {
               'id' => 'toy_image',
               'title' => 'Toys',
-              'file' => create_image('toy_image', 'https://images.contentful.com/liicpxzmg1q0/6t4HKjytPi0mYgs240wkG/866ef53a11af9c6bf5f3808a8ce1aab2/toys_512pxGREY.png?h=250&')
+              'file' => create_file('toy_image.jpg', 'https://images.contentful.com/liicpxzmg1q0/6t4HKjytPi0mYgs240wkG/866ef53a11af9c6bf5f3808a8ce1aab2/toys_512pxGREY.png?h=250&')
             },
             {
               'id' => 'kitchen_image',
               'title' => 'Kitchen and Home',
-              'file' => create_image('kitchen_image', 'https://images.contentful.com/liicpxzmg1q0/6m5AJ9vMPKc8OUoQeoCS4o/ffc20f5a8f2a71cca4801bc9c51b966a/1418244847_Streamline-18-256.png?h=250&')
+              'file' => create_file('kitchen_image.jpg', 'https://images.contentful.com/liicpxzmg1q0/6m5AJ9vMPKc8OUoQeoCS4o/ffc20f5a8f2a71cca4801bc9c51b966a/1418244847_Streamline-18-256.png?h=250&')
             },
             {
               'id' => 'toy_car',
               'title' => 'Playsam Toy Car',
-              'file' => create_image('toy_car', 'https://images.contentful.com/liicpxzmg1q0/wtrHxeu3zEoEce2MokCSi/acef70d12fe019228c4238aa791bdd48/quwowooybuqbl6ntboz3.jpg?h=250&')
+              'file' => create_file('toy_car.jpg', 'https://images.contentful.com/liicpxzmg1q0/wtrHxeu3zEoEce2MokCSi/acef70d12fe019228c4238aa791bdd48/quwowooybuqbl6ntboz3.jpg?h=250&')
             },
             {
               'id' => 'whiskers',
               'title' => 'Normann Whisk Beaters',
-              'file' => create_image('whiskers', 'https://images.contentful.com/liicpxzmg1q0/10TkaLheGeQG6qQGqWYqUI/d510dde5e575d40288cf75b42383aa53/ryugj83mqwa1asojwtwb.jpg?h=250&')
+              'file' => create_file('whiskers.jpg', 'https://images.contentful.com/liicpxzmg1q0/10TkaLheGeQG6qQGqWYqUI/d510dde5e575d40288cf75b42383aa53/ryugj83mqwa1asojwtwb.jpg?h=250&')
             }
           ]
         end

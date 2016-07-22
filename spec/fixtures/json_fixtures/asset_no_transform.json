@@ -1,0 +1,16 @@
+{
+  "version": 3,
+  "contentTypes": [],
+  "entries": {},
+  "assets": [
+    {
+      "id": "my_asset",
+      "title": "My Asset",
+      "file": {
+        "filename": "some_filename.svg",
+        "contentType": "image/svg+xml",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Vector-based_example.svg"
+      }
+    }
+  ]
+}

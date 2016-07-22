@@ -10,7 +10,7 @@ module Contentful
             {
               'id' => 'author',
               'name' => 'Author',
-              'display_field' => 'name',
+              'displayField' => 'name',
               'fields' => [
                 {
                   'name' => 'Name',
@@ -22,7 +22,7 @@ module Contentful
             {
               'id' => 'image',
               'name' => 'Image',
-              'display_field' => 'title',
+              'displayField' => 'title',
               'fields' => [
                 {
                   'id' => 'title',
@@ -33,14 +33,14 @@ module Contentful
                   'id' => 'photo',
                   'name' => 'Photo',
                   'type' => 'Link',
-                  'link_type' => 'Asset'
+                  'linkType' => 'Asset'
                 }
               ]
             },
             {
               'id' => 'gallery',
               'name' => 'Gallery',
-              'display_field' => 'title',
+              'displayField' => 'title',
               'fields' => [
                 {
                   'id' => 'title',
@@ -51,7 +51,7 @@ module Contentful
                   'id' => 'author',
                   'name' => 'Author',
                   'type' => 'Link',
-                  'link_type' => 'Entry'
+                  'linkType' => 'Entry'
                 },
                 {
                   'id' => 'images',
@@ -59,7 +59,7 @@ module Contentful
                   'type' => 'Array',
                   'items' => {
                     'type' => 'Link',
-                    'link_type' => 'Entry'
+                    'linkType' => 'Entry'
                   }
                 }
               ]
@@ -72,12 +72,12 @@ module Contentful
             {
               'id' => 'pie',
               'title' => 'Pie in the Sky',
-              'file' => create_image('pie', 'https://c2.staticflickr.com/6/5245/5335909339_d307a7cbcf_b.jpg')
+              'file' => create_file('pie.jpg', 'https://c2.staticflickr.com/6/5245/5335909339_d307a7cbcf_b.jpg')
             },
             {
               'id' => 'flower',
               'title' => 'The Flower',
-              'file' => create_image('flower', 'http://c2.staticflickr.com/4/3922/15045568809_b24591e318_b.jpg')
+              'file' => create_file('flower.jpg', 'http://c2.staticflickr.com/4/3922/15045568809_b24591e318_b.jpg')
             }
           ]
         end
