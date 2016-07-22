@@ -72,6 +72,19 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
         command.run
       }
     end
+
+    it 'assets can be created with any content type #39' do
+      json_path = File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'asset_no_transform.json'))
+
+      allow_any_instance_of(described_class).to receive(:gets).and_return('y')
+      allow_any_instance_of(Contentful::Bootstrap::Commands::GenerateToken).to receive(:gets).and_return('n')
+
+      command = described_class.new(token, 'asset_no_transform', nil, json_path, false)
+
+      vcr('asset_no_transform') {
+        command.run
+      }
+    end
   end
 
   describe 'integration' do

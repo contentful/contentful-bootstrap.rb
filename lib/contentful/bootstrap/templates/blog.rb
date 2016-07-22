@@ -10,7 +10,7 @@ module Contentful
             {
               'id' => 'author',
               'name' => 'Author',
-              'display_field' => 'name',
+              'displayField' => 'name',
               'fields' => [
                 {
                   'id' => 'name',
@@ -22,7 +22,7 @@ module Contentful
             {
               'id' => 'post',
               'name' => 'Post',
-              'display_field' => 'title',
+              'displayField' => 'title',
               'fields' => [
                 {
                   'id' => 'title',
@@ -38,7 +38,7 @@ module Contentful
                   'id' => 'author',
                   'name' => 'Author',
                   'type' => 'Link',
-                  'link_type' => 'Entry'
+                  'linkType' => 'Entry'
                 }
               ]
             }

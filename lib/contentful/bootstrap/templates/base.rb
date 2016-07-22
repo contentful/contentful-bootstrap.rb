@@ -44,10 +44,10 @@ module Contentful
 
         protected
 
-        def create_image(name, url)
+        def create_file(name, url, properties = {})
           image = Contentful::Management::File.new
-          image.properties[:contentType] = 'image/jpeg'
-          image.properties[:fileName] = "#{name}.jpg"
+          image.properties[:contentType] = properties.fetch(:contentType, 'image/jpeg')
+          image.properties[:fileName] = "#{name}"
           image.properties[:upload] = url
           image
         end
@@ -63,7 +63,7 @@ module Contentful
               content_type = space.content_types.new
               content_type.id = ct['id']
               content_type.name = ct['name']
-              content_type.display_field = ct['display_field']
+              content_type.display_field = ct['displayField']
               content_type.description = ct['description']
 
               ct['fields'].each do |f|

@@ -10,8 +10,8 @@ module Contentful
         ENTRIES_KEY = 'entries'
         ASSETS_KEY = 'assets'
         BOOTSTRAP_PROCCESSED_KEY = 'bootstrapProcessed'
-        DISPLAY_FIELD_KEY = 'display_field'
-        ALTERNATE_DISPLAY_FIELD_KEY = 'displayField'
+        DISPLAY_FIELD_KEY = 'displayField'
+        ALTERNATE_DISPLAY_FIELD_KEY = 'display_field'
         SYS_KEY = 'sys'
 
         attr_reader :assets, :entries, :content_types
@@ -98,9 +98,10 @@ module Contentful
           end
 
           unprocessed_assets.map do |asset|
-            asset['file'] = create_image(
+            asset['file'] = create_file(
               asset['file']['filename'],
-              asset['file']['url']
+              asset['file']['url'],
+              { contentType: asset['file'].fetch('contentType', 'image/jpeg') }
             )
             asset
           end
