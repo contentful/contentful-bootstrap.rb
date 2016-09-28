@@ -41,35 +41,40 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
 
       describe 'runs JSON Template without already processed elements' do
         [true, false].each do |mark_processed|
-          it (mark_processed ? 'marks as processed after run' : 'doesnt modify input file after done') do
-            subject = described_class.new token, 'foo', 'bar', mark_processed, false
+          context "mark_processed is #{mark_processed}" do
+            subject { described_class.new token, 'foo', 'bar', mark_processed, false }
 
-            allow(::File).to receive(:exist?) { true }
+            it "calls JsonTemplate with mark_processed as #{mark_processed}" do
+              allow(::File).to receive(:exist?) { true }
 
-            mock_template = Object.new
+              mock_template = Object.new
 
-            expect(subject).to receive(:fetch_space) { space_double }
-            expect(mock_template).to receive(:run)
+              expect(subject).to receive(:fetch_space) { space_double }
+              expect(mock_template).to receive(:run)
 
-            expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', mark_processed, false, false) { mock_template }
+              expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', mark_processed, false, false) { mock_template }
 
-            subject.run
+              subject.run
+            end
           end
         end
       end
 
-      it 'skip_content_types' do
-        subject = described_class.new token, 'foo', 'bar', false, false, true
-        allow(::File).to receive(:exist?) { true }
+      context 'with skip_content_types set to true' do
+        subject { described_class.new token, 'foo', 'bar', false, false, true }
 
-        mock_template = Object.new
+        it 'calls JsonTemplate with skip_content_types' do
+          allow(::File).to receive(:exist?) { true }
 
-        expect(subject).to receive(:fetch_space) { space_double }
-        expect(mock_template).to receive(:run)
+          mock_template = Object.new
 
-        expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', false, false, true) { mock_template }
+          expect(subject).to receive(:fetch_space) { space_double }
+          expect(mock_template).to receive(:run)
 
-        subject.run
+          expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', false, false, true) { mock_template }
+
+          subject.run
+        end
       end
     end
   end

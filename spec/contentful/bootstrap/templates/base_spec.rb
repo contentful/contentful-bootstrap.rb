@@ -32,14 +32,16 @@ describe Contentful::Bootstrap::Templates::Base do
         subject.run
       end
 
-      it 'doesnt call create_content_type if skip_content_types is sent' do
-        subject = described_class.new(space, true)
+      context 'with skip_content_types set to true' do
+        subject { described_class.new(space, true) }
 
-        expect(subject).to receive(:create_entries)
-        expect(subject).to receive(:create_assets)
-        expect(subject).not_to receive(:create_content_types)
+        it 'doesnt call create_content_type if skip_content_types is sent' do
+          expect(subject).to receive(:create_entries)
+          expect(subject).to receive(:create_assets)
+          expect(subject).not_to receive(:create_content_types)
 
-        subject.run
+          subject.run
+        end
       end
     end
   end
