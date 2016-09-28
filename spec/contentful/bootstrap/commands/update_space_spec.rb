@@ -51,11 +51,25 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
             expect(subject).to receive(:fetch_space) { space_double }
             expect(mock_template).to receive(:run)
 
-            expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', mark_processed, false) { mock_template }
+            expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', mark_processed, false, false) { mock_template }
 
             subject.run
           end
         end
+      end
+
+      it 'skip_content_types' do
+        subject = described_class.new token, 'foo', 'bar', false, false, true
+        allow(::File).to receive(:exist?) { true }
+
+        mock_template = Object.new
+
+        expect(subject).to receive(:fetch_space) { space_double }
+        expect(mock_template).to receive(:run)
+
+        expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', false, false, true) { mock_template }
+
+        subject.run
       end
     end
   end

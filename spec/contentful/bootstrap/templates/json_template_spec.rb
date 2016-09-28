@@ -168,4 +168,19 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
       subject.run
     end
   end
+
+  describe 'skip_content_types' do
+    it 'skips content type creation if true' do
+      subject = described_class.new(space, path, false, false, true)
+      ['assets', 'entries'].each do |n|
+        allow(subject).to receive("create_#{n}".to_sym)
+      end
+
+      expect(subject).not_to receive(:create_content_types)
+
+      allow(subject).to receive(:after_run)
+
+      subject.run
+    end
+  end
 end
