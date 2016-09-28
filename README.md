@@ -38,13 +38,13 @@ $ contentful_bootstrap generate_token <space_id> [--name token_name] [--config C
 You can also generate JSON Templates from existing spaces by doing:
 
 ```bash
-$ contentful_bootstrap generate_json <space_id> <delivery_api_access_token> [--output-file OUTPUT PATH]
+$ contentful_bootstrap generate_json <space_id> <delivery_api_access_token> [--output-file OUTPUT PATH] [--content-types-only]
 ```
 
 You can update existing spaces from JSON Templates by doing:
 
 ```bash
-$ contentful_bootstrap update_space <space_id> -j template_path [--mark-processed]
+$ contentful_bootstrap update_space <space_id> -j template_path [--mark-processed] [--skip-content-types]
 ```
 
 ### Built-in templates
@@ -99,7 +99,8 @@ To Update an existing Space
 options = {
   json_template: "/path/to/template.json", # Will use the JSON file specified as a Template
   mark_processed: false, # if true will mark all resources as 'bootstrapProcessed and will be avoided on future update_space calls
-  trigger_oauth: true # if true will trigger OAuth process
+  trigger_oauth: true, # if true will trigger OAuth process
+  skip_content_types: false, # if true will avoid creating the content types
 }
 Contentful::Bootstrap::CommandRunner.new.update_space("space_id", options)
 ```
@@ -123,7 +124,11 @@ Contentful::Bootstrap::CommandRunner.new.generate_token("space_id", options)
 To Generate a JSON Template from an exising Space
 
 ```ruby
-Contentful::Bootstrap::CommandRunner.new.generate_json("space_id", access_token: "delivery_api_access_token")
+Contentful::Bootstrap::CommandRunner.new.generate_json(
+  "space_id",
+  access_token: "delivery_api_access_token",
+  content_types_only: false # if true will not fetch Entries and Assets
+)
 ```
 
 Additionally, you can send an options hash with the following keys:

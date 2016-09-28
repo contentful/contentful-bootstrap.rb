@@ -8,10 +8,11 @@ module Contentful
     module Commands
       class UpdateSpace < Base
         attr_reader :json_template
-        def initialize(token, space_id, json_template = nil, mark_processed = false, trigger_oauth = true)
+        def initialize(token, space_id, json_template = nil, mark_processed = false, trigger_oauth = true, skip_content_types = false)
           super(token, space_id, trigger_oauth)
           @json_template = json_template
           @mark_processed = mark_processed
+          @skip_content_types = skip_content_types
         end
 
         def run
@@ -46,7 +47,7 @@ module Contentful
         def update_json_template(space)
           if ::File.exist?(@json_template)
             puts "Updating from JSON Template '#{@json_template}'"
-            Templates::JsonTemplate.new(space, @json_template, @mark_processed, false).run
+            Templates::JsonTemplate.new(space, @json_template, @mark_processed, false, @skip_content_types).run
             puts "JSON Template '#{@json_template}' updated!"
           else
             puts "JSON Template '#{@json_template}' does not exist. Please check that you specified the correct file name."

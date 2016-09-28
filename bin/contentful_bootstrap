@@ -32,6 +32,9 @@ subcommands = {
     opts.on('-m', '--mark-processed', "Mark Processed Items on JSON Templates") do |m|
       options[:mark_processed] = m
     end
+    opts.on('-T', '--skip-content-types', "Skip Content Types on Space update") do |t|
+      options[:skip_content_types] = t
+    end
     opts.on("-c CONFIG_PATH", "--config CONFIG_PATH", "Specify Configuration Path") do |c|
       options[:config_path] = c
     end
@@ -53,6 +56,9 @@ subcommands = {
   end,
   'generate_json' => OptionParser.new do |opts|
     opts.banner = "Usage: generate_json <space_id> <access_token> [--output-file OUTPUT_PATH]"
+    opts.on("-t", "--content-types-only", "Only fetch Content Types") do |t|
+      options[:content_types_only] = t
+    end
     opts.on("-o OUTPUT_PATH", "--output-file OUTPUT_PATH", "Specify Output File") do |f|
       options[:filename] = f
     end

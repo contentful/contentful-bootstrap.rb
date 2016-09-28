@@ -16,8 +16,8 @@ module Contentful
 
         attr_reader :assets, :entries, :content_types
 
-        def initialize(space, file, mark_processed = false, all = true)
-          @space = space
+        def initialize(space, file, mark_processed = false, all = true, skip_content_types = false)
+          super(space, skip_content_types)
           @file = file
           @all = all
           @mark_processed = mark_processed

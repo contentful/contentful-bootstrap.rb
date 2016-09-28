@@ -6,14 +6,15 @@ module Contentful
   module Bootstrap
     module Templates
       class Base
-        attr_reader :space
+        attr_reader :space, :skip_content_types
 
-        def initialize(space)
+        def initialize(space, skip_content_types = false)
           @space = space
+          @skip_content_types = skip_content_types
         end
 
         def run
-          create_content_types
+          create_content_types unless skip_content_types
           create_assets
           create_entries
 

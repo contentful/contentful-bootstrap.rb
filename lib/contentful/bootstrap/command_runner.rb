@@ -44,11 +44,12 @@ module Contentful
       def generate_json(space_id, options = {})
         filename = options.fetch(:filename, nil)
         access_token = options.fetch(:access_token, nil)
+        content_types_only = options.fetch(:content_types_only, false)
 
         fail 'Access Token required' if access_token.nil?
 
         Contentful::Bootstrap::Commands::GenerateJson.new(
-          space_id, access_token, filename
+          space_id, access_token, filename, content_types_only
         ).run
       end
     end
