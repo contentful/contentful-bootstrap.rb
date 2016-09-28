@@ -3,6 +3,7 @@
 ## Unreleased
 ### Added
 * Adds possibility to change `contentType` for Assets [#39](https://github.com/contentful/contentful-bootstrap.rb/issues/39)
+* Adds `--content-types-only` option to `generate_json`
 
 ### Fixed
 * Fixes a bug in built-in templates using obsolete `link_type` properties

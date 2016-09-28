@@ -53,6 +53,9 @@ subcommands = {
   end,
   'generate_json' => OptionParser.new do |opts|
     opts.banner = "Usage: generate_json <space_id> <access_token> [--output-file OUTPUT_PATH]"
+    opts.on("-t", "--content-types-only", "Only fetch Content Types") do |t|
+      options[:content_types_only] = t
+    end
     opts.on("-o OUTPUT_PATH", "--output-file OUTPUT_PATH", "Specify Output File") do |f|
       options[:filename] = f
     end

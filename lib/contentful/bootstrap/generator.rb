@@ -7,8 +7,11 @@ require 'contentful/bootstrap/version'
 module Contentful
   module Bootstrap
     class Generator
-      def initialize(space_id, access_token)
+      attr_reader :content_types_only
+
+      def initialize(space_id, access_token, content_types_only)
         @client = Contentful::Client.new(access_token: access_token, space: space_id)
+        @content_types_only = content_types_only
       end
 
       def generate_json
@@ -23,6 +26,8 @@ module Contentful
       private
 
       def assets
+        return [] if content_types_only
+
         proccessed_assets = @client.assets(limit: 1000).map do |asset|
           result = { 'id' => asset.sys[:id], 'title' => asset.title }
           result['file'] = {
@@ -49,6 +54,8 @@ module Contentful
       end
 
       def entries
+        return {} if content_types_only
+
         entries = {}
 
         @client.entries(limit: 1000).each do |entry|

@@ -5,11 +5,12 @@ module Contentful
   module Bootstrap
     module Commands
       class GenerateJson
-        attr_reader :space_id, :filename, :access_token
-        def initialize(space_id, access_token, filename = nil)
+        attr_reader :space_id, :filename, :access_token, :content_types_only
+        def initialize(space_id, access_token, filename = nil, content_types_only = false)
           @space_id = space_id
           @access_token = access_token
           @filename = filename
+          @content_types_only = content_types_only
         end
 
         def run
@@ -21,7 +22,7 @@ module Contentful
 
           puts "Generating JSON Template '#{filename}' for Space: '#{space_id}'"
 
-          json = Contentful::Bootstrap::Generator.new(space_id, access_token).generate_json
+          json = Contentful::Bootstrap::Generator.new(space_id, access_token, content_types_only).generate_json
 
           puts
           write(json)

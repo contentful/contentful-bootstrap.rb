@@ -1,0 +1,157 @@
+{
+  "version": 3,
+  "contentTypes": [
+    {
+      "id": "2PqfXUJwE8qSYKuM0U6w8M",
+      "name": "Product",
+      "displayField": "productName",
+      "fields": [
+        {
+          "id": "productName",
+          "name": "Product name",
+          "type": "Text"
+        },
+        {
+          "id": "slug",
+          "name": "Slug",
+          "type": "Symbol"
+        },
+        {
+          "id": "productDescription",
+          "name": "Description",
+          "type": "Text"
+        },
+        {
+          "id": "sizetypecolor",
+          "name": "Size/Type/Color",
+          "type": "Symbol"
+        },
+        {
+          "id": "image",
+          "name": "Image",
+          "type": "Array",
+          "items": {
+            "type": "Link",
+            "linkType": "Asset"
+          }
+        },
+        {
+          "id": "tags",
+          "name": "Tags",
+          "type": "Array",
+          "items": {
+            "type": "Symbol"
+          }
+        },
+        {
+          "id": "categories",
+          "name": "Categories",
+          "type": "Array",
+          "items": {
+            "type": "Link",
+            "linkType": "Entry"
+          }
+        },
+        {
+          "id": "price",
+          "name": "Price",
+          "type": "Number"
+        },
+        {
+          "id": "brand",
+          "name": "Brand",
+          "type": "Link",
+          "linkType": "Entry"
+        },
+        {
+          "id": "quantity",
+          "name": "Quantity",
+          "type": "Integer"
+        },
+        {
+          "id": "sku",
+          "name": "SKU",
+          "type": "Symbol"
+        },
+        {
+          "id": "website",
+          "name": "Available at",
+          "type": "Symbol"
+        }
+      ]
+    },
+    {
+      "id": "6XwpTaSiiI2Ak2Ww0oi6qa",
+      "name": "Category",
+      "displayField": "title",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Text"
+        },
+        {
+          "id": "icon",
+          "name": "Icon",
+          "type": "Link",
+          "linkType": "Asset"
+        },
+        {
+          "id": "categoryDescription",
+          "name": "Description",
+          "type": "Text"
+        }
+      ]
+    },
+    {
+      "id": "sFzTZbSuM8coEwygeUYes",
+      "name": "Brand",
+      "displayField": "companyName",
+      "fields": [
+        {
+          "id": "companyName",
+          "name": "Company name",
+          "type": "Text"
+        },
+        {
+          "id": "logo",
+          "name": "Logo",
+          "type": "Link",
+          "linkType": "Asset"
+        },
+        {
+          "id": "companyDescription",
+          "name": "Description",
+          "type": "Text"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "type": "Symbol"
+        },
+        {
+          "id": "twitter",
+          "name": "Twitter",
+          "type": "Symbol"
+        },
+        {
+          "id": "email",
+          "name": "Email",
+          "type": "Symbol"
+        },
+        {
+          "id": "phone",
+          "name": "Phone #",
+          "type": "Array",
+          "items": {
+            "type": "Symbol"
+          }
+        }
+      ]
+    }
+  ],
+  "assets": [
+  ],
+  "entries": {
+  }
+}
