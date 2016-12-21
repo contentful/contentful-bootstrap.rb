@@ -5,6 +5,7 @@ describe Contentful::Bootstrap::Token do
   let(:no_token_path) { File.expand_path(File.join('spec', 'fixtures', 'ini_fixtures', 'no_token.ini')) }
   let(:sections_path) { File.expand_path(File.join('spec', 'fixtures', 'ini_fixtures', 'sections.ini')) }
   let(:no_global_path) { File.expand_path(File.join('spec', 'fixtures', 'ini_fixtures', 'no_global.ini')) }
+  let(:with_org_id) { File.expand_path(File.join('spec', 'fixtures', 'ini_fixtures', 'orgid.ini')) }
   subject { Contentful::Bootstrap::Token.new(path) }
 
   describe 'attributes' do
@@ -76,6 +77,16 @@ describe Contentful::Bootstrap::Token do
       end
     end
 
+    describe '#read_organization_id' do
+      it 'nil if default org id is not set' do
+        expect(subject.read_organization_id).to be_nil
+      end
+
+      it 'returns value of org id is set' do
+        expect(subject.class.new(with_org_id).read_organization_id).to eq 'my_org'
+      end
+    end
+
     describe 'write methods' do
       before do
         @file = subject.config_file
@@ -97,6 +108,11 @@ describe Contentful::Bootstrap::Token do
         subject.write_space_id('some_space', 'asd')
 
         expect(@file['some_space']['SPACE_ID']).to eq 'asd'
+      end
+
+      it '#write_organization_id' do
+        subject.write_organization_id('foo')
+        expect(@file['global']['CONTENTFUL_ORGANIZATION_ID']).to eq 'foo'
       end
 
       describe '#write' do

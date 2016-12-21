@@ -8,6 +8,7 @@ module Contentful
       DEFAULT_PATH = '.contentfulrc'.freeze
       MANAGEMENT_TOKEN = 'CONTENTFUL_MANAGEMENT_ACCESS_TOKEN'.freeze
       DELIVERY_TOKEN = 'CONTENTFUL_DELIVERY_ACCESS_TOKEN'.freeze
+      ORGANIZATION_ID = 'CONTENTFUL_ORGANIZATION_ID'.freeze
       SPACE_ID = 'SPACE_ID'.freeze
 
       attr_reader :config_path
@@ -32,10 +33,18 @@ module Contentful
         raise 'Token not found'
       end
 
+      def read_organization_id
+        config_file[config_section].fetch(ORGANIZATION_ID, nil)
+      end
+
       def write(value, section = nil, key = MANAGEMENT_TOKEN)
         file = config_file
         file[section || config_section][key] = value
         file.save
+      end
+
+      def write_organization_id(organization_id)
+        write(organization_id, nil, ORGANIZATION_ID)
       end
 
       def write_access_token(space_name, token)
