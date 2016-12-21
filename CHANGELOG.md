@@ -1,6 +1,8 @@
 # Change Log
 
 ## Unreleased
+### Added
+* Add `-v` and `--version` flags to output current version
 
 ## v3.3.0
 ### Added
