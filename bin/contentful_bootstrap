@@ -75,6 +75,10 @@ global = OptionParser.new do |opts|
     Available commands are:
     \t#{subcommands.keys.sort.join("\n\t")}
   HELP
+  opts.on_tail("-v", "--version", "Show Version") do
+    puts "Contentful Bootstrap: #{Contentful::Bootstrap::VERSION}"
+    exit(0)
+  end
 end
 
 global.order!
@@ -85,7 +89,7 @@ space = ARGV.shift unless is_help
 
 options[:access_token] = ARGV.shift if command == "generate_json" && !is_help
 
-if subcommands.has_key? command
+if subcommands.key? command
   subcommands[command].order!
 
   unless STDIN.tty? && STDOUT.tty?
