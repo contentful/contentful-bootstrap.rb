@@ -45,12 +45,18 @@ module Contentful
         def fetch_space
           new_space = nil
           begin
-            new_space = Contentful::Management::Space.create(name: @space)
+            options = {
+              name: @space
+            }
+            options[:organization_id] = @token.read_organization_id unless @token.read_organization_id.nil?
+            new_space = Contentful::Management::Space.create(options)
           rescue Contentful::Management::NotFound
             puts 'Your account has multiple organizations:'
             puts organizations.join("\n")
             print 'Please insert the Organization ID you\'d want to create the spaces for: '
             organization_id = gets.chomp
+            @token.write_organization_id(organization_id)
+            puts 'Your Organization ID has been stored as the default organization.'
             new_space = Contentful::Management::Space.create(
               name: @space,
               organization_id: organization_id

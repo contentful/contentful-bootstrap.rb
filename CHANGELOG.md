@@ -3,6 +3,7 @@
 ## Unreleased
 ### Added
 * Add `-v` and `--version` flags to output current version
+* Add possibility to define `CONTENTFUL_ORGANIZATION_ID` in your `.contentfulrc` file [#44](https://github.com/contentful/contentful-bootstrap.rb/issues/44)
 
 ## v3.3.0
 ### Added
