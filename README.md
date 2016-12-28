@@ -157,6 +157,7 @@ The configuration file will be in `ini` format and looks like the following
 
 ```ini
 [global]
+CONTENTFUL_ORGANIZATION_ID = an_organization_id
 CONTENTFUL_MANAGEMENT_ACCESS_TOKEN = a_management_access_token
 
 [space_name]
