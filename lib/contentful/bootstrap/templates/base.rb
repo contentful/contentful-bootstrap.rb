@@ -8,8 +8,9 @@ module Contentful
       class Base
         attr_reader :space, :skip_content_types
 
-        def initialize(space, skip_content_types = false)
+        def initialize(space, quiet = false, skip_content_types = false)
           @space = space
+          @quiet = quiet
           @skip_content_types = skip_content_types
         end
 
@@ -21,9 +22,9 @@ module Contentful
           after_run
         rescue Contentful::Management::Error => e
           error = e.error
-          puts "Error at: #{error[:url]}"
-          puts "Message: #{error[:message]}"
-          puts "Details: #{error[:details]}"
+          output "Error at: #{error[:url]}"
+          output "Message: #{error[:message]}"
+          output "Details: #{error[:details]}"
 
           raise e
         end
@@ -45,6 +46,10 @@ module Contentful
 
         protected
 
+        def output(text = nil)
+          Support.output(text, @quiet)
+        end
+
         def create_file(name, url, properties = {})
           image = Contentful::Management::File.new
           image.properties[:contentType] = properties.fetch(:contentType, 'image/jpeg')
@@ -58,7 +63,7 @@ module Contentful
         def create_content_types
           content_types.each do |ct|
             begin
-              puts "Creating Content Type '#{ct['name']}'"
+              output "Creating Content Type '#{ct['name']}'"
 
               fields = []
               content_type = space.content_types.new
@@ -88,7 +93,7 @@ module Contentful
               content_type.save
               content_type.activate
             rescue Contentful::Management::Conflict
-              puts "ContentType '#{ct['id']}' already created! Skipping"
+              output "ContentType '#{ct['id']}' already created! Skipping"
               next
             end
           end
@@ -105,7 +110,7 @@ module Contentful
         def create_assets
           assets.each do |asset|
             begin
-              puts "Creating Asset '#{asset['title']}'"
+              output "Creating Asset '#{asset['title']}'"
               asset = space.assets.create(
                 id: asset['id'],
                 title: asset['title'],
@@ -124,7 +129,7 @@ module Contentful
                 attempts += 1
               end
             rescue Contentful::Management::Conflict
-              puts "Asset '#{asset['id']}' already created! Skipping"
+              output "Asset '#{asset['id']}' already created! Skipping"
               next
             end
           end
@@ -168,14 +173,14 @@ module Contentful
               end
 
               begin
-                puts "Creating Entry #{e[:id]}"
+                output "Creating Entry #{e[:id]}"
                 entry = content_type.entries.create({:id => e[:id]})
                 entry.save
 
                 e = e.clone
                 e[:id] = entry.id # in case no ID was specified in template
               rescue Contentful::Management::Conflict
-                puts "Entry '#{e[:id]}' already exists! Skipping"
+                output "Entry '#{e[:id]}' already exists! Skipping"
               ensure
                 next e
               end
@@ -183,7 +188,7 @@ module Contentful
           end.flatten
 
           processed_entries = processed_entries.map do |e|
-            puts "Populating Entry #{e[:id]}"
+            output "Populating Entry #{e[:id]}"
 
             entry = space.entries.find(e[:id])
             e.delete(:id)

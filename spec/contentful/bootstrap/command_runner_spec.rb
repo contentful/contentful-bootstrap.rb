@@ -12,7 +12,7 @@ describe Contentful::Bootstrap::CommandRunner do
 
       it 'default values' do
         expect(Contentful::Bootstrap::Commands::CreateSpace).to receive(:new).with(
-          subject.token, 'foo', nil, nil, false, true
+          subject.token, 'foo', {}
         ).and_call_original
 
         subject.create_space('foo')
@@ -20,7 +20,7 @@ describe Contentful::Bootstrap::CommandRunner do
 
       it 'with options' do
         expect(Contentful::Bootstrap::Commands::CreateSpace).to receive(:new).with(
-          subject.token, 'foo', 'bar', 'baz', true, false
+          subject.token, 'foo', template: 'bar', json_template: 'baz', mark_processed: true, trigger_oauth: false
         ).and_call_original
 
         subject.create_space('foo', template: 'bar', json_template: 'baz', mark_processed: true, trigger_oauth: false)
@@ -40,7 +40,7 @@ describe Contentful::Bootstrap::CommandRunner do
 
       it 'default values' do
         expect(Contentful::Bootstrap::Commands::UpdateSpace).to receive(:new).with(
-          subject.token, 'foo', nil, false, true
+          subject.token, 'foo', {}
         ).and_call_original
 
         subject.update_space('foo')
@@ -48,7 +48,7 @@ describe Contentful::Bootstrap::CommandRunner do
 
       it 'with options' do
         expect(Contentful::Bootstrap::Commands::UpdateSpace).to receive(:new).with(
-          subject.token, 'foo', 'bar', true, false
+          subject.token, 'foo', json_template: 'bar', mark_processed: true, trigger_oauth: false
         ).and_call_original
 
         subject.update_space('foo', json_template: 'bar', mark_processed: true, trigger_oauth: false)
@@ -69,7 +69,7 @@ describe Contentful::Bootstrap::CommandRunner do
 
       it 'default values' do
         expect(Contentful::Bootstrap::Commands::GenerateToken).to receive(:new).with(
-          subject.token, 'foo', 'Bootstrap Token', true
+          subject.token, 'foo', {}
         ).and_call_original
 
         subject.generate_token('foo')
@@ -77,7 +77,7 @@ describe Contentful::Bootstrap::CommandRunner do
 
       it 'with options' do
         expect(Contentful::Bootstrap::Commands::GenerateToken).to receive(:new).with(
-          subject.token, 'foo', 'bar', false
+          subject.token, 'foo', name: 'bar', trigger_oauth: false
         ).and_call_original
 
         subject.generate_token('foo', name: 'bar', trigger_oauth: false)

@@ -7,11 +7,15 @@ module Contentful
   module Bootstrap
     module Commands
       class Base
-        include Support
-        attr_reader :space, :token
+        attr_reader :space, :token, :options, :quiet
 
-        def initialize(token, space, trigger_oauth = true)
+        def initialize(token, space, options = {})
+          trigger_oauth = options.fetch(:trigger_oauth, true)
+
           @token = token
+          @options = options
+          @quiet = options.fetch(:quiet, false)
+
           configuration if trigger_oauth
           management_client_init if trigger_oauth
           @space = space
@@ -19,6 +23,12 @@ module Contentful
 
         def run
           fail 'must implement'
+        end
+
+        protected
+
+        def output(text = nil)
+          Support.output(text, @quiet)
         end
 
         private
@@ -29,24 +39,24 @@ module Contentful
 
         def configuration
           if @token.present?
-            puts 'OAuth token found, moving on!'
+            output 'OAuth token found, moving on!'
             return
           end
 
           print 'OAuth Token not found, do you want to create a new configuration file? (Y/n): '
           if gets.chomp.downcase == 'n'
-            puts 'Exiting!'
+            output 'Exiting!'
             exit
           end
 
-          puts "Configuration will be saved on #{@token.filename}"
-          puts 'A new tab on your browser will open for requesting OAuth permissions'
+          output "Configuration will be saved on #{@token.filename}"
+          output 'A new tab on your browser will open for requesting OAuth permissions'
           token_server
-          puts
+          output
         end
 
         def token_server
-          silence_stderr do # Don't show any WEBrick related stuff
+          Support.silence_stderr do # Don't show any WEBrick related stuff
             server = Contentful::Bootstrap::Server.new(@token)
 
             server.start

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Contentful::Bootstrap::Commands::UpdateSpace do
   let(:path) { File.expand_path(File.join('spec', 'fixtures', 'ini_fixtures', 'contentfulrc.ini')) }
   let(:token) { Contentful::Bootstrap::Token.new path }
-  subject { Contentful::Bootstrap::Commands::UpdateSpace.new token, 'foo', 'bar', false, false }
+  subject { described_class.new token, 'foo', json_template: 'bar', mark_processed: false, trigger_oauth: false, quiet: true }
   let(:space_double) { SpaceDouble.new }
 
   before do
@@ -20,13 +20,13 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
       end
 
       it 'exits if JSON not sent' do
-        update_space_command = described_class.new(token, 'foo', nil, false)
+        update_space_command = described_class.new(token, 'foo', mark_processed: false, quiet: true)
 
         expect { update_space_command.run }.to raise_error SystemExit
       end
 
       it 'exits if space is not found' do
-        update_space_command = described_class.new(token, 'foo', 'bar', false)
+        update_space_command = described_class.new(token, 'foo', json_template: 'bar', quiet: true)
 
         expect(::Contentful::Management::Space).to receive(:find).with('foo').and_raise(::Contentful::Management::NotFound.new(ErrorRequestDouble.new))
 
@@ -42,7 +42,7 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
       describe 'runs JSON Template without already processed elements' do
         [true, false].each do |mark_processed|
           context "mark_processed is #{mark_processed}" do
-            subject { described_class.new token, 'foo', 'bar', mark_processed, false }
+            subject { described_class.new token, 'foo', json_template: 'bar', mark_processed: mark_processed, trigger_oauth: false, quiet: true}
 
             it "calls JsonTemplate with mark_processed as #{mark_processed}" do
               allow(::File).to receive(:exist?) { true }
@@ -61,7 +61,7 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
       end
 
       context 'with skip_content_types set to true' do
-        subject { described_class.new token, 'foo', 'bar', false, false, true }
+        subject { described_class.new token, 'foo', json_template: 'bar', trigger_oauth: false, skip_content_types: true, quiet: true }
 
         it 'calls JsonTemplate with skip_content_types' do
           allow(::File).to receive(:exist?) { true }

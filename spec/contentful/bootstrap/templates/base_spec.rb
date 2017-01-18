@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Contentful::Bootstrap::Templates::Base do
   let(:space) { Contentful::Management::Space.new }
-  subject { described_class.new(space) }
+  subject { described_class.new(space, true) }
 
   describe 'instance methods' do
     it '#content_types' do
@@ -33,7 +33,7 @@ describe Contentful::Bootstrap::Templates::Base do
       end
 
       context 'with skip_content_types set to true' do
-        subject { described_class.new(space, true) }
+        subject { described_class.new(space, true, true) }
 
         it 'doesnt call create_content_type if skip_content_types is sent' do
           expect(subject).to receive(:create_entries)

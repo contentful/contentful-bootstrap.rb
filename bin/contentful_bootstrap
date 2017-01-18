@@ -20,6 +20,9 @@ subcommands = {
     opts.on("-c CONFIG_PATH", "--config CONFIG_PATH", "Specify Configuration Path") do |c|
       options[:config_path] = c
     end
+    opts.on("-q", "--quiet", "Don't output to STDOUT") do |q|
+      options[:quiet] = q
+    end
     opts.on_tail("-h", "--help", "Print this message") do
       puts opts
     end
@@ -38,6 +41,9 @@ subcommands = {
     opts.on("-c CONFIG_PATH", "--config CONFIG_PATH", "Specify Configuration Path") do |c|
       options[:config_path] = c
     end
+    opts.on("-q", "--quiet", "Don't output to STDOUT") do |q|
+      options[:quiet] = q
+    end
     opts.on_tail("-h", "--help", "Print this message") do
       puts opts
     end
@@ -50,6 +56,9 @@ subcommands = {
     opts.on("-c CONFIG_PATH", "--config CONFIG_PATH", "Specify Configuration Path") do |c|
       options[:config_path] = c
     end
+    opts.on("-q", "--quiet", "Don't output to STDOUT") do |q|
+      options[:quiet] = q
+    end
     opts.on_tail("-h", "--help", "Print this message") do
       puts opts
     end
@@ -61,6 +70,9 @@ subcommands = {
     end
     opts.on("-o OUTPUT_PATH", "--output-file OUTPUT_PATH", "Specify Output File") do |f|
       options[:filename] = f
+    end
+    opts.on("-q", "--quiet", "Don't output to STDOUT") do |q|
+      options[:quiet] = q
     end
     opts.on_tail("-h", "--help", "Print this message") do
       puts opts
@@ -95,7 +107,7 @@ if subcommands.key? command
   unless STDIN.tty? && STDOUT.tty?
     $stderr.write "This tool requires user interaction\n"
     $stderr.write "Exiting!\n"
-    exit
+    exit(1)
   end
 
   if is_help

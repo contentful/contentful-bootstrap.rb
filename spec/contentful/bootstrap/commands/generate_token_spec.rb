@@ -18,7 +18,7 @@ end
 describe Contentful::Bootstrap::Commands::GenerateToken do
   let(:path) { File.expand_path(File.join('spec', 'fixtures', 'ini_fixtures', 'contentfulrc.ini')) }
   let(:token) { Contentful::Bootstrap::Token.new path }
-  subject { Contentful::Bootstrap::Commands::GenerateToken.new token, 'foo', 'bar', false }
+  subject { described_class.new token, 'foo', token_name: 'bar', trigger_oauth: false, quiet: true }
   let(:space_double) { SpaceDouble.new }
 
   describe 'instance methods' do
@@ -86,7 +86,7 @@ describe Contentful::Bootstrap::Commands::GenerateToken do
     end
 
     it 'generates a token for a given space' do
-      command = subject.class.new token, 'zred3m25k5em', 'foo'
+      command = described_class.new token, 'zred3m25k5em', token_name: 'foo', quiet: true
 
       vcr('generate_token') {
         command.run

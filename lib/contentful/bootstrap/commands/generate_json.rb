@@ -6,11 +6,12 @@ module Contentful
     module Commands
       class GenerateJson
         attr_reader :space_id, :filename, :access_token, :content_types_only
-        def initialize(space_id, access_token, filename = nil, content_types_only = false)
+        def initialize(space_id, access_token, filename = nil, content_types_only = false, quiet = false)
           @space_id = space_id
           @access_token = access_token
           @filename = filename
           @content_types_only = content_types_only
+          @quiet = quiet
         end
 
         def run
@@ -32,7 +33,7 @@ module Contentful
           if filename.nil?
             puts "#{json}\n"
           else
-            puts "Saving JSON template to '#{filename}'"
+            puts "Saving JSON template to '#{filename}'" unless @quiet
             ::File.write(filename, json)
           end
         end

@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Added
+* Add `-q` and `--quiet` flags to the CLI Tool and their respective command classes [#48](https://github.com/contentful/contentful-bootstrap.rb/issues/48)
+
+### Changed
+* Refactored internals to allow more option flexibility and simplified the `CommandRunner`.
+
+
 ## v3.4.0
 ### Added
 * Add `-v` and `--version` flags to output current version

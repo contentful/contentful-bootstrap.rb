@@ -16,8 +16,8 @@ module Contentful
 
         attr_reader :assets, :entries, :content_types
 
-        def initialize(space, file, mark_processed = false, all = true, skip_content_types = false)
-          super(space, skip_content_types)
+        def initialize(space, file, mark_processed = false, all = true, quiet = false, skip_content_types = false)
+          super(space, quiet, skip_content_types)
           @file = file
           @all = all
           @mark_processed = mark_processed
@@ -68,7 +68,7 @@ module Contentful
         def json
           @json ||= ::JSON.parse(::File.read(@file))
         rescue
-          puts 'File is not JSON. Exiting!'
+          output 'File is not JSON. Exiting!'
           exit(1)
         end
 
