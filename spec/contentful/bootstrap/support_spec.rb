@@ -1,14 +1,12 @@
 require 'spec_helper'
 
 class Double
-  include Contentful::Bootstrap::Support
-
   def write
     $stderr.write('foo\n')
   end
 
   def muted_write
-    silence_stderr do
+    Contentful::Bootstrap::Support.silence_stderr do
       write
     end
   end

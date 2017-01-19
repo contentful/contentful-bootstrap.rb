@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Contentful::Bootstrap::Templates::JsonTemplate do
   let(:space) { Contentful::Management::Space.new }
   let(:path) { json_path('simple') }
-  subject { described_class.new space, path }
+  subject { described_class.new space, path, false, true, true }
 
   before do
     allow(::File).to receive(:write)
@@ -35,7 +35,7 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
       end
 
       it 'uses display_field if not' do
-        subject = described_class.new(space, File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'display_field.json')))
+        subject = described_class.new(space, File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'display_field.json')), false, true, true)
 
         expect(subject.content_types.first['displayField']).to eq 'name'
       end
@@ -171,7 +171,7 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
 
   describe 'skip_content_types' do
     context 'with skip_content_types set to true' do
-      subject { described_class.new(space, path, false, false, true) }
+      subject { described_class.new(space, path, false, false, true, true) }
 
       it 'skips content type creation' do
         ['assets', 'entries'].each do |n|
@@ -187,7 +187,7 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
     end
 
     context 'with skip_content_types set to false' do
-      subject { described_class.new(space, path, false, false, false) }
+      subject { described_class.new(space, path, false, false, true, false) }
 
       it 'doesnt skip content type creation' do
         ['assets', 'entries', 'content_types'].each do |n|

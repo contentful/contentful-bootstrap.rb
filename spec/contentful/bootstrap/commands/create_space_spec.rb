@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Contentful::Bootstrap::Commands::CreateSpace do
   let(:path) { File.expand_path(File.join('spec', 'fixtures', 'ini_fixtures', 'contentfulrc.ini')) }
   let(:token) { Contentful::Bootstrap::Token.new path }
-  subject { Contentful::Bootstrap::Commands::CreateSpace.new token, 'foo', 'bar', 'baz', false, false }
+  subject { described_class.new token, 'foo', template: 'bar', json_template: 'baz', trigger_oauth: false, quiet: true }
   let(:space_double) { SpaceDouble.new }
 
   before do
@@ -22,7 +22,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
       end
 
       it 'does not create template when template_name is nil' do
-        create_space_command = described_class.new(token, 'foo', nil, 'baz', false, false)
+        create_space_command = described_class.new(token, 'foo', json_template: 'baz', trigger_oauth: false, quiet: true)
 
         expect(create_space_command.template_name).to eq nil
 
@@ -35,7 +35,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
       end
 
       it 'does not create json template when json_template is nil' do
-        create_space_command = described_class.new(token, 'foo', 'bar', nil, false, false)
+        create_space_command = described_class.new(token, 'foo', template: 'bar', trigger_oauth: false, quiet: true)
 
         expect(create_space_command.json_template).to eq nil
 
@@ -66,7 +66,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
       allow_any_instance_of(described_class).to receive(:gets).and_return('y')
       allow_any_instance_of(Contentful::Bootstrap::Commands::GenerateToken).to receive(:gets).and_return('n')
 
-      command = described_class.new(token, 'issue_22', nil, json_path, false)
+      command = described_class.new(token, 'issue_22', json_template: json_path, quiet: true)
 
       vcr('issue_22') {
         command.run
@@ -79,7 +79,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
       allow_any_instance_of(described_class).to receive(:gets).and_return('y')
       allow_any_instance_of(Contentful::Bootstrap::Commands::GenerateToken).to receive(:gets).and_return('n')
 
-      command = described_class.new(token, 'asset_no_transform', nil, json_path, false)
+      command = described_class.new(token, 'asset_no_transform', json_template: json_path, mark_processed: false, quiet: true)
 
       vcr('asset_no_transform') {
         command.run
@@ -94,7 +94,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
     end
 
     it 'create space' do
-      command = described_class.new token, 'some_space'
+      command = described_class.new token, 'some_space', quiet: true
 
       vcr('create_space') {
         command.run
@@ -102,7 +102,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
     end
 
     it 'create space with blog template' do
-      command = described_class.new token, 'blog_space', 'blog'
+      command = described_class.new token, 'blog_space', template: 'blog', quiet: true
 
       vcr('create_space_with_blog_template') {
         command.run
@@ -110,7 +110,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
     end
 
     it 'create space with gallery template' do
-      command = described_class.new token, 'gallery_space', 'gallery'
+      command = described_class.new token, 'gallery_space', template: 'gallery', quiet: true
 
       vcr('create_space_with_gallery_template') {
         command.run
@@ -118,7 +118,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
     end
 
     it 'create space with catalogue template' do
-      command = described_class.new token, 'catalogue_space', 'catalogue'
+      command = described_class.new token, 'catalogue_space', template: 'catalogue', quiet: true
 
       vcr('create_space_with_catalogue_template') {
         command.run
@@ -131,7 +131,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
 
     it 'create space with json template with no ids' do
       json_path = File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'no_ids.json'))
-      command = described_class.new token, 'no_ids_space', nil, json_path
+      command = described_class.new token, 'no_ids_space', json_template: json_path, quiet: true
 
       vcr('no_ids') {
         command.run

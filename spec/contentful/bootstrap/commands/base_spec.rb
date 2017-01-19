@@ -7,7 +7,7 @@ describe Contentful::Bootstrap::Commands::Base do
   let(:no_token_path) { File.expand_path(File.join('spec', 'fixtures', 'ini_fixtures', 'no_token.ini')) }
   let(:token) { Contentful::Bootstrap::Token.new path }
   let(:non_management_token) { Contentful::Bootstrap::Token.new no_token_path }
-  subject { Contentful::Bootstrap::Commands::Base.new token, 'foo', false }
+  subject { described_class.new(token, 'foo', trigger_oauth: false, quiet: true) }
 
   describe 'abstract methods' do
     it '#run' do
@@ -18,35 +18,35 @@ describe Contentful::Bootstrap::Commands::Base do
   describe 'initialize' do
     describe 'configuration' do
       it 'runs configuration when trigger_oauth is true' do
-        expect_any_instance_of(subject.class).to receive(:configuration)
-        subject.class.new(token, 'foo')
+        expect_any_instance_of(described_class).to receive(:configuration)
+        described_class.new(token, 'foo', quiet: true)
       end
 
       it 'doesnt run configuration when trigger_oauth is false' do
-        expect_any_instance_of(subject.class).not_to receive(:configuration)
-        subject.class.new(token, 'foo', false)
+        expect_any_instance_of(described_class).not_to receive(:configuration)
+        described_class.new(token, 'foo', trigger_oauth: false, quiet: true)
       end
     end
 
     describe 'management_client_init' do
       it 'runs management_client_init when trigger_oauth is true' do
-        expect_any_instance_of(subject.class).to receive(:management_client_init)
-        subject.class.new(token, 'foo')
+        expect_any_instance_of(described_class).to receive(:management_client_init)
+        described_class.new(token, 'foo', quiet: true)
       end
 
       it 'doesnt run management_client_init when trigger_oauth is false' do
-        expect_any_instance_of(subject.class).not_to receive(:management_client_init)
-        subject.class.new(token, 'foo', false)
+        expect_any_instance_of(described_class).not_to receive(:management_client_init)
+        described_class.new(token, 'foo', trigger_oauth: false, quiet: true)
       end
     end
   end
 
   describe 'instance methods' do
     it '#management_client_init' do
-      allow_any_instance_of(subject.class).to receive(:configuration)
+      allow_any_instance_of(described_class).to receive(:configuration)
       expect(Contentful::Management::Client).to receive(:new).with(token.read, raise_errors: true)
 
-      subject.class.new(token, 'foo')
+      described_class.new(token, 'foo', quiet: true)
     end
 
     describe '#configuration' do
@@ -55,35 +55,35 @@ describe Contentful::Bootstrap::Commands::Base do
       end
 
       it 'passes if token is found' do
-        expect { subject.class.new(token, 'foo') }.to output("OAuth token found, moving on!\n").to_stdout
+        expect { described_class.new(token, 'foo') }.to output("OAuth token found, moving on!\n").to_stdout
       end
 
       describe 'token not found' do
         it 'exits if answer is no' do
-          expect_any_instance_of(subject.class).to receive(:gets) { "n\n" }
-          expect { subject.class.new(non_management_token, 'foo') }.to raise_error SystemExit
+          expect_any_instance_of(described_class).to receive(:gets) { "n\n" }
+          expect { described_class.new(non_management_token, 'foo', quiet: true) }.to raise_error SystemExit
         end
 
         it 'runs token_server if other answer' do
-          expect_any_instance_of(subject.class).to receive(:gets) { "y\n" }
-          expect_any_instance_of(subject.class).to receive(:token_server)
+          expect_any_instance_of(described_class).to receive(:gets) { "y\n" }
+          expect_any_instance_of(described_class).to receive(:token_server)
 
-          subject.class.new(non_management_token, 'foo')
+          described_class.new(non_management_token, 'foo', quiet: true)
         end
       end
     end
 
     it '#token_server' do
-      allow_any_instance_of(subject.class).to receive(:management_client_init)
+      allow_any_instance_of(described_class).to receive(:management_client_init)
 
-      expect_any_instance_of(subject.class).to receive(:gets) { "y\n" }
+      expect_any_instance_of(described_class).to receive(:gets) { "y\n" }
       expect_any_instance_of(Contentful::Bootstrap::Server).to receive(:start) {}
       expect_any_instance_of(Contentful::Bootstrap::Server).to receive(:running?) { true }
       expect(Net::HTTP).to receive(:get).with(URI('http://localhost:5123')) {}
       expect(non_management_token).to receive(:present?).and_return(false, true)
       expect_any_instance_of(Contentful::Bootstrap::Server).to receive(:stop) {}
 
-      subject.class.new(non_management_token, 'foo')
+      described_class.new(non_management_token, 'foo', quiet: true)
     end
   end
 

@@ -9,33 +9,32 @@ module Contentful
     module Commands
       class CreateSpace < Base
         attr_reader :template_name, :json_template
-        def initialize(
-            token, space_name, template_name = nil,
-            json_template = nil, mark_processed = false, trigger_oauth = true)
-          super(token, space_name, trigger_oauth)
-          @template_name = template_name
-          @json_template = json_template
-          @mark_processed = mark_processed
+        def initialize(token, space, options = {})
+          @template_name = options.fetch(:template, nil)
+          @json_template = options.fetch(:json_template, nil)
+          @mark_processed = options.fetch(:mark_processed, false)
+
+          super(token, space, options)
         end
 
         def run
-          puts "Creating Space '#{@space}'"
+          output "Creating Space '#{@space}'"
 
           new_space = fetch_space
 
-          puts "Space '#{@space}' created!"
-          puts
+          output "Space '#{@space}' created!"
+          output
 
           create_template(new_space) unless @template_name.nil?
           create_json_template(new_space) unless @json_template.nil?
 
           access_token = generate_token(new_space)
-          puts
-          puts "Space ID: '#{new_space.id}'"
-          puts "Access Token: '#{access_token}'"
-          puts
-          puts 'You can now insert those values into your configuration blocks'
-          puts "Manage your content at https://app.contentful.com/spaces/#{new_space.id}"
+          output
+          output "Space ID: '#{new_space.id}'"
+          output "Access Token: '#{access_token}'"
+          output
+          output 'You can now insert those values into your configuration blocks'
+          output "Manage your content at https://app.contentful.com/spaces/#{new_space.id}"
 
           new_space
         end
@@ -51,12 +50,12 @@ module Contentful
             options[:organization_id] = @token.read_organization_id unless @token.read_organization_id.nil?
             new_space = Contentful::Management::Space.create(options)
           rescue Contentful::Management::NotFound
-            puts 'Your account has multiple organizations:'
-            puts organizations.join("\n")
+            output 'Your account has multiple organizations:'
+            output organizations.join("\n")
             print 'Please insert the Organization ID you\'d want to create the spaces for: '
             organization_id = gets.chomp
             @token.write_organization_id(organization_id)
-            puts 'Your Organization ID has been stored as the default organization.'
+            output 'Your Organization ID has been stored as the default organization.'
             new_space = Contentful::Management::Space.create(
               name: @space,
               organization_id: organization_id
@@ -88,30 +87,30 @@ module Contentful
 
         def create_template(space)
           if templates.key? @template_name.to_sym
-            puts "Creating Template '#{@template_name}'"
+            output "Creating Template '#{@template_name}'"
 
-            templates[@template_name.to_sym].new(space).run
-            puts "Template '#{@template_name}' created!"
+            templates[@template_name.to_sym].new(space, quiet).run
+            output "Template '#{@template_name}' created!"
           else
-            puts "Template '#{@template_name}' not found. Valid templates are '#{templates.keys.map(&:to_s).join('\', \'')}'"
+            output "Template '#{@template_name}' not found. Valid templates are '#{templates.keys.map(&:to_s).join('\', \'')}'"
           end
-          puts
+          output
         end
 
         def create_json_template(space)
           if ::File.exist?(@json_template)
-            puts "Creating JSON Template '#{@json_template}'"
-            Templates::JsonTemplate.new(space, @json_template, @mark_processed).run
-            puts "JSON Template '#{@json_template}' created!"
+            output "Creating JSON Template '#{@json_template}'"
+            Templates::JsonTemplate.new(space, @json_template, @mark_processed, true, quiet).run
+            output "JSON Template '#{@json_template}' created!"
           else
-            puts "JSON Template '#{@json_template}' does not exist. Please check that you specified the correct file name."
+            output "JSON Template '#{@json_template}' does not exist. Please check that you specified the correct file name."
           end
-          puts
+          output
         end
 
         def generate_token(space)
           Contentful::Bootstrap::Commands::GenerateToken.new(
-            @token, space, 'Bootstrap Token', false
+            @token, space, options
           ).run
         end
       end

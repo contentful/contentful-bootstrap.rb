@@ -26,25 +26,25 @@ $ gem install contentful_bootstrap
 You can create spaces by doing:
 
 ```bash
-$ contentful_bootstrap create_space <space_name> [--template template_name] [--json-template template_path] [--mark-processed] [--config CONFIG_PATH]
+$ contentful_bootstrap create_space <space_name> [--template template_name] [--json-template template_path] [--mark-processed] [--config CONFIG_PATH] [--quiet]
 ```
 
 You can also generate new Delivery API Tokens by doing:
 
 ```bash
-$ contentful_bootstrap generate_token <space_id> [--name token_name] [--config CONFIG_PATH]
+$ contentful_bootstrap generate_token <space_id> [--name token_name] [--config CONFIG_PATH] [--quiet]
 ```
 
 You can also generate JSON Templates from existing spaces by doing:
 
 ```bash
-$ contentful_bootstrap generate_json <space_id> <delivery_api_access_token> [--output-file OUTPUT PATH] [--content-types-only]
+$ contentful_bootstrap generate_json <space_id> <delivery_api_access_token> [--output-file OUTPUT PATH] [--content-types-only] [--quiet]
 ```
 
 You can update existing spaces from JSON Templates by doing:
 
 ```bash
-$ contentful_bootstrap update_space <space_id> -j template_path [--mark-processed] [--skip-content-types]
+$ contentful_bootstrap update_space <space_id> -j template_path [--mark-processed] [--skip-content-types] [--quiet]
 ```
 
 ### Built-in templates
@@ -88,7 +88,8 @@ options = {
   template: "blog", # Will use one of the predefined templates and create Content Types, Assets and Entries
   json_template: "/path/to/template.json", # Will use the JSON file specified as a Template
   mark_processed: false, # if true will mark all resources as 'bootstrapProcessed' and will be avoided for update_space calls (doesnt affect create_space)
-  trigger_oauth: true # if true will trigger OAuth process
+  trigger_oauth: true, # if true will trigger OAuth process
+  quiet: false # if true will not output to STDOUT
 }
 Contentful::Bootstrap::CommandRunner.new.create_space("space_name", options)
 ```
@@ -101,6 +102,7 @@ options = {
   mark_processed: false, # if true will mark all resources as 'bootstrapProcessed and will be avoided on future update_space calls
   trigger_oauth: true, # if true will trigger OAuth process
   skip_content_types: false, # if true will avoid creating the content types
+  quiet: false # if true will not output to STDOUT
 }
 Contentful::Bootstrap::CommandRunner.new.update_space("space_id", options)
 ```
@@ -116,7 +118,8 @@ Additionally, you can send an options hash with the following keys:
 ```ruby
 options = {
   name: "Some Nice Token Name", # Will Create the Delivery API Token with the specified name
-  trigger_oauth: true # if true will trigger OAuth process
+  trigger_oauth: true, # if true will trigger OAuth process
+  quiet: false # if true will not output to STDOUT
 }
 Contentful::Bootstrap::CommandRunner.new.generate_token("space_id", options)
 ```
@@ -137,7 +140,8 @@ Additionally, you can send an options hash with the following keys:
 ```ruby
 options = {
   access_token: "access_token" # REQUIRED
-  filename: "template.json" # Will save the JSON to the specified file
+  filename: "template.json", # Will save the JSON to the specified file
+  quiet: false # if true will not output to STDOUT
 }
 Contentful::Bootstrap::CommandRunner.new.generate_json("space_id", options)
 ```
