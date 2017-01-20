@@ -24,10 +24,11 @@ module Contentful
           access_token = fetch_access_token
 
           output "Token '#{token_name}' created! - '#{access_token}'"
-          print 'Do you want to write the Delivery Token to your configuration file? (Y/n): '
-          unless gets.chomp.downcase == 'n'
-            @token.write_access_token(@actual_space.name, access_token)
-            @token.write_space_id(@actual_space.name, @actual_space.id)
+          Support.input('Do you want to write the Delivery Token to your configuration file? (Y/n): ', no_input) do |answer|
+            unless answer.downcase == 'n'
+              @token.write_access_token(@actual_space.name, access_token)
+              @token.write_space_id(@actual_space.name, @actual_space.id)
+            end
           end
 
           access_token

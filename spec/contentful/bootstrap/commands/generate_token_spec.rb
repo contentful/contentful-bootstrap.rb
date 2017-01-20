@@ -28,7 +28,7 @@ describe Contentful::Bootstrap::Commands::GenerateToken do
 
     describe '#run' do
       it 'fetches space from api if space is a string' do
-        allow(subject).to receive(:gets) { 'n' }
+        allow(Contentful::Bootstrap::Support).to receive(:gets) { 'n' }
         allow_any_instance_of(Contentful::Management::Request).to receive(:post) { ResponseDouble.new }
         expect(Contentful::Management::Space).to receive(:find).with('foo') { space_double }
 
@@ -36,7 +36,7 @@ describe Contentful::Bootstrap::Commands::GenerateToken do
       end
 
       it 'uses space if space is not a string' do
-        allow(subject).to receive(:gets) { 'n' }
+        allow(Contentful::Bootstrap::Support).to receive(:gets) { 'n' }
         allow_any_instance_of(Contentful::Management::Request).to receive(:post) { ResponseDouble.new }
         expect(Contentful::Management::Space).not_to receive(:find).with('foo') { space_double }
 
@@ -46,7 +46,7 @@ describe Contentful::Bootstrap::Commands::GenerateToken do
       end
 
       it 'returns access token' do
-        allow(subject).to receive(:gets) { 'n' }
+        allow(Contentful::Bootstrap::Support).to receive(:gets) { 'n' }
         allow_any_instance_of(Contentful::Management::Request).to receive(:post) { ResponseDouble.new }
         allow(Contentful::Management::Space).to receive(:find).with('foo') { space_double }
 
@@ -54,7 +54,7 @@ describe Contentful::Bootstrap::Commands::GenerateToken do
       end
 
       it 'fails if API returns an error' do
-        allow(subject).to receive(:gets) { 'n' }
+        allow(Contentful::Bootstrap::Support).to receive(:gets) { 'n' }
         allow_any_instance_of(Contentful::Management::Request).to receive(:post) { ErrorDouble.new }
         allow(Contentful::Management::Space).to receive(:find).with('foo') { space_double }
 
@@ -62,7 +62,7 @@ describe Contentful::Bootstrap::Commands::GenerateToken do
       end
 
       it 'token gets written if user input is other than no' do
-        allow(subject).to receive(:gets) { 'y' }
+        allow(Contentful::Bootstrap::Support).to receive(:gets) { 'y' }
         allow_any_instance_of(Contentful::Management::Request).to receive(:post) { ResponseDouble.new }
         allow(Contentful::Management::Space).to receive(:find).with('foo') { space_double }
 
@@ -82,7 +82,7 @@ describe Contentful::Bootstrap::Commands::GenerateToken do
 
   describe 'integration' do
     before do
-      allow_any_instance_of(subject.class).to receive(:gets).and_return('n')
+      allow(Contentful::Bootstrap::Support).to receive(:gets).and_return('n')
     end
 
     it 'generates a token for a given space' do

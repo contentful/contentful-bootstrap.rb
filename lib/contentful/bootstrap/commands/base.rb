@@ -7,7 +7,7 @@ module Contentful
   module Bootstrap
     module Commands
       class Base
-        attr_reader :space, :token, :options, :quiet
+        attr_reader :space, :token, :options, :quiet, :no_input
 
         def initialize(token, space, options = {})
           trigger_oauth = options.fetch(:trigger_oauth, true)
@@ -15,6 +15,7 @@ module Contentful
           @token = token
           @options = options
           @quiet = options.fetch(:quiet, false)
+          @no_input = options.fetch(:no_input, false)
 
           configuration if trigger_oauth
           management_client_init if trigger_oauth
@@ -43,11 +44,14 @@ module Contentful
             return
           end
 
-          print 'OAuth Token not found, do you want to create a new configuration file? (Y/n): '
-          if gets.chomp.downcase == 'n'
-            output 'Exiting!'
-            exit
+          Support.input('OAuth Token not found, do you want to create a new configuration file? (Y/n): ', no_input) do |answer|
+            if answer.downcase == 'n'
+              output 'Exiting!'
+              exit
+            end
           end
+
+          fail 'OAuth token required to proceed' if no_input
 
           output "Configuration will be saved on #{@token.filename}"
           output 'A new tab on your browser will open for requesting OAuth permissions'

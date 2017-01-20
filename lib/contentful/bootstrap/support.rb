@@ -19,6 +19,14 @@ module Contentful
 
         puts text unless quiet
       end
+
+      def self.input(prompt_text, no_input = false)
+        return if no_input
+
+        print prompt_text
+        answer = gets.chomp
+        yield answer if block_given?
+      end
     end
   end
 end

@@ -89,7 +89,8 @@ options = {
   json_template: "/path/to/template.json", # Will use the JSON file specified as a Template
   mark_processed: false, # if true will mark all resources as 'bootstrapProcessed' and will be avoided for update_space calls (doesnt affect create_space)
   trigger_oauth: true, # if true will trigger OAuth process
-  quiet: false # if true will not output to STDOUT
+  quiet: false, # if true will not output to STDOUT
+  no_input: false # if true all input operations won't be done, exceptions thrown with alternatives through configuration file in cases in which it cannot proceed
 }
 Contentful::Bootstrap::CommandRunner.new.create_space("space_name", options)
 ```
@@ -102,7 +103,8 @@ options = {
   mark_processed: false, # if true will mark all resources as 'bootstrapProcessed and will be avoided on future update_space calls
   trigger_oauth: true, # if true will trigger OAuth process
   skip_content_types: false, # if true will avoid creating the content types
-  quiet: false # if true will not output to STDOUT
+  quiet: false, # if true will not output to STDOUT
+  no_input: false # if true all input operations won't be done, exceptions thrown with alternatives through configuration file in cases in which it cannot proceed
 }
 Contentful::Bootstrap::CommandRunner.new.update_space("space_id", options)
 ```
@@ -119,7 +121,8 @@ Additionally, you can send an options hash with the following keys:
 options = {
   name: "Some Nice Token Name", # Will Create the Delivery API Token with the specified name
   trigger_oauth: true, # if true will trigger OAuth process
-  quiet: false # if true will not output to STDOUT
+  quiet: false, # if true will not output to STDOUT
+  no_input: false # if true all input operations won't be done, exceptions thrown with alternatives through configuration file in cases in which it cannot proceed
 }
 Contentful::Bootstrap::CommandRunner.new.generate_token("space_id", options)
 ```
@@ -130,7 +133,9 @@ To Generate a JSON Template from an exising Space
 Contentful::Bootstrap::CommandRunner.new.generate_json(
   "space_id",
   access_token: "delivery_api_access_token",
-  content_types_only: false # if true will not fetch Entries and Assets
+  filename: nil, # path to file in which to store JSON
+  content_types_only: false, # if true will not fetch Entries and Assets
+  quiet: false # if true will not output to STDOUT - only when filename is provided
 )
 ```
 
@@ -141,7 +146,8 @@ Additionally, you can send an options hash with the following keys:
 options = {
   access_token: "access_token" # REQUIRED
   filename: "template.json", # Will save the JSON to the specified file
-  quiet: false # if true will not output to STDOUT
+  quiet: false, # if true will not output to STDOUT
+  no_input: false # if true all input operations won't be done, exceptions thrown with alternatives through configuration file in cases in which it cannot proceed
 }
 Contentful::Bootstrap::CommandRunner.new.generate_json("space_id", options)
 ```
