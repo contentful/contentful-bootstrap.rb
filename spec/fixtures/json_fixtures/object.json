@@ -1,0 +1,38 @@
+{
+  "version": 3,
+  "contentTypes": [
+    {
+      "id": "test",
+      "name": "Test",
+      "displayField": "name",
+      "fields": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "Symbol"
+        },
+        {
+          "id": "object",
+          "name": "Object",
+          "type": "Object"
+        }
+      ]
+    }
+  ],
+  "assets": [],
+  "entries": {
+    "test": [
+      {
+        "sys": { "id": "foo" },
+        "fields": {
+          "name": "test",
+          "object": {
+            "foo": "bar",
+            "baz": "qux"
+          }
+        }
+      }
+    ]
+  }
+}
+

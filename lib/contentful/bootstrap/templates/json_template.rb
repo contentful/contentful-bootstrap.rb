@@ -127,8 +127,8 @@ module Contentful
               processed_entry['id'] = entry[SYS_KEY]['id'] if entry.key?(SYS_KEY) && entry[SYS_KEY].key?('id')
 
               entry.fetch('fields', {}).each do |field, value|
-                link_fields << field if value.is_a? ::Hash
-                array_fields << field if value.is_a? ::Array
+                link_fields << field if is_link?(value)
+                array_fields << field if is_array?(value)
 
                 unless link_fields.include?(field) || array_fields.include?(field)
                   processed_entry[field] = value
@@ -141,7 +141,7 @@ module Contentful
 
               array_fields.each do |af|
                 processed_entry[af] = entry['fields'][af].map do |item|
-                  item.is_a?(::Hash) ? create_link(item) : item
+                  is_link?(item) ? create_link(item) : item
                 end
               end
 
@@ -171,6 +171,14 @@ module Contentful
 
         def mark_processed?
           @mark_processed
+        end
+
+        def is_link?(value)
+          value.is_a?(::Hash) && value.key?('id') && value.key?('linkType')
+        end
+
+        def is_array?(value)
+          value.is_a?(::Array)
         end
       end
     end

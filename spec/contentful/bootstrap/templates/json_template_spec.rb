@@ -91,6 +91,7 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
 
   describe 'issues' do
     let(:link_entry_path) { json_path('links') }
+    let(:object_entry_path) { json_path('object') }
 
     it 'links are not properly getting processed - #33' do
       subject = described_class.new space, link_entry_path
@@ -99,6 +100,20 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
         {
           "id" => "foo",
           "link" => Contentful::Bootstrap::Templates::Links::Entry.new('foobar')
+        }
+      )
+    end
+
+    it 'allows templates with object fields to work - #51' do
+      subject = described_class.new space, object_entry_path
+      expect(subject.entries['test'].first).to eq(
+        {
+          "id" => "foo",
+          "name" => "test",
+          "object" => {
+            "foo" => "bar",
+            "baz" => "qux"
+          }
         }
       )
     end

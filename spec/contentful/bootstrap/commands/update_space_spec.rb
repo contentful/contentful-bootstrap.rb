@@ -28,7 +28,7 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
       it 'exits if space is not found' do
         update_space_command = described_class.new(token, 'foo', json_template: 'bar', quiet: true)
 
-        expect(::Contentful::Management::Space).to receive(:find).with('foo').and_raise(::Contentful::Management::NotFound.new(ErrorRequestDouble.new))
+        expect_any_instance_of(::Contentful::Management::ClientSpaceMethodsFactory).to receive(:find).with('foo').and_raise(::Contentful::Management::NotFound.new(ErrorRequestDouble.new))
 
         expect { update_space_command.run }.to raise_error SystemExit
       end

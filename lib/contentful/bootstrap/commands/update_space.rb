@@ -37,7 +37,7 @@ module Contentful
         protected
 
         def fetch_space
-          Contentful::Management::Space.find(@space)
+          client.spaces.find(@space)
         rescue Contentful::Management::NotFound
           output 'Space Not Found. Exiting!'
           exit(1)

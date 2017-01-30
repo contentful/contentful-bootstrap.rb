@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "guard-rspec"
   spec.add_development_dependency 'listen', '~> 3.0.0'
   spec.add_runtime_dependency "launchy"
-  spec.add_runtime_dependency "contentful-management", '~> 0.9'
-  spec.add_runtime_dependency "contentful", "~> 0.7"
+  spec.add_runtime_dependency "contentful-management", '~> 1.0'
+  spec.add_runtime_dependency "contentful", "> 0", "< 3"
   spec.add_runtime_dependency "inifile"
 end

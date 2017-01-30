@@ -7,7 +7,7 @@ module Contentful
   module Bootstrap
     module Commands
       class Base
-        attr_reader :space, :token, :options, :quiet, :no_input
+        attr_reader :space, :token, :options, :quiet, :no_input, :client
 
         def initialize(token, space, options = {})
           trigger_oauth = options.fetch(:trigger_oauth, true)
@@ -35,7 +35,7 @@ module Contentful
         private
 
         def management_client_init
-          ::Contentful::Bootstrap::Management.new(@token.read, raise_errors: true)
+          @client ||= ::Contentful::Bootstrap::Management.new(@token.read, raise_errors: true)
         end
 
         def configuration
