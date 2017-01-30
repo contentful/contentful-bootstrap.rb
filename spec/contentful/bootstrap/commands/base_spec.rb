@@ -60,12 +60,12 @@ describe Contentful::Bootstrap::Commands::Base do
 
       describe 'token not found' do
         it 'exits if answer is no' do
-          expect_any_instance_of(described_class).to receive(:gets) { "n\n" }
+          expect(Contentful::Bootstrap::Support).to receive(:gets) { "n" }
           expect { described_class.new(non_management_token, 'foo', quiet: true) }.to raise_error SystemExit
         end
 
         it 'runs token_server if other answer' do
-          expect_any_instance_of(described_class).to receive(:gets) { "y\n" }
+          expect(Contentful::Bootstrap::Support).to receive(:gets) { "y" }
           expect_any_instance_of(described_class).to receive(:token_server)
 
           described_class.new(non_management_token, 'foo', quiet: true)
@@ -76,7 +76,7 @@ describe Contentful::Bootstrap::Commands::Base do
     it '#token_server' do
       allow_any_instance_of(described_class).to receive(:management_client_init)
 
-      expect_any_instance_of(described_class).to receive(:gets) { "y\n" }
+      expect(Contentful::Bootstrap::Support).to receive(:gets) { "y" }
       expect_any_instance_of(Contentful::Bootstrap::Server).to receive(:start) {}
       expect_any_instance_of(Contentful::Bootstrap::Server).to receive(:running?) { true }
       expect(Net::HTTP).to receive(:get).with(URI('http://localhost:5123')) {}
@@ -97,6 +97,20 @@ describe Contentful::Bootstrap::Commands::Base do
     end
   end
 
-  describe '#initialize' do
+  describe 'additional options' do
+    describe ':no_input' do
+      it ':no_input will disallow all input operations' do
+        expect_any_instance_of(described_class).not_to receive(:token_server)
+        expect(Contentful::Bootstrap::Support).not_to receive(:gets)
+        expect { described_class.new(non_management_token, 'foo', quiet: true, no_input: true) }.to raise_error "OAuth token required to proceed"
+      end
+
+      it 'without :no_input input operations are allowed' do
+        expect_any_instance_of(described_class).to receive(:token_server)
+        expect(Contentful::Bootstrap::Support).to receive(:gets) { "y" }
+        allow(non_management_token).to receive(:read) { true }
+        described_class.new(non_management_token, 'foo', quiet: true, no_input: false)
+      end
+    end
   end
 end

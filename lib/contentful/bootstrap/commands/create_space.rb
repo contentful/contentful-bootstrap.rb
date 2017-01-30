@@ -50,16 +50,19 @@ module Contentful
             options[:organization_id] = @token.read_organization_id unless @token.read_organization_id.nil?
             new_space = Contentful::Management::Space.create(options)
           rescue Contentful::Management::NotFound
+            fail "Organization ID is required, provide it in Configuration File" if no_input
+
             output 'Your account has multiple organizations:'
             output organizations.join("\n")
-            print 'Please insert the Organization ID you\'d want to create the spaces for: '
-            organization_id = gets.chomp
-            @token.write_organization_id(organization_id)
-            output 'Your Organization ID has been stored as the default organization.'
-            new_space = Contentful::Management::Space.create(
-              name: @space,
-              organization_id: organization_id
-            )
+            Support.input('Please insert the Organization ID you\'d want to create the spaces for: ', no_input) do |answer|
+              organization_id = answer
+              @token.write_organization_id(organization_id)
+              output 'Your Organization ID has been stored as the default organization.'
+              new_space = Contentful::Management::Space.create(
+                name: @space,
+                organization_id: organization_id
+              )
+            end
           end
 
           new_space

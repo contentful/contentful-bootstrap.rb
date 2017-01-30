@@ -63,8 +63,8 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
     it 'Importing asset array values does not work #22' do
       json_path = File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'issue_22.json'))
 
-      allow_any_instance_of(described_class).to receive(:gets).and_return('y')
-      allow_any_instance_of(Contentful::Bootstrap::Commands::GenerateToken).to receive(:gets).and_return('n')
+      allow(Contentful::Bootstrap::Support).to receive(:gets).and_return('y')
+      allow(Contentful::Bootstrap::Support).to receive(:gets).and_return('n')
 
       command = described_class.new(token, 'issue_22', json_template: json_path, quiet: true)
 
@@ -76,8 +76,8 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
     it 'assets can be created with any content type #39' do
       json_path = File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'asset_no_transform.json'))
 
-      allow_any_instance_of(described_class).to receive(:gets).and_return('y')
-      allow_any_instance_of(Contentful::Bootstrap::Commands::GenerateToken).to receive(:gets).and_return('n')
+      allow(Contentful::Bootstrap::Support).to receive(:gets).and_return('y')
+      allow(Contentful::Bootstrap::Support).to receive(:gets).and_return('n')
 
       command = described_class.new(token, 'asset_no_transform', json_template: json_path, mark_processed: false, quiet: true)
 
@@ -89,8 +89,8 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
 
   describe 'integration' do
     before do
-      allow_any_instance_of(described_class).to receive(:gets).and_return('y')
-      allow_any_instance_of(Contentful::Bootstrap::Commands::GenerateToken).to receive(:gets).and_return('n')
+      allow(Contentful::Bootstrap::Support).to receive(:gets).and_return('y')
+      allow(Contentful::Bootstrap::Support).to receive(:gets).and_return('n')
     end
 
     it 'create space' do
