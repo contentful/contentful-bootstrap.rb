@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v3.5.0
+
 ### Added
 * Add `-q` and `--quiet` flags to the CLI Tool and their respective command classes [#48](https://github.com/contentful/contentful-bootstrap.rb/issues/48)
 * Add `:no_input` option to library commands [#48](https://github.com/contentful/contentful-bootstrap.rb/issues/48)
