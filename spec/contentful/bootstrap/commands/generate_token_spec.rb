@@ -29,44 +29,41 @@ describe Contentful::Bootstrap::Commands::GenerateToken do
     describe '#run' do
       it 'fetches space from api if space is a string' do
         allow(Contentful::Bootstrap::Support).to receive(:gets) { 'n' }
-        allow_any_instance_of(Contentful::Management::Request).to receive(:post) { ResponseDouble.new }
-        expect(Contentful::Management::Space).to receive(:find).with('foo') { space_double }
+        expect_any_instance_of(Contentful::Management::ClientSpaceMethodsFactory).to receive(:find).with('foo') { space_double }
 
         subject.run
       end
 
       it 'uses space if space is not a string' do
         allow(Contentful::Bootstrap::Support).to receive(:gets) { 'n' }
-        allow_any_instance_of(Contentful::Management::Request).to receive(:post) { ResponseDouble.new }
-        expect(Contentful::Management::Space).not_to receive(:find).with('foo') { space_double }
-
-        subject.instance_variable_set(:@actual_space, space_double)
+        expect_any_instance_of(Contentful::Management::ClientSpaceMethodsFactory).not_to receive(:find).with('foo') { space_double }
+        subject.instance_variable_set(:@space, space_double)
 
         subject.run
       end
 
       it 'returns access token' do
         allow(Contentful::Bootstrap::Support).to receive(:gets) { 'n' }
-        allow_any_instance_of(Contentful::Management::Request).to receive(:post) { ResponseDouble.new }
-        allow(Contentful::Management::Space).to receive(:find).with('foo') { space_double }
+        allow_any_instance_of(Contentful::Management::ClientSpaceMethodsFactory).to receive(:find).with('foo') { space_double }
+        expect(space_double).to receive(:api_keys).and_call_original
 
-        expect(subject.run).to eq 'foo'
+        expect(subject.run).to eq 'random_api_key'
       end
 
       it 'fails if API returns an error' do
         allow(Contentful::Bootstrap::Support).to receive(:gets) { 'n' }
-        allow_any_instance_of(Contentful::Management::Request).to receive(:post) { ErrorDouble.new }
-        allow(Contentful::Management::Space).to receive(:find).with('foo') { space_double }
+        allow_any_instance_of(Contentful::Management::ClientSpaceMethodsFactory).to receive(:find).with('foo') { space_double }
+        expect(space_double).to receive(:api_keys).and_raise(ErrorDouble.new)
 
         expect { subject.run }.to raise_error ErrorDouble
       end
 
       it 'token gets written if user input is other than no' do
         allow(Contentful::Bootstrap::Support).to receive(:gets) { 'y' }
-        allow_any_instance_of(Contentful::Management::Request).to receive(:post) { ResponseDouble.new }
-        allow(Contentful::Management::Space).to receive(:find).with('foo') { space_double }
+        allow_any_instance_of(Contentful::Management::ClientSpaceMethodsFactory).to receive(:find).with('foo') { space_double }
+        expect(space_double).to receive(:api_keys).and_call_original
 
-        expect(token).to receive(:write_access_token).with('foobar', 'foo')
+        expect(token).to receive(:write_access_token).with('foobar', 'random_api_key')
         expect(token).to receive(:write_space_id).with('foobar', 'foobar')
 
         subject.run

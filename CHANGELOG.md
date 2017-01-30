@@ -8,6 +8,10 @@
 
 ### Changed
 * Refactored internals to allow more option flexibility and simplified the `CommandRunner`.
+* Updated dependencies to the newest available SDKs
+
+### Fixed
+* Fixed Object Field parsing for JSON Templates [#51](https://github.com/contentful/contentful-bootstrap.rb/issues/51)
 
 
 ## v3.4.0

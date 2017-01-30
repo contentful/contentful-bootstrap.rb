@@ -13,7 +13,6 @@ module Contentful
           @token_name = options.fetch(:token_name, 'Bootstrap Token')
 
           super(token, space, options)
-          @actual_space = space unless space.is_a?(String)
         end
 
         def run
@@ -35,18 +34,18 @@ module Contentful
         end
 
         def fetch_space
-          @actual_space ||= Contentful::Management::Space.find(@space)
+          if @space.is_a?(String)
+            @actual_space = client.spaces.find(@space)
+          else
+            @actual_space = @space
+          end
         end
 
         def fetch_access_token
-          response = Contentful::Management::Request.new(
-            "/#{@actual_space.id}/api_keys",
-            'name' => token_name,
-            'description' => "Created with 'contentful_bootstrap.rb v#{Contentful::Bootstrap::VERSION}'"
-          ).post
-          fail response if response.object.is_a?(Contentful::Management::Error)
-
-          response.object['accessToken']
+          @actual_space.api_keys.create(
+            name: token_name,
+            description: "Created with 'contentful_bootstrap.rb v#{Contentful::Bootstrap::VERSION}'"
+          ).access_token
         end
       end
     end

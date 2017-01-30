@@ -48,7 +48,7 @@ module Contentful
               name: @space
             }
             options[:organization_id] = @token.read_organization_id unless @token.read_organization_id.nil?
-            new_space = Contentful::Management::Space.create(options)
+            new_space = client.spaces.create(options)
           rescue Contentful::Management::NotFound
             fail "Organization ID is required, provide it in Configuration File" if no_input
 
@@ -58,7 +58,7 @@ module Contentful
               organization_id = answer
               @token.write_organization_id(organization_id)
               output 'Your Organization ID has been stored as the default organization.'
-              new_space = Contentful::Management::Space.create(
+              new_space = client.spaces.create(
                 name: @space,
                 organization_id: organization_id
               )
@@ -73,7 +73,7 @@ module Contentful
         def organizations
           client = management_client_init
           url = client.base_url.sub('spaces', 'token')
-          response = Contentful::Management::Client.get_http(url, nil, client.request_headers)
+          response = client.get_http(url, nil, client.request_headers)
           organization_ids = JSON.load(response.body.to_s)['includes']['Organization'].map do |org|
             sprintf('%-20s %s', org['name'], org['sys']['id'])
           end

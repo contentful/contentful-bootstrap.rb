@@ -36,6 +36,22 @@ def ini(ini_file)
   file
 end
 
+class ApiKeyDouble
+  attr_reader :name, :description, :access_token
+
+  def initialize(name, description)
+    @name = name
+    @description = description
+    @access_token = 'random_api_key'
+  end
+end
+
+class ApiKeysHandlerDouble
+  def create(options)
+    ApiKeyDouble.new(options[:name], options[:description])
+  end
+end
+
 class SpaceDouble
   def id
     'foobar'
@@ -43,6 +59,10 @@ class SpaceDouble
 
   def name
     'foobar'
+  end
+
+  def api_keys
+    ApiKeysHandlerDouble.new
   end
 end
 
