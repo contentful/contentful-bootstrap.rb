@@ -85,6 +85,27 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
         command.run
       }
     end
+
+    it 'doesnt fail on multiple organizations #54' do
+      vcr('multiple_organizations') {
+        path = File.expand_path(File.join('spec', 'fixtures', 'ini_fixtures', 'no_org.ini'))
+        token = Contentful::Bootstrap::Token.new path
+
+        allow(Contentful::Bootstrap::Support).to receive(:gets).and_return('y')
+        allow(Contentful::Bootstrap::Support).to receive(:gets).and_return('n')
+        subject = described_class.new token, 'foo', quiet: true
+
+        expect(subject).to receive(:generate_token).with(space_double)
+        expect(Contentful::Bootstrap::Support).to receive(:gets) { 'foobar' }
+        expect(token).to receive(:write_organization_id).with('foobar')
+        expect(subject.client).to receive(:spaces).and_call_original
+        space_proxy_double = Object.new
+        expect(subject.client).to receive(:spaces) { space_proxy_double }
+        expect(space_proxy_double).to receive(:create).with(name: 'foo', organization_id: 'foobar') { space_double }
+
+        subject.run
+      }
+    end
   end
 
   describe 'integration' do

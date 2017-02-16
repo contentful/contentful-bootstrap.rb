@@ -48,6 +48,7 @@ module Contentful
               name: @space
             }
             options[:organization_id] = @token.read_organization_id unless @token.read_organization_id.nil?
+            management_client_init
             new_space = client.spaces.create(options)
           rescue Contentful::Management::NotFound
             fail "Organization ID is required, provide it in Configuration File" if no_input
@@ -71,9 +72,9 @@ module Contentful
         private
 
         def organizations
-          client = management_client_init
+          management_client_init
           url = client.base_url.sub('spaces', 'token')
-          response = client.get_http(url, nil, client.request_headers)
+          response = client.class.get_http(url, nil, client.request_headers)
           organization_ids = JSON.load(response.body.to_s)['includes']['Organization'].map do |org|
             sprintf('%-20s %s', org['name'], org['sys']['id'])
           end
