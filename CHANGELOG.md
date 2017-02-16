@@ -1,6 +1,8 @@
 # Change Log
 
 ## Unreleased
+
+## v3.5.1
 ### Fixed
 * Fixed organization fetching when no organization ID is provided on the configuration file [#54](https://github.com/contentful/contentful-bootstrap.rb/issues/54)
 
