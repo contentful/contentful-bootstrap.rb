@@ -45,7 +45,7 @@ module Contentful
           result['displayField'] = type.display_field unless type.display_field.nil?
 
           result['fields'] = type.fields.map do |field|
-            map_field_properties(field.properties)
+            map_field_properties(field)
           end
 
           result
@@ -63,7 +63,7 @@ module Contentful
 
           entry.fields.each do |key, value|
             value = map_field(value)
-            result['fields'][key] = value unless value.nil?
+            result['fields'][field_id(entry, key)] = value unless value.nil?
           end
 
           ct_id = entry.content_type.sys[:id]
@@ -72,6 +72,10 @@ module Contentful
         end
 
         entries
+      end
+
+      def field_id(entry, field_name)
+        entry.raw['fields'].keys.detect { |f| f == field_name.to_s || f == Support.camel_case(field_name.to_s).to_s }
       end
 
       def map_field(value)
@@ -89,11 +93,17 @@ module Contentful
         value
       end
 
-      def map_field_properties(properties)
-        items = properties[:items]
-        properties[:items] = map_field_properties(items.properties) unless items.nil?
+      def map_field_properties(field)
+        properties = {}
 
-        properties.delete_if { |k, v| v.nil? || [:required, :localized].include?(k) }
+        [:id, :name, :type, :link_type, :required, :localized].each do |property|
+          value = field.public_send(property) if field.respond_to?(property)
+          properties[Support.camel_case(property.to_s).to_sym] = value unless value.nil? || [:required, :localized].include?(property)
+        end
+
+        items = field.items if field.respond_to?(:items)
+        properties[:items] = map_field_properties(items) unless items.nil?
+
         properties
       end
     end
