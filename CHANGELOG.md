@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v3.5.2
+
 ### Fixed
 * Fixed compatibility with CDA 2.0.0 SDK
 
