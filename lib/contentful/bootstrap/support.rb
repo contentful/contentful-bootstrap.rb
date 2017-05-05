@@ -3,6 +3,10 @@ require 'stringio'
 module Contentful
   module Bootstrap
     module Support
+      def self.camel_case(a_string)
+        a_string.split('_').inject([]){ |buffer,e| buffer.push(buffer.empty? ? e : e.capitalize) }.join
+      end
+
       def self.silence_stderr
         old_stderr = $stderr
         $stderr = StringIO.new
