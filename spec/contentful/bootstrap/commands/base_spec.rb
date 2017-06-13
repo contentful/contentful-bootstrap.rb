@@ -44,7 +44,12 @@ describe Contentful::Bootstrap::Commands::Base do
   describe 'instance methods' do
     it '#management_client_init' do
       allow_any_instance_of(described_class).to receive(:configuration)
-      expect(Contentful::Management::Client).to receive(:new).with(token.read, raise_errors: true)
+      expect(Contentful::Management::Client).to receive(:new).with(
+        token.read,
+        raise_errors: true,
+        integration_name: 'bootstrap',
+        integration_version: Contentful::Bootstrap::VERSION
+      )
 
       described_class.new(token, 'foo', quiet: true)
     end
