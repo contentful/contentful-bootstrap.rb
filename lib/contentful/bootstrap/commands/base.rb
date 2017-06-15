@@ -1,7 +1,7 @@
 require 'net/http'
+require 'contentful/management'
 require 'contentful/bootstrap/server'
 require 'contentful/bootstrap/support'
-require 'contentful/bootstrap/management'
 
 module Contentful
   module Bootstrap
@@ -35,7 +35,12 @@ module Contentful
         private
 
         def management_client_init
-          @client ||= ::Contentful::Bootstrap::Management.new(@token.read, raise_errors: true)
+          @client ||= ::Contentful::Management::Client.new(
+            @token.read,
+            raise_errors: true,
+            integration_name: 'bootstrap',
+            integration_version: ::Contentful::Bootstrap::VERSION
+          )
         end
 
         def configuration

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Changed
+* Changed User Agent Headers to use the new format
+* Updated versions of CMA and CDA SDK to latest available
+
 ## v3.5.2
 
 ### Fixed

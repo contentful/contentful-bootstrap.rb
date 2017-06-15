@@ -7,10 +7,15 @@ require 'contentful/bootstrap/version'
 module Contentful
   module Bootstrap
     class Generator
-      attr_reader :content_types_only
+      attr_reader :content_types_only, :client
 
       def initialize(space_id, access_token, content_types_only)
-        @client = Contentful::Client.new(access_token: access_token, space: space_id)
+        @client = Contentful::Client.new(
+          access_token: access_token,
+          space: space_id,
+          integration_name: 'bootstrap',
+          integration_version: ::Contentful::Bootstrap::VERSION
+        )
         @content_types_only = content_types_only
       end
 
