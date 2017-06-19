@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v3.6.0
+
 ### Changed
 * Changed User Agent Headers to use the new format
 * Updated versions of CMA and CDA SDK to latest available
