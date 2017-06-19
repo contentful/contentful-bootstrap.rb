@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-## v3.6.0
+## v3.6.1
 
 ### Changed
 * Changed User Agent Headers to use the new format
