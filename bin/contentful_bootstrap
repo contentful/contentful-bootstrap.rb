@@ -7,12 +7,15 @@ options = {}
 
 subcommands = {
   'create_space' => OptionParser.new do |opts|
-    opts.banner = "Usage: create_space <space_name> [--template TEMPLATE_NAME] [--json-template JSON_PATH] [--mark-processed] [--config CONFIG_PATH]"
+    opts.banner = "Usage: create_space <space_name> [--template TEMPLATE_NAME] [--json-template JSON_PATH] [--locale LOCALE] [--mark-processed] [--config CONFIG_PATH]"
     opts.on("-t TEMPLATE", "--template TEMPLATE", "Specify Template", "Available Templates: blog, catalogue, gallery") do |t|
       options[:template] = t
     end
     opts.on("-j JSON_PATH", "--json-template JSON_PATH", "Specify JSON Template Path") do |j|
       options[:json_template] = j
+    end
+    opts.on("-l LOCALE", "--locale LOCALE", "Set the Default Locale for the Space", "Defaults to 'en-US'") do |l|
+      options[:locale] = l
     end
     opts.on('-m', '--mark-processed', "Mark Processed Items on JSON Templates") do |m|
       options[:mark_processed] = m

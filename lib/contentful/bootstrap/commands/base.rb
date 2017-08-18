@@ -37,6 +37,7 @@ module Contentful
         def management_client_init
           @client ||= ::Contentful::Management::Client.new(
             @token.read,
+            default_locale: options.fetch(:locale, "en-US"),
             raise_errors: true,
             integration_name: 'bootstrap',
             integration_version: ::Contentful::Bootstrap::VERSION
