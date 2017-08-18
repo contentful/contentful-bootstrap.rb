@@ -52,7 +52,7 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
               expect(subject).to receive(:fetch_space) { space_double }
               expect(mock_template).to receive(:run)
 
-              expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', mark_processed, false, false) { mock_template }
+              expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', mark_processed, true, false, false) { mock_template }
 
               subject.run
             end
@@ -71,7 +71,7 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
           expect(subject).to receive(:fetch_space) { space_double }
           expect(mock_template).to receive(:run)
 
-          expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', false, false, true) { mock_template }
+          expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', false, true, false, true) { mock_template }
 
           subject.run
         end

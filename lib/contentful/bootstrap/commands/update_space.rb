@@ -48,7 +48,7 @@ module Contentful
         def update_json_template(space)
           if ::File.exist?(@json_template)
             output "Updating from JSON Template '#{@json_template}'"
-            Templates::JsonTemplate.new(space, @json_template, @mark_processed, false, @skip_content_types).run
+            Templates::JsonTemplate.new(space, @json_template, @mark_processed, true, false, @skip_content_types).run
             output "JSON Template '#{@json_template}' updated!"
           else
             output "JSON Template '#{@json_template}' does not exist. Please check that you specified the correct file name."
