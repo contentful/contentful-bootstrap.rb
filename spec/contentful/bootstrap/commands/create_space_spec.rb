@@ -59,6 +59,34 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
     end
   end
 
+  describe 'localization' do
+    it 'can create a space with a different locale' do
+      allow(Contentful::Bootstrap::Support).to receive(:gets).and_return('y')
+      allow(Contentful::Bootstrap::Support).to receive(:gets).and_return('n')
+
+      command = described_class.new(token, 'B.rb - locale creation', locale: 'es-AR')
+
+      vcr('space_with_different_locale') {
+        command.run
+      }
+
+      vcr('check_created_space') {
+        client = ::Contentful::Client.new(
+          space: 'vsy1ouf6jdcq',
+          access_token: '90e1b4964c3631cc9c751c42339814635623b001a53aec5aad23377299445433',
+          dynamic_entries: :auto,
+          raise_errors: true
+        )
+
+        space = client.space
+
+        expect(space.name).to eq("B.rb - locale creation")
+        expect(space.locales.first.code).to eq "es-AR"
+        expect(space.locales.first.default).to be_truthy
+      }
+    end
+  end
+
   describe 'issues' do
     it 'Importing asset array values does not work #22' do
       json_path = File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'issue_22.json'))
@@ -101,7 +129,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
         expect(subject.client).to receive(:spaces).and_call_original
         space_proxy_double = Object.new
         expect(subject.client).to receive(:spaces) { space_proxy_double }
-        expect(space_proxy_double).to receive(:create).with(name: 'foo', organization_id: 'foobar') { space_double }
+        expect(space_proxy_double).to receive(:create).with(name: 'foo', defaultLocale: 'en-US', organization_id: 'foobar') { space_double }
 
         subject.run
       }

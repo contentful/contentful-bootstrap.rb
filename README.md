@@ -26,7 +26,7 @@ $ gem install contentful_bootstrap
 You can create spaces by doing:
 
 ```bash
-$ contentful_bootstrap create_space <space_name> [--template template_name] [--json-template template_path] [--mark-processed] [--config CONFIG_PATH] [--quiet]
+$ contentful_bootstrap create_space <space_name> [--template template_name] [--json-template template_path] [--locale locale_code] [--mark-processed] [--config CONFIG_PATH] [--quiet]
 ```
 
 You can also generate new Delivery API Tokens by doing:
@@ -87,6 +87,7 @@ Additionally, you can send an options hash with the following keys:
 options = {
   template: "blog", # Will use one of the predefined templates and create Content Types, Assets and Entries
   json_template: "/path/to/template.json", # Will use the JSON file specified as a Template
+  locale: "es-AR", # Will create the space with the specified locale code as default locale, defaults to "en-US"
   mark_processed: false, # if true will mark all resources as 'bootstrapProcessed' and will be avoided for update_space calls (doesnt affect create_space)
   trigger_oauth: true, # if true will trigger OAuth process
   quiet: false, # if true will not output to STDOUT

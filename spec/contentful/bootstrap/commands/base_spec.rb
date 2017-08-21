@@ -46,6 +46,7 @@ describe Contentful::Bootstrap::Commands::Base do
       allow_any_instance_of(described_class).to receive(:configuration)
       expect(Contentful::Management::Client).to receive(:new).with(
         token.read,
+        default_locale: 'en-US',
         raise_errors: true,
         integration_name: 'bootstrap',
         integration_version: Contentful::Bootstrap::VERSION

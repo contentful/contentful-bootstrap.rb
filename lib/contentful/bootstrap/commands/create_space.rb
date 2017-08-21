@@ -13,6 +13,7 @@ module Contentful
           @template_name = options.fetch(:template, nil)
           @json_template = options.fetch(:json_template, nil)
           @mark_processed = options.fetch(:mark_processed, false)
+          @locale = options.fetch(:locale, "en-US")
 
           super(token, space, options)
         end
@@ -45,7 +46,8 @@ module Contentful
           new_space = nil
           begin
             options = {
-              name: @space
+              name: @space,
+              defaultLocale: @locale
             }
             options[:organization_id] = @token.read_organization_id unless @token.read_organization_id.nil?
             management_client_init
@@ -61,6 +63,7 @@ module Contentful
               output 'Your Organization ID has been stored as the default organization.'
               new_space = client.spaces.create(
                 name: @space,
+                defaultLocale: @locale,
                 organization_id: organization_id
               )
             end
