@@ -1,6 +1,8 @@
 # Change Log
 
 ## Unreleased
+
+## v3.7.0
 ### Fixed
 * Fixed `skip_content_types` option on `update_space` [#59](https://github.com/contentful/contentful-bootstrap.rb/pull/59)
 
