@@ -58,6 +58,28 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
             end
           end
         end
+
+        it 'can update localized spaces' do
+          vcr('update_space_localized') {
+            json_path = File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'update_space_localized.json'))
+            subject = described_class.new(token, 'vsy1ouf6jdcq', locale: 'es-AR', json_template: json_path, mark_processed: false, trigger_oauth: false, quiet: true)
+
+            subject.run
+          }
+
+          vcr('check_update_space_localized') {
+            client = Contentful::Client.new(
+              space: 'vsy1ouf6jdcq',
+              access_token: '90e1b4964c3631cc9c751c42339814635623b001a53aec5aad23377299445433',
+              dynamic_entries: :auto,
+              raise_errors: true
+            )
+
+            entries = client.entries(locale: 'es-AR')
+
+            expect(entries.map(&:text)).to eq ['Foo', 'Bar']
+          }
+        end
       end
 
       context 'with skip_content_types set to true' do

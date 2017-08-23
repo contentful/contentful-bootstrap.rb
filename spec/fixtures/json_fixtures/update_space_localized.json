@@ -1,0 +1,40 @@
+{
+  "version": 3,
+  "contentTypes": [
+    {
+      "id": "test",
+      "name": "Test",
+      "displayField": "text",
+      "fields": [
+        {
+          "id": "text",
+          "name": "Text",
+          "type": "Symbol"
+        }
+      ]
+    }
+  ],
+  "assets": [
+
+  ],
+  "entries": {
+    "test": [
+      {
+        "sys": {
+          "id": "test_1"
+        },
+        "fields": {
+          "text": "Foo"
+        }
+      },
+      {
+        "sys": {
+          "id": "test_2"
+        },
+        "fields": {
+          "text": "Bar"
+        }
+      }
+    ]
+  }
+}

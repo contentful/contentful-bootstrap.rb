@@ -101,6 +101,7 @@ To Update an existing Space
 ```ruby
 options = {
   json_template: "/path/to/template.json", # Will use the JSON file specified as a Template
+  locale: "es-AR", # Will create the space with the specified locale code as default locale, defaults to "en-US"
   mark_processed: false, # if true will mark all resources as 'bootstrapProcessed and will be avoided on future update_space calls
   trigger_oauth: true, # if true will trigger OAuth process
   skip_content_types: false, # if true will avoid creating the content types

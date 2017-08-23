@@ -1,0 +1,196 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cdn.contentful.com/spaces/vsy1ouf6jdcq/content_types?limit=1000
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Contentful-User-Agent:
+      - sdk contentful.rb/2.1.3; platform ruby/2.4.1; os macOS/16;
+      Authorization:
+      - Bearer 90e1b4964c3631cc9c751c42339814635623b001a53aec5aad23377299445433
+      Content-Type:
+      - application/vnd.contentful.delivery.v1+json
+      Accept-Encoding:
+      - gzip
+      Connection:
+      - close
+      Host:
+      - cdn.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature
+      Access-Control-Allow-Methods:
+      - GET,HEAD,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '86400'
+      Cache-Control:
+      - max-age=0
+      Content-Type:
+      - application/vnd.contentful.delivery.v1+json
+      Etag:
+      - '"594786b7b50ce50203bbce682cdb5782"'
+      Server:
+      - Contentful
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Request-Id:
+      - 32854106ee78a518ebdd3a86aa4aa8a8
+      Content-Length:
+      - '780'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Wed, 23 Aug 2017 14:39:47 GMT
+      Via:
+      - 1.1 varnish
+      Age:
+      - '0'
+      Connection:
+      - close
+      X-Served-By:
+      - cache-gru17131-GRU
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      X-Timer:
+      - S1503499187.395554,VS0,VE263
+      Vary:
+      - Accept-Encoding
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "sys": {
+            "type": "Array"
+          },
+          "total": 1,
+          "skip": 0,
+          "limit": 1000,
+          "items": [
+            {
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "vsy1ouf6jdcq"
+                  }
+                },
+                "id": "test",
+                "type": "ContentType",
+                "createdAt": "2017-08-23T14:02:48.328Z",
+                "updatedAt": "2017-08-23T14:02:48.328Z",
+                "revision": 1
+              },
+              "displayField": "text",
+              "name": "Test",
+              "description": "",
+              "fields": [
+                {
+                  "id": "text",
+                  "name": "Text",
+                  "type": "Symbol",
+                  "localized": true,
+                  "required": false,
+                  "disabled": false,
+                  "omitted": false
+                }
+              ]
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Wed, 23 Aug 2017 14:39:47 GMT
+- request:
+    method: get
+    uri: https://cdn.contentful.com/spaces/vsy1ouf6jdcq/entries?locale=es-AR
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Contentful-User-Agent:
+      - sdk contentful.rb/2.1.3; platform ruby/2.4.1; os macOS/16;
+      Authorization:
+      - Bearer 90e1b4964c3631cc9c751c42339814635623b001a53aec5aad23377299445433
+      Content-Type:
+      - application/vnd.contentful.delivery.v1+json
+      Accept-Encoding:
+      - gzip
+      Connection:
+      - close
+      Host:
+      - cdn.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature
+      Access-Control-Allow-Methods:
+      - GET,HEAD,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '86400'
+      Cache-Control:
+      - max-age=0
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/vnd.contentful.delivery.v1+json
+      Etag:
+      - W/"4b2e84b99e4024a461dd9b1a98e6743c"
+      Server:
+      - Contentful
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Request-Id:
+      - 8f60a93bc7915a078a7b094062c8d915
+      Content-Length:
+      - '322'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Wed, 23 Aug 2017 14:39:48 GMT
+      Via:
+      - 1.1 varnish
+      Age:
+      - '0'
+      Connection:
+      - close
+      X-Served-By:
+      - cache-gru17131-GRU
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      X-Timer:
+      - S1503499188.241671,VS0,VE140
+      Vary:
+      - Accept-Encoding
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA+VSy07DMBC85ysin0mVVxvILSA4cYKeQAhZiSuZpHawtxVWlX/Hdh61UiRUqRfEnjybnX1M5uD5PpJKotw/6KcGoFqiESqEwArpXHdlaoADbnQ+tkjWtNUgtKChWwoaRWGPKZCtafhqG/ZtZ1PsJNni0owaK/qks4tJ2OS40yNlNTIzj6Gns3o97PxsO84KaGXO2UsV8d1m9VGVn+aqMbrpbe/sA/UcIBLeI6fftMg9A6HcD6UgGEhVGB1QHEZZEF4HcbKO0jy5ydN0kYXZi0vYtdV5BEH2VFLOjNDOpiVnQBgMClxOyjun74+CGnF+F7LhJW6sn4gMiqeRMGmNNpQ01dF+Rn8E5Mvq+MD5RLD/ZqD9dUvFl7DUarFMludY6pTwDy11i8XMUtpYb17nfQPclY1+CQUAAA==
+    http_version: 
+  recorded_at: Wed, 23 Aug 2017 14:39:48 GMT
+recorded_with: VCR 2.9.3
