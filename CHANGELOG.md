@@ -5,7 +5,7 @@
 * Fixed `skip_content_types` option on `update_space` [#59](https://github.com/contentful/contentful-bootstrap.rb/pull/59)
 
 ### Added
-* Added `--locale` option to `create_space` in order to create Spaces on a locale different to `en-US`
+* Added `--locale` option to `create_space` and `update_space` in order to create Spaces on a locale different to `en-US`
 
 ## v3.6.1
 
