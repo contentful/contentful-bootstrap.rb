@@ -3,6 +3,7 @@ require 'inifile'
 require 'json'
 require 'zlib'
 require 'contentful/bootstrap/version'
+require 'pry'
 
 module Contentful
   module Bootstrap
@@ -37,12 +38,17 @@ module Contentful
       def assets
         return [] if content_types_only
 
-        proccessed_assets = @client.assets(limit: 1000).map do |asset|
-          result = { 'id' => asset.sys[:id], 'title' => asset.title }
-          result['file'] = {
-            'filename' => ::File.basename(asset.file.file_name, '.*'),
-            'url' => "https:#{asset.file.url}"
-          }
+        limit = 1000
+        raise "Too Many Assets" if @client.assets.total > limit
+
+        proccessed_assets = @client.assets(limit: limit).map do |asset|
+          result = { 'id' => asset.sys[:id], 'title' => asset.respond_to?(:title) ? asset.title : '' }
+          unless asset.file.nil?
+            result['file'] = {
+              'filename' => ::File.basename(asset.file.file_name, '.*'),
+              'url' => "https:#{asset.file.url}"
+            }
+          end
           result
         end
         proccessed_assets.sort_by { |item| item['id'] }
@@ -67,7 +73,10 @@ module Contentful
 
         entries = {}
 
-        @client.entries(limit: 1000).each do |entry|
+        limit = 1000
+        # raise "Too Many Entries" if @client.entries.total > limit
+
+        @client.entries(limit: limit).each do |entry|
           result = { 'sys' => { 'id' => entry.sys[:id] }, 'fields' => {} }
 
           entry.fields.each do |key, value|
