@@ -9,13 +9,17 @@ module Contentful
     class Generator
       attr_reader :content_types_only, :client
 
-      def initialize(space_id, access_token, content_types_only)
-        @client = Contentful::Client.new(
+      def initialize(space_id, access_token, content_types_only, preview: false)
+        @client_configuration = {
           access_token: access_token,
           space: space_id,
           integration_name: 'bootstrap',
           integration_version: ::Contentful::Bootstrap::VERSION
-        )
+        }
+
+        @client_configuration[:api_url] = 'preview.contentful.com' if preview
+
+        @client = Contentful::Client.new(@client_configuration)
         @content_types_only = content_types_only
       end
 

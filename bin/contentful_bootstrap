@@ -80,6 +80,9 @@ subcommands = {
     opts.on("-q", "--quiet", "Don't output to STDOUT") do |q|
       options[:quiet] = q
     end
+    opts.on("-p", "--preview", "Enable preview mode/api") do |p|
+      options[:preview] = true 
+    end
     opts.on_tail("-h", "--help", "Print this message") do
       puts opts
     end
