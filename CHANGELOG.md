@@ -1,6 +1,8 @@
 # Change Log
 
 ## Unreleased
+### Changed
+* Changed `Contentful::Bootstrap::CreateCommand#organizations` to use the new public `/organizations` endpoint.
 
 ## v3.7.0
 ### Fixed

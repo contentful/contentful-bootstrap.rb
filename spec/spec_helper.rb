@@ -80,6 +80,7 @@ class ErrorRequestDouble
   def error_message; self; end
   def raw; self; end
   def body; self; end
+  def status; self; end
 end
 
 class RequestDouble
