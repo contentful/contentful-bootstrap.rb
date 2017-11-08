@@ -76,10 +76,9 @@ module Contentful
 
         def organizations
           management_client_init
-          url = client.base_url.sub('spaces', 'token')
-          response = client.class.get_http(url, nil, client.request_headers)
-          organization_ids = JSON.load(response.body.to_s)['includes']['Organization'].map do |org|
-            sprintf('%-20s %s', org['name'], org['sys']['id'])
+          organizations = client.organizations.all
+          organization_ids = organizations.map do |organization|
+            sprintf('%-30s %s', organization.name, organization.id)
           end
           organization_ids.sort
         end
