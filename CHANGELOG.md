@@ -1,6 +1,15 @@
 # Change Log
 
 ## Unreleased
+### Fixed
+* Fixed `quiet` not being forwarded properly to `generate_json` and `update_space`
+
+### Added
+* Added `--use-preview` flag to `generate_json` command [#62](https://github.com/contentful/contentful-bootstrap.rb/issues/62)
+* Added `--no-publish` flag to `create_space` and `update_space` commands [#62](https://github.com/contentful/contentful-bootstrap.rb/issues/62)
+
+### Changed
+* `generate_json` now imports all available content in your space [#62](https://github.com/contentful/contentful-bootstrap.rb/issues/62)
 
 ## v3.8.0
 ### Changed

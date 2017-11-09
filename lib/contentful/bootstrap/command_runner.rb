@@ -33,11 +33,13 @@ module Contentful
         filename = options.fetch(:filename, nil)
         access_token = options.fetch(:access_token, nil)
         content_types_only = options.fetch(:content_types_only, false)
+        quiet = options.fetch(:quiet, false)
+        use_preview = options.fetch(:use_preview, false)
 
         fail 'Access Token required' if access_token.nil?
 
         Contentful::Bootstrap::Commands::GenerateJson.new(
-          space_id, access_token, filename, content_types_only
+          space_id, access_token, filename, content_types_only, quiet, use_preview
         ).run
       end
     end

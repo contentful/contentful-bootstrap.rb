@@ -7,14 +7,18 @@ require 'contentful/bootstrap/version'
 module Contentful
   module Bootstrap
     class Generator
+      DELIVERY_API_URL = 'cdn.contentful.com'.freeze
+      PREVIEW_API_URL = 'preview.contentful.com'.freeze
+
       attr_reader :content_types_only, :client
 
-      def initialize(space_id, access_token, content_types_only)
+      def initialize(space_id, access_token, content_types_only, use_preview)
         @client = Contentful::Client.new(
           access_token: access_token,
           space: space_id,
           integration_name: 'bootstrap',
-          integration_version: ::Contentful::Bootstrap::VERSION
+          integration_version: ::Contentful::Bootstrap::VERSION,
+          api_url: use_preview ? PREVIEW_API_URL : DELIVERY_API_URL
         )
         @content_types_only = content_types_only
       end
@@ -30,20 +34,6 @@ module Contentful
 
       private
 
-      def assets
-        return [] if content_types_only
-
-        proccessed_assets = @client.assets(limit: 1000).map do |asset|
-          result = { 'id' => asset.sys[:id], 'title' => asset.title }
-          result['file'] = {
-            'filename' => ::File.basename(asset.file.file_name, '.*'),
-            'url' => "https:#{asset.file.url}"
-          }
-          result
-        end
-        proccessed_assets.sort_by { |item| item['id'] }
-      end
-
       def content_types
         proccessed_content_types = @client.content_types.map do |type|
           result = { 'id' => type.sys[:id], 'name' => type.name }
@@ -58,22 +48,54 @@ module Contentful
         proccessed_content_types.sort_by { |item| item['id'] }
       end
 
+      def assets
+        return [] if content_types_only
+
+        processed_assets = []
+
+        query = { order: 'sys.createdAt', limit: 1000 }
+        assets_count = @client.assets(limit: 1).total
+        ((assets_count / 1000) + 1).times do |i|
+          query[:skip] = i * 1000
+
+          @client.assets(query).each do |asset|
+            processed_asset = {
+              'id' => asset.sys[:id],
+              'title' => asset.title,
+              'file' => {
+                'filename' => ::File.basename(asset.file.file_name, '.*'),
+                'url' => "https:#{asset.file.url}"
+              }
+            }
+            processed_assets << processed_asset
+          end
+        end
+
+        processed_assets.sort_by { |item| item['id'] }
+      end
+
       def entries
         return {} if content_types_only
 
         entries = {}
 
-        @client.entries(limit: 1000).each do |entry|
-          result = { 'sys' => { 'id' => entry.sys[:id] }, 'fields' => {} }
+        query = { order: 'sys.createdAt', limit: 1000 }
+        entries_count = @client.entries(limit: 1).total
+        ((entries_count / 1000) + 1).times do |i|
+          query[:skip] = i * 1000
 
-          entry.fields.each do |key, value|
-            value = map_field(value)
-            result['fields'][field_id(entry, key)] = value unless value.nil?
+          @client.entries(query).each do |entry|
+            result = { 'sys' => { 'id' => entry.sys[:id] }, 'fields' => {} }
+
+            entry.fields.each do |key, value|
+              value = map_field(value)
+              result['fields'][field_id(entry, key)] = value unless value.nil?
+            end
+
+            ct_id = entry.content_type.sys[:id]
+            entries[ct_id] = [] if entries[ct_id].nil?
+            entries[ct_id] << result
           end
-
-          ct_id = entry.content_type.sys[:id]
-          entries[ct_id] = [] if entries[ct_id].nil?
-          entries[ct_id] << result
         end
 
         entries

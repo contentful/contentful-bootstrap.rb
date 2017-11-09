@@ -7,6 +7,7 @@ describe Contentful::Bootstrap::Commands::GenerateJson do
     describe '#run' do
       it 'exits if access_token is nil' do
         subject.instance_variable_set(:@access_token, nil)
+        subject.instance_variable_set(:@quiet, true)
 
         expect { subject.run }.to raise_error SystemExit
       end
@@ -23,8 +24,24 @@ describe Contentful::Bootstrap::Commands::GenerateJson do
         vcr('generate_json') {
           subject.instance_variable_set(:@space_id, 'wl1z0pal05vy')
           subject.instance_variable_set(:@access_token, '48d7db7d4cd9d09df573c251d456f4acc72141b92f36e57f8684b36cf5cfff6e')
+          subject.instance_variable_set(:@quiet, true)
 
           json_fixture('wl1z0pal05vy') { |json|
+            expect(subject).to receive(:write).with(JSON.pretty_generate(json))
+          }
+
+          subject.run
+        }
+      end
+
+      it 'can use the preview api' do
+        vcr('generate_json_preview') {
+          subject.instance_variable_set(:@space_id, 'f3abi4dqvrhg')
+          subject.instance_variable_set(:@access_token, '06c28ef41823bb636714dfd812066fa026a49e95041a0e94903d6cf016bba50e')
+          subject.instance_variable_set(:@use_preview, true)
+          subject.instance_variable_set(:@quiet, true)
+
+          json_fixture('f3abi4dqvrhg_preview') { |json|
             expect(subject).to receive(:write).with(JSON.pretty_generate(json))
           }
 

@@ -52,7 +52,7 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
               expect(subject).to receive(:fetch_space) { space_double }
               expect(mock_template).to receive(:run)
 
-              expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', mark_processed, true, false, false) { mock_template }
+              expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', mark_processed, true, true, false, false) { mock_template }
 
               subject.run
             end
@@ -93,7 +93,24 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
           expect(subject).to receive(:fetch_space) { space_double }
           expect(mock_template).to receive(:run)
 
-          expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', false, true, false, true) { mock_template }
+          expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', false, true, true, true, false) { mock_template }
+
+          subject.run
+        end
+      end
+
+      context 'with no_publish set to true' do
+        subject { described_class.new token, 'foo', json_template: 'bar', trigger_oauth: false, skip_content_types: true, quiet: true, no_publish: true }
+
+        it 'calls JsonTemplate with no_publish' do
+          allow(::File).to receive(:exist?) { true }
+
+          mock_template = Object.new
+
+          expect(subject).to receive(:fetch_space) { space_double }
+          expect(mock_template).to receive(:run)
+
+          expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', false, true, true, true, true) { mock_template }
 
           subject.run
         end

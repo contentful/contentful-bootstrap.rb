@@ -1,0 +1,40 @@
+{
+  "version": 3,
+  "contentTypes": [
+    {
+      "id": "testContentType",
+      "name": "Test Content Type",
+      "displayField": "title",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol"
+        }
+      ]
+    }
+  ],
+  "assets": [
+
+  ],
+  "entries": {
+    "testContentType": [
+      {
+        "sys": {
+          "id": "1uT4AXWJ1me40QsAgAeSIi"
+        },
+        "fields": {
+          "title": "Published Entry"
+        }
+      },
+      {
+        "sys": {
+          "id": "49iT3aM9aUkK44KwuuyQow"
+        },
+        "fields": {
+          "title": "Draft Entry"
+        }
+      }
+    ]
+  }
+}

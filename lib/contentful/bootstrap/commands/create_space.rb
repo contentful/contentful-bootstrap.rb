@@ -14,6 +14,7 @@ module Contentful
           @json_template = options.fetch(:json_template, nil)
           @mark_processed = options.fetch(:mark_processed, false)
           @locale = options.fetch(:locale, "en-US")
+          @no_publish = options.fetch(:no_publish, false)
 
           super(token, space, options)
         end
@@ -106,7 +107,7 @@ module Contentful
         def create_json_template(space)
           if ::File.exist?(@json_template)
             output "Creating JSON Template '#{@json_template}'"
-            Templates::JsonTemplate.new(space, @json_template, @mark_processed, true, quiet).run
+            Templates::JsonTemplate.new(space, @json_template, @mark_processed, true, quiet, false, @no_publish).run
             output "JSON Template '#{@json_template}' created!"
           else
             output "JSON Template '#{@json_template}' does not exist. Please check that you specified the correct file name."

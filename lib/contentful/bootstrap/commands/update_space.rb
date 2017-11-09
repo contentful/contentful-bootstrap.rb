@@ -12,6 +12,8 @@ module Contentful
           @json_template = options.fetch(:json_template, nil)
           @mark_processed = options.fetch(:mark_processed, false)
           @skip_content_types = options.fetch(:skip_content_types, false)
+          @no_publish = options.fetch(:no_publish, false)
+          @quiet = options.fetch(:quiet, false)
 
           super(token, space_id, options)
         end
@@ -49,7 +51,7 @@ module Contentful
         def update_json_template(space)
           if ::File.exist?(@json_template)
             output "Updating from JSON Template '#{@json_template}'"
-            Templates::JsonTemplate.new(space, @json_template, @mark_processed, true, false, @skip_content_types).run
+            Templates::JsonTemplate.new(space, @json_template, @mark_processed, true, @quiet, @skip_content_types, @no_publish).run
             output "JSON Template '#{@json_template}' updated!"
           else
             output "JSON Template '#{@json_template}' does not exist. Please check that you specified the correct file name."

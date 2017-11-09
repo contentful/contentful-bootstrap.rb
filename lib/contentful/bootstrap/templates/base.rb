@@ -8,10 +8,11 @@ module Contentful
       class Base
         attr_reader :space, :skip_content_types
 
-        def initialize(space, quiet = false, skip_content_types = false)
+        def initialize(space, quiet = false, skip_content_types = false, no_publish = false)
           @space = space
           @quiet = quiet
           @skip_content_types = skip_content_types
+          @no_publish = no_publish
         end
 
         def run
@@ -121,7 +122,7 @@ module Contentful
               attempts = 0
               while attempts < 10
                 unless space.assets.find(asset.id).file.url.nil?
-                  asset.publish
+                  asset.publish unless @no_publish
                   break
                 end
 
@@ -203,7 +204,9 @@ module Contentful
             entry.id
           end
 
-          processed_entries.each { |e| space.entries.find(e).publish }
+          processed_entries.each do |e|
+            space.entries.find(e).publish unless @no_publish
+          end
         end
       end
     end
