@@ -48,8 +48,8 @@ describe Contentful::Bootstrap::Commands::Base do
         token.read,
         default_locale: 'en-US',
         raise_errors: true,
-        integration_name: 'bootstrap',
-        integration_version: Contentful::Bootstrap::VERSION
+        application_name: 'bootstrap',
+        application_version: Contentful::Bootstrap::VERSION
       )
 
       described_class.new(token, 'foo', quiet: true)

@@ -52,33 +52,11 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
               expect(subject).to receive(:fetch_space) { space_double }
               expect(mock_template).to receive(:run)
 
-              expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', mark_processed, true, false, false) { mock_template }
+              expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', mark_processed, true, true, false, false) { mock_template }
 
               subject.run
             end
           end
-        end
-
-        it 'can update localized spaces' do
-          vcr('update_space_localized') {
-            json_path = File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'update_space_localized.json'))
-            subject = described_class.new(token, 'vsy1ouf6jdcq', locale: 'es-AR', json_template: json_path, mark_processed: false, trigger_oauth: false, quiet: true)
-
-            subject.run
-          }
-
-          vcr('check_update_space_localized') {
-            client = Contentful::Client.new(
-              space: 'vsy1ouf6jdcq',
-              access_token: '90e1b4964c3631cc9c751c42339814635623b001a53aec5aad23377299445433',
-              dynamic_entries: :auto,
-              raise_errors: true
-            )
-
-            entries = client.entries(locale: 'es-AR')
-
-            expect(entries.map(&:text)).to eq ['Foo', 'Bar']
-          }
         end
       end
 
@@ -93,7 +71,24 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
           expect(subject).to receive(:fetch_space) { space_double }
           expect(mock_template).to receive(:run)
 
-          expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', false, true, false, true) { mock_template }
+          expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', false, true, true, true, false) { mock_template }
+
+          subject.run
+        end
+      end
+
+      context 'with no_publish set to true' do
+        subject { described_class.new token, 'foo', json_template: 'bar', trigger_oauth: false, skip_content_types: true, quiet: true, no_publish: true }
+
+        it 'calls JsonTemplate with no_publish' do
+          allow(::File).to receive(:exist?) { true }
+
+          mock_template = Object.new
+
+          expect(subject).to receive(:fetch_space) { space_double }
+          expect(mock_template).to receive(:run)
+
+          expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', false, true, true, true, true) { mock_template }
 
           subject.run
         end
@@ -104,6 +99,63 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
   describe 'attributes' do
     it ':json_template' do
       expect(subject.json_template).to eq 'bar'
+    end
+  end
+
+  describe 'integration' do
+    it 'can update localized spaces' do
+      vcr('update_space_localized') {
+        json_path = File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'update_space_localized.json'))
+        subject = described_class.new(token, 'vsy1ouf6jdcq', locale: 'es-AR', json_template: json_path, mark_processed: false, trigger_oauth: false, quiet: true)
+
+        subject.run
+      }
+
+      vcr('check_update_space_localized') {
+        client = Contentful::Client.new(
+          space: 'vsy1ouf6jdcq',
+          access_token: '90e1b4964c3631cc9c751c42339814635623b001a53aec5aad23377299445433',
+          dynamic_entries: :auto,
+          raise_errors: true
+        )
+
+        entries = client.entries(locale: 'es-AR')
+
+        expect(entries.map(&:text)).to eq ['Foo', 'Bar']
+      }
+    end
+
+    it 'can update an existing asset and keep it as draft' do
+      vcr('update_existing_asset') {
+        json_path = File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'assets_draft.json'))
+        subject = described_class.new(token, 'f3abi4dqvrhg', json_template: json_path, no_publish: true, trigger_oauth: false, quiet: true)
+
+        subject.run
+      }
+
+      vcr('check_update_space_with_draft_content') {
+        delivery_client = Contentful::Client.new(
+          space: 'f3abi4dqvrhg',
+          access_token: 'efab52abe735b200abb0f053ad8a3d0da633487c0c98cf03dc806c2b3bd049a1',
+          dynamic_entries: :auto,
+          raise_errors: true
+        )
+
+        preview_client = Contentful::Client.new(
+          space: 'f3abi4dqvrhg',
+          access_token: '06c28ef41823bb636714dfd812066fa026a49e95041a0e94903d6cf016bba50e',
+          dynamic_entries: :auto,
+          api_url: 'preview.contentful.com',
+          raise_errors: true
+        )
+
+        delivery_cat = delivery_client.assets.first
+        preview_cat = preview_client.assets.first
+
+        expect(preview_cat.title).not_to eq delivery_cat
+        expect(preview_cat.title).to eq 'Cat'
+        expect(delivery_cat.title).to eq 'Foo'
+      }
     end
   end
 end

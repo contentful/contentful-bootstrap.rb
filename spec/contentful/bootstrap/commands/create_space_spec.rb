@@ -134,6 +134,25 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
         subject.run
       }
     end
+
+    context 'with no_publish set to true' do
+      subject { described_class.new token, 'foo', json_template: 'bar', trigger_oauth: false, quiet: true, no_publish: true }
+
+      it 'calls JsonTemplate with no_publish' do
+        allow(Contentful::Bootstrap::Support).to receive(:gets).and_return('y')
+        allow(Contentful::Bootstrap::Support).to receive(:gets).and_return('n')
+        allow(::File).to receive(:exist?) { true }
+
+        mock_template = Object.new
+
+        expect(subject).to receive(:fetch_space) { space_double }
+        expect(mock_template).to receive(:run)
+
+        expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', false, true, true, false, true) { mock_template }
+
+        subject.run
+      end
+    end
   end
 
   describe 'integration' do

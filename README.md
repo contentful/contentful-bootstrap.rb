@@ -26,7 +26,7 @@ $ gem install contentful_bootstrap
 You can create spaces by doing:
 
 ```bash
-$ contentful_bootstrap create_space <space_name> [--template template_name] [--json-template template_path] [--locale locale_code] [--mark-processed] [--config CONFIG_PATH] [--quiet]
+$ contentful_bootstrap create_space <space_name> [--template template_name] [--json-template template_path] [--locale locale_code] [--mark-processed] [--no-publish] [--config CONFIG_PATH] [--quiet]
 ```
 
 You can also generate new Delivery API Tokens by doing:
@@ -38,13 +38,13 @@ $ contentful_bootstrap generate_token <space_id> [--name token_name] [--config C
 You can also generate JSON Templates from existing spaces by doing:
 
 ```bash
-$ contentful_bootstrap generate_json <space_id> <delivery_api_access_token> [--output-file OUTPUT PATH] [--content-types-only] [--quiet]
+$ contentful_bootstrap generate_json <space_id> <delivery_api_access_token> [--output-file OUTPUT PATH] [--content-types-only] [--use-preview] [--quiet]
 ```
 
 You can update existing spaces from JSON Templates by doing:
 
 ```bash
-$ contentful_bootstrap update_space <space_id> -j template_path [--mark-processed] [--skip-content-types] [--quiet]
+$ contentful_bootstrap update_space <space_id> -j template_path [--mark-processed] [--skip-content-types] [--no-publish] [--quiet]
 ```
 
 ### Built-in templates
@@ -89,6 +89,7 @@ options = {
   json_template: "/path/to/template.json", # Will use the JSON file specified as a Template
   locale: "es-AR", # Will create the space with the specified locale code as default locale, defaults to "en-US"
   mark_processed: false, # if true will mark all resources as 'bootstrapProcessed' and will be avoided for update_space calls (doesnt affect create_space)
+  no_publish: false, # if true it won't publish your entries or assets
   trigger_oauth: true, # if true will trigger OAuth process
   quiet: false, # if true will not output to STDOUT
   no_input: false # if true all input operations won't be done, exceptions thrown with alternatives through configuration file in cases in which it cannot proceed
@@ -105,6 +106,7 @@ options = {
   mark_processed: false, # if true will mark all resources as 'bootstrapProcessed and will be avoided on future update_space calls
   trigger_oauth: true, # if true will trigger OAuth process
   skip_content_types: false, # if true will avoid creating the content types
+  no_publish: false, # if true it won't publish your entries or assets
   quiet: false, # if true will not output to STDOUT
   no_input: false # if true all input operations won't be done, exceptions thrown with alternatives through configuration file in cases in which it cannot proceed
 }
@@ -134,10 +136,12 @@ To Generate a JSON Template from an exising Space
 ```ruby
 Contentful::Bootstrap::CommandRunner.new.generate_json(
   "space_id",
-  access_token: "delivery_api_access_token",
+  access_token: "delivery_or_preview_api_access_token",
+  use_preview: false, # if true will fetch from the Preview API instead of Delivery API
   filename: nil, # path to file in which to store JSON
   content_types_only: false, # if true will not fetch Entries and Assets
-  quiet: false # if true will not output to STDOUT - only when filename is provided
+  quiet: false, # if true will not output to STDOUT - only when filename is provided
+  no_input: false # if true all input operations won't be done, exceptions thrown with alternatives through configuration file in cases in which it cannot proceed
 )
 ```
 
@@ -147,7 +151,9 @@ Additionally, you can send an options hash with the following keys:
 ```ruby
 options = {
   access_token: "access_token" # REQUIRED
+  use_preview: false, # if true will fetch from the Preview API instead of Delivery API
   filename: "template.json", # Will save the JSON to the specified file
+  content_types_only: false, # if true will not fetch Entries and Assets
   quiet: false, # if true will not output to STDOUT
   no_input: false # if true all input operations won't be done, exceptions thrown with alternatives through configuration file in cases in which it cannot proceed
 }
@@ -185,6 +191,37 @@ a common baseline. You can find a complete example [here](./examples/templates/c
 
 Using the `--mark-processed` option alongside `--json-template` will mark all resources as `bootstrapProcessed`,
 which will make it so `update_space` calls avoid already created resources. (A resource being either a Content Type, Entry or Asset).
+
+## Workflow for backing up draft/updated content
+
+In many cases, you want to have a dump of your whole space, including draft/updated content.
+To achieve this, do the following:
+
+1. Export the content:
+
+```bash
+# Export published content
+contentful_bootstrap generate_json <SPACE_ID> <DELIVERY_TOKEN> -o bootstrap-published.json
+
+# Export draft/updated content
+contentful_bootstrap generate_json <SPACE_ID> <PREVIEW_TOKEN> -o bootstrap-preview.json --use-preview
+```
+
+> Notice that on the second command we're using the `--use-preview` flag to use the Preview API to fetch the content.
+
+2. Create or update a space with the templates:
+
+```bash
+# Import published content
+contentful_bootstrap update_space <SPACE_ID> -j bootstrap-published.json
+
+# Import draft/updated content
+contentful_bootstrap update_space <SPACE_ID> -j bootstrap-preview.json --no-publish
+```
+
+> Notice that on the second command we're using the `--no-publish` flag to avoid publishing content that was originally draft/updated.
+
+With this simple two-step process, you ensure that your content is fully reproducible, even if it's in draft state.
 
 ## Contributing
 

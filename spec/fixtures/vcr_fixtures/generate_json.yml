@@ -7,10 +7,11 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
-      User-Agent:
-      - RubyContentfulGem/0.7.0
+      X-Contentful-User-Agent:
+      - sdk contentful.rb/2.2.1; integration bootstrap/3.8.0; platform ruby/2.4.1;
+        os macOS/16;
       Authorization:
-      - Bearer foobar
+      - Bearer 48d7db7d4cd9d09df573c251d456f4acc72141b92f36e57f8684b36cf5cfff6e
       Content-Type:
       - application/vnd.contentful.delivery.v1+json
       Accept-Encoding:
@@ -19,13 +20,15 @@ http_interactions:
       - close
       Host:
       - cdn.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
   response:
     status:
       code: 200
       message: OK
     headers:
       Access-Control-Allow-Headers:
-      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature
       Access-Control-Allow-Methods:
       - GET,HEAD,OPTIONS
       Access-Control-Allow-Origin:
@@ -40,68 +43,54 @@ http_interactions:
       - gzip
       Content-Type:
       - application/vnd.contentful.delivery.v1+json
+      Etag:
+      - W/"ad6de3f9d15a53a81ece05286c43ad30"
       Server:
-      - nginx
+      - Contentful
+      X-Content-Type-Options:
+      - nosniff
       X-Contentful-Request-Id:
-      - c40-1967993529
+      - 95efebf7557586c12bf9ef90dc4058aa
       Content-Length:
-      - '986'
+      - '1100'
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 19 Nov 2015 19:42:11 GMT
+      - Thu, 09 Nov 2017 14:52:42 GMT
       Via:
       - 1.1 varnish
       Age:
-      - '0'
+      - '75'
       Connection:
       - close
       X-Served-By:
-      - cache-iad2140-IAD
+      - cache-ams4142-AMS
       X-Cache:
-      - MISS
+      - HIT
       X-Cache-Hits:
-      - '0'
+      - '1'
+      X-Timer:
+      - S1510239162.418057,VS0,VE0
       Vary:
       - Accept-Encoding
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        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
+        H4sIAAAAAAAAA91ZS3PTMBC+91dozJWmtvNomlsoZaZAmTJxhxamB8VRUk38imU3pEz/O5Js2ZIth0AygJtDa3ml1b60+nb94wgAg2yIMQI/6CMdJJsI0ZExjmO4Mei759dsThIm0KPvu3xEljiiA5MPPOzjhI4sMxvjBPmM4TfOMGNb2YXvRCLosq3EjOylJAt7wV8KmT7iYGmwPcsf3T1YOrnME86xMgHPmDprz3oyI+iZ/Ueulfg9F89cz+xnZGsGt+vIgROML+3x0v6yNkM8WEGJfyHYeRgkKEi4HBIbN0YwQbMxs45hm1bv2LKPLdOxeiN7MOp2O/3e8Ku8II1myoL+sWkdd+mC7siyRr3TTm9wqiyI0SMmOAzoBr1c/EIPY4ZJ5MHNO4w8boMEJ14pnxFAn3v6nG65CONNIYgxQ8SNcZRkjA3nARPgZioC5gswQ3McIAKSBwRIEqduksYIhHMAQRSHMzoGbo3rnMlRBgYzteL6zOiqkGxSIaijyM9JIjIc9D1RHG94oQs9/ISY5nPoESSHhRGjVYpjTqTiqzRqNjj1GhaGNNapSwVTXfRolMLUeqp4wviXNUpjsO+uUl3f39FJMZR8vMaEoKQ8PNKB0ags/P9WiiWFs7BA44QD+HY/Q5TOzZ/u+f9c7xYnNvLuyfk6naRXQze8WG8W6OYOkQPltf7IHHRsu/sbec0edswzuymvDX6Z19zQj2Cw+cTymQixImm8iWEwO0xqmzJW4KRIcT4M0jnkuS8GNP3LKXS3ZKeTXEl555lqgB8W5fgc4HT8jcznhYtQn/k+1igvJfNlPmvMa21KfGXIaVL8Gk0JBXt6937REYWHJxt/Gnp/eGEfKqlv1S1Zs3s+1uvm6Ijt0Q35EFeML2Lyok5qj17RQxg0ROM1I4FX+hSalToq7NkVPe4XjMqeom6ST5oEcTVnhlIfKcilNQNF6hxZZwiFXSEUp7xY/GJfr+a3N+/XF8PV5O5DemXeDNbDK8m5exRm1umob3ZOBzsDmK416g47w7OzJgBjWb9EMHnRpEcw11lFdRgMI8qzP4IrOjEVuJKL2l64Qrx0oc/5kxqlRYkxi6CXj0gILfiZW9zQCxvu7gmdcuLQOSfn9UntcSn24aLhrrusk4Re7bjpdG2+6j0n35y8B1l2ASttCuUi3I754EKuguXOU43SLovugx22mizv8mClfSAZLu8t1ujtMt8OAVlgrQx7qRiO35EsROU+sWiQZwvEX6Oh6VzhD4CM9FS0x0b3W87HBe9USAy1PXBNvRfFuNJeL7os13WScPGn1J9WC6mdm7P7wesSAG8NYt7X0d/6aveI+1HoVQuKf96frTh2e392lcKA9trLrj9XTtSBn7VUofol/dqx+L99Spap3qOTDzf6KlCTI/+WR3eM0639lvEjLerZdwsAK19C/itQk6uad9Lp6P7o+egnqFCFvIYcAAA=
     http_version: 
-  recorded_at: Thu, 19 Nov 2015 19:42:11 GMT
+  recorded_at: Thu, 09 Nov 2017 14:52:42 GMT
 - request:
     method: get
-    uri: https://cdn.contentful.com/spaces/wl1z0pal05vy/assets?limit=1000
+    uri: https://cdn.contentful.com/spaces/wl1z0pal05vy/assets?limit=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      User-Agent:
-      - RubyContentfulGem/0.7.0
+      X-Contentful-User-Agent:
+      - sdk contentful.rb/2.2.1; integration bootstrap/3.8.0; platform ruby/2.4.1;
+        os macOS/16;
       Authorization:
-      - Bearer foobar
+      - Bearer 48d7db7d4cd9d09df573c251d456f4acc72141b92f36e57f8684b36cf5cfff6e
       Content-Type:
       - application/vnd.contentful.delivery.v1+json
       Accept-Encoding:
@@ -110,13 +99,15 @@ http_interactions:
       - close
       Host:
       - cdn.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
   response:
     status:
       code: 200
       message: OK
     headers:
       Access-Control-Allow-Headers:
-      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature
       Access-Control-Allow-Methods:
       - GET,HEAD,OPTIONS
       Access-Control-Allow-Origin:
@@ -131,85 +122,54 @@ http_interactions:
       - gzip
       Content-Type:
       - application/vnd.contentful.delivery.v1+json
+      Etag:
+      - W/"584cf5465792e7532784913f8ff53120"
       Server:
-      - nginx
+      - Contentful
+      X-Content-Type-Options:
+      - nosniff
       X-Contentful-Request-Id:
-      - 90a-2080586276
+      - 24ea45a73e857c776912e4b928e421e9
       Content-Length:
-      - '1730'
+      - '474'
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 19 Nov 2015 19:42:12 GMT
+      - Thu, 09 Nov 2017 14:52:42 GMT
       Via:
       - 1.1 varnish
       Age:
-      - '0'
+      - '75'
       Connection:
       - close
       X-Served-By:
-      - cache-iad2122-IAD
+      - cache-ams4130-AMS
       X-Cache:
-      - MISS
+      - HIT
       X-Cache-Hits:
-      - '0'
+      - '1'
+      X-Timer:
+      - S1510239163.511343,VS0,VE1
       Vary:
       - Accept-Encoding
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        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
-        spvHQXv3/3df3/0JIfbszXknAAA=
+        H4sIAAAAAAAAA5VTS4+bMBC+51cgn5tgII+SW7Sq2kPTHrJVqlY9eO0hODGPYpOIrPLfaw9hgVUPuz6A5/HN45vx88TziG40WXvP9moF05RgJbKpKtYQq7t9cD6mMExZfRCgqE+ytBJFQclMGmdDSRrIXLzfGK+N+ioJJtIl4y5T59EqB6U4BSq7kr7K/ERcjv7Y3Pnp8V7yDiO+cpDCdXNRwZWWTNHFGZvqzu3ljm22h7SYn5zmzerzXm8/bR9gs9t/D+tsEL6nSmswQwOvgBkQG0cKCWmwmNJgGtHHIFpHizWNZgFd/hoC6lK8D1DBWWpZ5B3r98JVwZnC8UE+/bHrOn3pjSQSlOin7WDESNNivtRCF7m3Z0p5D3XpDSsUoHklS9PmJFuoeMpyITV4MmOHIe02CcYbDbau3PYQ30dvPeNFbiA3Sa3sNfOH8/H/S7wPUfIUr4I4Ctk8BlgyESU8jEOerHgwf4r849+zYVfeJBcNLI2TrNHX2bE8jDaCCDBMqjEFSIOWV1f1/ONqgYvcH9J2OO4IMRcpTGpBS4ovYQRKQR5StwHWOLL1O3d/XB0MifvGMhzg27q509i9ACzUP5Zw6Je8S9f+3ffP5Db5B+qjZIb5AwAA
     http_version: 
-  recorded_at: Thu, 19 Nov 2015 19:42:12 GMT
+  recorded_at: Thu, 09 Nov 2017 14:52:42 GMT
 - request:
     method: get
-    uri: https://cdn.contentful.com/spaces/wl1z0pal05vy/entries?limit=1000
+    uri: https://cdn.contentful.com/spaces/wl1z0pal05vy/assets?limit=1000&order=sys.createdAt&skip=0
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      User-Agent:
-      - RubyContentfulGem/0.7.0
+      X-Contentful-User-Agent:
+      - sdk contentful.rb/2.2.1; integration bootstrap/3.8.0; platform ruby/2.4.1;
+        os macOS/16;
       Authorization:
-      - Bearer foobar
+      - Bearer 48d7db7d4cd9d09df573c251d456f4acc72141b92f36e57f8684b36cf5cfff6e
       Content-Type:
       - application/vnd.contentful.delivery.v1+json
       Accept-Encoding:
@@ -218,13 +178,15 @@ http_interactions:
       - close
       Host:
       - cdn.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
   response:
     status:
       code: 200
       message: OK
     headers:
       Access-Control-Allow-Headers:
-      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature
       Access-Control-Allow-Methods:
       - GET,HEAD,OPTIONS
       Access-Control-Allow-Origin:
@@ -239,16 +201,99 @@ http_interactions:
       - gzip
       Content-Type:
       - application/vnd.contentful.delivery.v1+json
+      Etag:
+      - W/"f79213c9f920d5e4a7d22604026908eb"
       Server:
-      - nginx
+      - Contentful
+      X-Content-Type-Options:
+      - nosniff
       X-Contentful-Request-Id:
-      - 90a-2080586281
+      - 621bb1a25967f538c0f2e6ce760163db
       Content-Length:
-      - '5049'
+      - '1725'
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 19 Nov 2015 19:42:13 GMT
+      - Thu, 09 Nov 2017 14:52:42 GMT
+      Via:
+      - 1.1 varnish
+      Age:
+      - '75'
+      Connection:
+      - close
+      X-Served-By:
+      - cache-ams4127-AMS
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Timer:
+      - S1510239163.624895,VS0,VE0
+      Vary:
+      - Accept-Encoding
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+    http_version: 
+  recorded_at: Thu, 09 Nov 2017 14:52:42 GMT
+- request:
+    method: get
+    uri: https://cdn.contentful.com/spaces/wl1z0pal05vy/entries?limit=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Contentful-User-Agent:
+      - sdk contentful.rb/2.2.1; integration bootstrap/3.8.0; platform ruby/2.4.1;
+        os macOS/16;
+      Authorization:
+      - Bearer 48d7db7d4cd9d09df573c251d456f4acc72141b92f36e57f8684b36cf5cfff6e
+      Content-Type:
+      - application/vnd.contentful.delivery.v1+json
+      Accept-Encoding:
+      - gzip
+      Connection:
+      - close
+      Host:
+      - cdn.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature
+      Access-Control-Allow-Methods:
+      - GET,HEAD,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '86400'
+      Cache-Control:
+      - max-age=0
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/vnd.contentful.delivery.v1+json
+      Etag:
+      - W/"9fd22ae3a4770f507184f32c53109c35"
+      Server:
+      - Contentful
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Request-Id:
+      - cfab284d664c068c3ba7152a53a611a0
+      Content-Length:
+      - '1572'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Nov 2017 14:52:43 GMT
       Via:
       - 1.1 varnish
       Age:
@@ -256,129 +301,98 @@ http_interactions:
       Connection:
       - close
       X-Served-By:
-      - cache-jfk1024-JFK
+      - cache-ams4137-AMS
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
+      X-Timer:
+      - S1510239163.721981,VS0,VE292
       Vary:
       - Accept-Encoding
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        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
-        2bLVEivjFy3FJhGJCEe4fFW3VVuU3DLZUNIM/p+tKW1LMtoyrhbokuQoekeX
-        NFHzWaJqaTmVxTSWynf9LQIsGHJavhWJFFV+5XQ5buE+Lkf//yK9a3yqvcUX
-        /rGkNZV2JfW6WXzXddlDfKueMvdfn/rKT/mjMNzI5sG5rZBiuz6QNdlUNM3U
-        2n9/zNceyuahohvNafBE8Gs1RE27/RQEJi/vI5f4pX7A613Vg9JpP592qOe+
-        lqFZmq2alMqqbRl2W5FZW+9AT8iywUxdbm0lcllhvAj5mkvlewo5JFw90nDr
-        wKzEtJuEfH2XPYR8u0xmPxxwyDEm/HrAbiL4A4x0W98kg2pR81kY8RWzC7rm
-        Frota51nM9D1vNEyLFkxFJVKQ8O0mSZZuqqatjZUNatjWmqntUrT7SY6t7kV
-        rluxzAUWKtDAF7mtz6d9n9iW865cDFFvWomWa8R2hy4/VGzvZvcJfbAXwzl+
-        s2DcGfqL+OEXyq+R/T7OOh8br3e1oZrZ1uVnk+BaLmkxdWh12nJHVajWYcyg
-        jjq0lY5iD9u2rFlqay11t0vySiqcVH2kFZm+YPhJBV6QhZx3Fsq8CHZ9Ndbe
-        gq0hBlaapqaWYbDNgr2uyx6CvXS6a+oWd+YU/FpPUq6JxC622/lZOg+RvVpY
-        6czyjCCxwgf1z6swNG13p7stm8/ndddyX8s024ZudTqORU3H6KB8wLZ1c2gz
-        w7AM1W631lK3rDBeZHvNpbO9hVvtHKlas9Op/GDXZuFe12UP4d4uhNEiHd2Z
-        qj+bU5nG4d08mVu/UAiBKm3yur/BaiPOUfVns9r1bNJSOyrycWZnaNnqUFUU
-        yzKoJemSTU3ZVGXaWkve7WY7u3ia3U9dqZzaYLMzTfwi12suJO0t15p8pLRR
-        BbkN6C6nu9Z0+aFy/fBu8PDaO51Alp/C17UoVl3D/WAsVS/9ZEPhiD/C3Hhd
-        kc8NKLesqFI14N4H5a7njRbVh45k2rjvTjsMkJZlDAF6y5aj2ZrdlqRWlabb
-        JfjpNbaNDpX4MTvciXgJppGuMGozm/uLLzLJSrMtVWqSN5tlbU2XHyq+PNv8
-        d11Wpl9PP54Mfh0SLSvmJnuM17uKsNHWtGczx7Xc0bJZp62zjqPYRpsOTXXo
-        6G3JlkyrY8jU1lmrhqrbpXilUOBpAuI4r94RCQhcukpesLDGmqK9/eW3jd82
-        a2rmN4Bh2poue8jvasy8q1qvbH+7b17UK/5CEHwziIZE9q7iD/tZtfb7GPB6
-        7mq1LbWtaCaw8LbRMRmTnI5DZUd2tI5tU1trlQlaFvyn7rJ48jf8/cdvf/z2
-        fx7fr0m4WwAA
+        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
     http_version: 
-  recorded_at: Thu, 19 Nov 2015 19:42:13 GMT
+  recorded_at: Thu, 09 Nov 2017 14:52:42 GMT
+- request:
+    method: get
+    uri: https://cdn.contentful.com/spaces/wl1z0pal05vy/entries?limit=1000&order=sys.createdAt&skip=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Contentful-User-Agent:
+      - sdk contentful.rb/2.2.1; integration bootstrap/3.8.0; platform ruby/2.4.1;
+        os macOS/16;
+      Authorization:
+      - Bearer 48d7db7d4cd9d09df573c251d456f4acc72141b92f36e57f8684b36cf5cfff6e
+      Content-Type:
+      - application/vnd.contentful.delivery.v1+json
+      Accept-Encoding:
+      - gzip
+      Connection:
+      - close
+      Host:
+      - cdn.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature
+      Access-Control-Allow-Methods:
+      - GET,HEAD,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '86400'
+      Cache-Control:
+      - max-age=0
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/vnd.contentful.delivery.v1+json
+      Etag:
+      - W/"0638a0d29941f0809190a4eb2417c917"
+      Server:
+      - Contentful
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Request-Id:
+      - 0a9e018da0e6ef64244842989f0cdc94
+      Content-Length:
+      - '4931'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Nov 2017 14:52:43 GMT
+      Via:
+      - 1.1 varnish
+      Age:
+      - '0'
+      Connection:
+      - close
+      X-Served-By:
+      - cache-ams4438-AMS
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      X-Timer:
+      - S1510239163.196560,VS0,VE124
+      Vary:
+      - Accept-Encoding
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+    http_version: 
+  recorded_at: Thu, 09 Nov 2017 14:52:42 GMT
 recorded_with: VCR 2.9.3

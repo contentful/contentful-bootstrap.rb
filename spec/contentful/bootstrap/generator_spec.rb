@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe Contentful::Bootstrap::Generator do
-  subject { Contentful::Bootstrap::Generator.new('wl1z0pal05vy', '48d7db7d4cd9d09df573c251d456f4acc72141b92f36e57f8684b36cf5cfff6e', false) }
+  subject { Contentful::Bootstrap::Generator.new('wl1z0pal05vy', '48d7db7d4cd9d09df573c251d456f4acc72141b92f36e57f8684b36cf5cfff6e', false, false) }
 
   describe 'user agent headers' do
     it 'client has proper integration data' do
-      expect(subject.client.integration_info).to eq(name: 'bootstrap', version: Contentful::Bootstrap::VERSION)
+      expect(subject.client.app_info).to eq(name: 'bootstrap', version: Contentful::Bootstrap::VERSION)
     end
   end
 
@@ -19,7 +19,7 @@ describe Contentful::Bootstrap::Generator do
     end
 
     context 'with content_types_only set to true' do
-      subject { Contentful::Bootstrap::Generator.new('wl1z0pal05vy', '48d7db7d4cd9d09df573c251d456f4acc72141b92f36e57f8684b36cf5cfff6e', true) }
+      subject { Contentful::Bootstrap::Generator.new('wl1z0pal05vy', '48d7db7d4cd9d09df573c251d456f4acc72141b92f36e57f8684b36cf5cfff6e', true, false) }
 
       it 'can generate a JSON template for a given space with only Content Types' do
         vcr('generate_json_content_types_only') {

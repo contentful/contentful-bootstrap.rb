@@ -26,6 +26,9 @@ subcommands = {
     opts.on("-q", "--quiet", "Don't output to STDOUT") do |q|
       options[:quiet] = q
     end
+    opts.on("-n", "--no-publish", "Don't publish") do |n|
+      options[:no_publish] = n
+    end
     opts.on_tail("-h", "--help", "Print this message") do
       puts opts
     end
@@ -46,6 +49,9 @@ subcommands = {
     end
     opts.on("-c CONFIG_PATH", "--config CONFIG_PATH", "Specify Configuration Path") do |c|
       options[:config_path] = c
+    end
+    opts.on("-n", "--no-publish", "Don't publish") do |n|
+      options[:no_publish] = n
     end
     opts.on("-q", "--quiet", "Don't output to STDOUT") do |q|
       options[:quiet] = q
@@ -73,6 +79,9 @@ subcommands = {
     opts.banner = "Usage: generate_json <space_id> <access_token> [--output-file OUTPUT_PATH]"
     opts.on("-t", "--content-types-only", "Only fetch Content Types") do |t|
       options[:content_types_only] = t
+    end
+    opts.on("-p", "--use-preview", "Use Preview API") do |p|
+      options[:use_preview] = p
     end
     opts.on("-o OUTPUT_PATH", "--output-file OUTPUT_PATH", "Specify Output File") do |f|
       options[:filename] = f

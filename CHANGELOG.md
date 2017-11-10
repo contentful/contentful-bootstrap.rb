@@ -1,6 +1,17 @@
 # Change Log
 
 ## Unreleased
+### Fixed
+* Fixed `quiet` not being forwarded properly to `generate_json` and `update_space`
+* Fixed `X-Contentful-User-Agent` headers now use `application` instead of `integration` header.
+
+### Added
+* Added `--use-preview` flag to `generate_json` command [#62](https://github.com/contentful/contentful-bootstrap.rb/issues/62)
+* Added `--no-publish` flag to `create_space` and `update_space` commands [#62](https://github.com/contentful/contentful-bootstrap.rb/issues/62)
+
+### Changed
+* `generate_json` now imports all available content in your space [#62](https://github.com/contentful/contentful-bootstrap.rb/issues/62)
+* Assets can now be updated when using `update_space`.
 
 ## v3.8.0
 ### Changed

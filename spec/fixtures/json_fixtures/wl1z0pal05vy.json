@@ -241,6 +241,34 @@
     }
   ],
   "entries": {
+    "6XwpTaSiiI2Ak2Ww0oi6qa": [
+      {
+        "sys": {
+          "id": "7LAnCobuuWYSqks6wAwY2a"
+        },
+        "fields": {
+          "title": "Home & Kitchen",
+          "icon": {
+            "linkType": "Asset",
+            "id": "6m5AJ9vMPKc8OUoQeoCS4o"
+          },
+          "categoryDescription": "Shop for furniture, bedding, bath, vacuums, kitchen products, and more"
+        }
+      },
+      {
+        "sys": {
+          "id": "24DPGBDeGEaYy8ms4Y8QMQ"
+        },
+        "fields": {
+          "title": "Toys",
+          "icon": {
+            "linkType": "Asset",
+            "id": "6t4HKjytPi0mYgs240wkG"
+          },
+          "categoryDescription": "Shop for toys, games, educational aids"
+        }
+      }
+    ],
     "sFzTZbSuM8coEwygeUYes": [
       {
         "sys": {
@@ -248,16 +276,16 @@
         },
         "fields": {
           "companyName": "Lemnos",
-          "website": "http://www.lemnos.jp/en/",
-          "email": "info@acgears.com",
-          "phone": [
-            "+1 212 260 2269"
-          ],
           "logo": {
             "linkType": "Asset",
             "id": "2Y8LhXLnYAYqKCGEWG4EKI"
           },
-          "companyDescription": "TAKATA Lemnos Inc. was founded in 1947 as a brass casting manufacturing industry in Takaoka-city, Toyama Prefecture, Japan and we launched out into the full-scale business trade with Seiko Clock Co., Ltd. since 1966.\n\nWe entered into the development for the original planning from late 1980 and \"Lemnos Brand\" recognized as the global design clock by a masterpiece \"HOLA\" designed by Kazuo KAWASAKI which released in 1989.\n\nAfterwards, we made a lot of projects with well-known designers who took in active in Japan and overseas such as Riki WATANABE, Kazuo KAWASAKI, Shin AZUMI, Tomoko AZUMI, Kanae TSUKAMOTO etc. and we made announcement of their fine works abounding in artistry and prominent designs. In addition, we realized to make a special project by the collaboration with Andrea Branzi, a well-known architect in the world.\n\nLemnos brand products are now highly praised from the design shops and the interior shops all over the world.\n\nIn recent years, we also have been given high priority to develop interior accessories making full use of our traditional techniques by the founding manufacturer and we always focus our minds on the development for the new Lemnos products in the new market.\n\nOur Lemnos products are made carefully by our craftsmen finely honed skillful techniques in Japan. They surely bring out the attractiveness of the materials to the maximum and create fine products not being influenced on the fashion trend accordingly. TAKATA Lemnos Inc. definitely would like to be innovative and continuously propose the beauty lasts forever."
+          "companyDescription": "TAKATA Lemnos Inc. was founded in 1947 as a brass casting manufacturing industry in Takaoka-city, Toyama Prefecture, Japan and we launched out into the full-scale business trade with Seiko Clock Co., Ltd. since 1966.\n\nWe entered into the development for the original planning from late 1980 and \"Lemnos Brand\" recognized as the global design clock by a masterpiece \"HOLA\" designed by Kazuo KAWASAKI which released in 1989.\n\nAfterwards, we made a lot of projects with well-known designers who took in active in Japan and overseas such as Riki WATANABE, Kazuo KAWASAKI, Shin AZUMI, Tomoko AZUMI, Kanae TSUKAMOTO etc. and we made announcement of their fine works abounding in artistry and prominent designs. In addition, we realized to make a special project by the collaboration with Andrea Branzi, a well-known architect in the world.\n\nLemnos brand products are now highly praised from the design shops and the interior shops all over the world.\n\nIn recent years, we also have been given high priority to develop interior accessories making full use of our traditional techniques by the founding manufacturer and we always focus our minds on the development for the new Lemnos products in the new market.\n\nOur Lemnos products are made carefully by our craftsmen finely honed skillful techniques in Japan. They surely bring out the attractiveness of the materials to the maximum and create fine products not being influenced on the fashion trend accordingly. TAKATA Lemnos Inc. definitely would like to be innovative and continuously propose the beauty lasts forever.",
+          "website": "http://www.lemnos.jp/en/",
+          "email": "info@acgears.com",
+          "phone": [
+            "+1 212 260 2269"
+          ]
         }
       },
       {
@@ -284,12 +312,12 @@
           "id": "JrePkDVYomE8AwcuCUyMi"
         },
         "fields": {
-          "companyDescription": "Playsam is the leading Scandinavian design company for executive wooden toy gift. Scandinavian design playful creativity, integrity and sophistication are Playsam. Scandinavian design and wooden toy makes Playsam gift lovely to the world of design since 1984.",
           "companyName": "Playsam",
           "logo": {
             "linkType": "Asset",
             "id": "4zj1ZOfHgQ8oqgaSKm4Qo2"
           },
+          "companyDescription": "Playsam is the leading Scandinavian design company for executive wooden toy gift. Scandinavian design playful creativity, integrity and sophistication are Playsam. Scandinavian design and wooden toy makes Playsam gift lovely to the world of design since 1984.",
           "website": "http://playsam.com/"
         }
       }
@@ -301,12 +329,21 @@
         },
         "fields": {
           "productName": "SoSo Wall Clock",
+          "slug": "soso-wall-clock",
           "productDescription": "The newly released SoSo Clock from Lemnos marries simple, clean design and bold, striking features. Its saturated marigold face is a lively pop of color to white or grey walls, but would also pair nicely with navy and maroon. Where most clocks feature numbers at the border of the clock, the SoSo brings them in tight to the middle, leaving a wide space between the numbers and the slight frame. The hour hand provides a nice interruption to the black and yellow of the clock - it is featured in a brilliant white. Despite its bold color and contrast, the SoSo maintains a clean, pure aesthetic that is suitable to a variety of contemporary interiors.",
+          "sizetypecolor": "10\" x 2.2\"",
           "image": [
             {
               "linkType": "Asset",
               "id": "KTRF62Q4gg60q6WCsWKw8"
             }
+          ],
+          "tags": [
+            "home décor",
+            "clocks",
+            "interior design",
+            "yellow",
+            "gifts"
           ],
           "categories": [
             {
@@ -315,8 +352,6 @@
             }
           ],
           "price": 120,
-          "quantity": 3,
-          "sku": "B00MG4ULK2",
           "tags": [
             "home décor",
             "clocks",
@@ -329,8 +364,46 @@
             "linkType": "Entry",
             "id": "4LgMotpNF6W20YKmuemW0a"
           },
+          "quantity": 3,
+          "sku": "B00MG4ULK2",
           "website": "http://store.dwell.com/soso-wall-clock.html",
           "slug": "soso-wall-clock"
+        }
+      },
+      {
+        "sys": {
+          "id": "3DVqIYj4dOwwcKu6sgqOgg"
+        },
+        "fields": {
+          "productName": "Hudson Wall Cup",
+          "slug": "hudson-wall-cup",
+          "productDescription": "Wall Hanging Glass Flower Vase and Terrarium",
+          "sizetypecolor": "3 x 3 x 5 inches; 5.3 ounces",
+          "image": [
+            {
+              "linkType": "Asset",
+              "id": "Xc0ny7GWsMEMCeASWO2um"
+            }
+          ],
+          "tags": [
+            "vase",
+            "flowers",
+            "accessories"
+          ],
+          "categories": [
+            {
+              "linkType": "Entry",
+              "id": "7LAnCobuuWYSqks6wAwY2a"
+            }
+          ],
+          "price": 11,
+          "brand": {
+            "linkType": "Entry",
+            "id": "651CQ8rLoIYCeY6G0QG22q"
+          },
+          "quantity": 101,
+          "sku": "B00E82D7I8",
+          "website": "http://www.amazon.com/dp/B00E82D7I8/"
         }
       },
       {
@@ -338,8 +411,8 @@
           "id": "6dbjWqNd9SqccegcqYq224"
         },
         "fields": {
-          "slug": "whisk-beater",
           "productName": "Whisk Beater",
+          "slug": "whisk-beater",
           "productDescription": "A creative little whisk that comes in 8 different colors. Handy and easy to clean after use. A great gift idea.",
           "sizetypecolor": "0.8 x 0.8 x 11.2 inches; 1.6 ounces",
           "image": [
@@ -361,14 +434,14 @@
               "id": "7LAnCobuuWYSqks6wAwY2a"
             }
           ],
-          "website": "http://www.amazon.com/dp/B0081F2CCK/",
-          "sku": "B0081F2CCK",
-          "quantity": 89,
+          "price": 22,
           "brand": {
             "linkType": "Entry",
             "id": "651CQ8rLoIYCeY6G0QG22q"
           },
-          "price": 22
+          "quantity": 89,
+          "sku": "B0081F2CCK",
+          "website": "http://www.amazon.com/dp/B0081F2CCK/"
         }
       },
       {
@@ -376,8 +449,8 @@
           "id": "5KsDBWseXY6QegucYAoacS"
         },
         "fields": {
-          "slug": "playsam-streamliner-classic-car-espresso",
           "productName": "Playsam Streamliner Classic Car, Espresso",
+          "slug": "playsam-streamliner-classic-car-espresso",
           "productDescription": "A classic Playsam design, the Streamliner Classic Car has been selected as Swedish Design Classic by the Swedish National Museum for its inventive style and sleek surface. It's no wonder that this wooden car has also been a long-standing favorite for children both big and small!",
           "sizetypecolor": "Length: 135 mm | color: espresso, green, or icar (white)",
           "image": [
@@ -399,74 +472,14 @@
               "id": "24DPGBDeGEaYy8ms4Y8QMQ"
             }
           ],
-          "website": "http://www.amazon.com/dp/B001R6JUZ2/",
-          "sku": "B001R6JUZ2",
-          "quantity": 56,
           "price": 44,
           "brand": {
             "linkType": "Entry",
             "id": "JrePkDVYomE8AwcuCUyMi"
-          }
-        }
-      },
-      {
-        "sys": {
-          "id": "3DVqIYj4dOwwcKu6sgqOgg"
-        },
-        "fields": {
-          "slug": "hudson-wall-cup",
-          "productName": "Hudson Wall Cup",
-          "productDescription": "Wall Hanging Glass Flower Vase and Terrarium",
-          "sizetypecolor": "3 x 3 x 5 inches; 5.3 ounces",
-          "image": [
-            {
-              "linkType": "Asset",
-              "id": "Xc0ny7GWsMEMCeASWO2um"
-            }
-          ],
-          "tags": [
-            "vase",
-            "flowers",
-            "accessories"
-          ],
-          "categories": [
-            {
-              "linkType": "Entry",
-              "id": "7LAnCobuuWYSqks6wAwY2a"
-            }
-          ],
-          "price": 11,
-          "quantity": 101,
-          "sku": "B00E82D7I8",
-          "website": "http://www.amazon.com/dp/B00E82D7I8/"
-        }
-      }
-    ],
-    "6XwpTaSiiI2Ak2Ww0oi6qa": [
-      {
-        "sys": {
-          "id": "7LAnCobuuWYSqks6wAwY2a"
-        },
-        "fields": {
-          "title": "Home & Kitchen",
-          "categoryDescription": "Shop for furniture, bedding, bath, vacuums, kitchen products, and more",
-          "icon": {
-            "linkType": "Asset",
-            "id": "6m5AJ9vMPKc8OUoQeoCS4o"
-          }
-        }
-      },
-      {
-        "sys": {
-          "id": "24DPGBDeGEaYy8ms4Y8QMQ"
-        },
-        "fields": {
-          "title": "Toys",
-          "categoryDescription": "Shop for toys, games, educational aids",
-          "icon": {
-            "linkType": "Asset",
-            "id": "6t4HKjytPi0mYgs240wkG"
-          }
+          },
+          "quantity": 56,
+          "sku": "B001R6JUZ2",
+          "website": "http://www.amazon.com/dp/B001R6JUZ2/"
         }
       }
     ]
