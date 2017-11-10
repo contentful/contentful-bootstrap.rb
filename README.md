@@ -194,10 +194,10 @@ which will make it so `update_space` calls avoid already created resources. (A r
 
 ## Workflow for backing up draft/updated content
 
-On many cases, you want to have a full dump of your whole space, including draft/updated content.
-To achieve this, do the following steps:
+In many cases, you want to have a dump of your whole space, including draft/updated content.
+To achieve this, do the following:
 
-1. Import the content:
+1. Export the content:
 
 ```bash
 # Export published content
@@ -209,7 +209,7 @@ contentful_bootstrap generate_json <SPACE_ID> <PREVIEW_TOKEN> -o bootstrap-previ
 
 > Notice that on the second command we're using the `--use-preview` flag to use the Preview API to fetch the content.
 
-2. Create or update a space with the imports:
+2. Create or update a space with the templates:
 
 ```bash
 # Import published content
