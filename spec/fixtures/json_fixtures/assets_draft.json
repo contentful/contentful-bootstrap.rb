@@ -1,0 +1,39 @@
+{
+  "version": 3,
+  "contentTypes": [
+    {
+      "id": "testContentType",
+      "name": "Test Content Type",
+      "displayField": "title",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol"
+        }
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "3JX5vcHRhmAmaYwWq0S0wa",
+      "title": "Cat",
+      "file": {
+        "filename": "cat",
+        "url": "https://images.contentful.com/f3abi4dqvrhg/3JX5vcHRhmAmaYwWq0S0wa/9ba45c1084d8530702bcd0de5617c59b/cat.jpg"
+      }
+    }
+  ],
+  "entries": {
+    "testContentType": [
+      {
+        "sys": {
+          "id": "1uT4AXWJ1me40QsAgAeSIi"
+        },
+        "fields": {
+          "title": "Published Entry"
+        }
+      }
+    ]
+  }
+}

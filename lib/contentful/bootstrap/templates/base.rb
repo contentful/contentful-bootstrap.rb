@@ -121,7 +121,7 @@ module Contentful
             rescue Contentful::Management::Conflict
               output "Asset '#{asset_json['id']}' already created! Updating instead."
 
-              asset = spaces.assets.find(asset_json['id']).tap do |a|
+              asset = space.assets.find(asset_json['id']).tap do |a|
                 a.title = asset_json['title']
                 a.file = asset_json['file']
               end
