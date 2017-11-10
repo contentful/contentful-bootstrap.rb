@@ -109,29 +109,39 @@ module Contentful
         end
 
         def create_assets
-          assets.each do |asset|
+          assets.each do |asset_json|
             begin
-              output "Creating Asset '#{asset['title']}'"
+              output "Creating Asset '#{asset_json['title']}'"
               asset = space.assets.create(
-                id: asset['id'],
-                title: asset['title'],
-                file: asset['file']
+                id: asset_json['id'],
+                title: asset_json['title'],
+                file: asset_json['file']
               )
               asset.process_file
-
-              attempts = 0
-              while attempts < 10
-                unless space.assets.find(asset.id).file.url.nil?
-                  asset.publish unless @no_publish
-                  break
-                end
-
-                sleep(1) # Wait for Process
-                attempts += 1
-              end
             rescue Contentful::Management::Conflict
-              output "Asset '#{asset['id']}' already created! Skipping"
-              next
+              output "Asset '#{asset_json['id']}' already created! Updating instead."
+
+              asset = spaces.assets.find(asset_json['id']).tap do |a|
+                a.title = asset_json['title']
+                a.file = asset_json['file']
+              end
+
+              asset.save
+              asset.process_file
+            end
+          end
+
+          assets.each do |asset_json|
+            attempts = 0
+            while attempts < 10
+              asset = space.assets.find(asset_json['id'])
+              unless asset.file.url.nil?
+                asset.publish unless @no_publish
+                break
+              end
+
+              sleep(1) # Wait for Process
+              attempts += 1
             end
           end
         end

@@ -10,6 +10,7 @@
 
 ### Changed
 * `generate_json` now imports all available content in your space [#62](https://github.com/contentful/contentful-bootstrap.rb/issues/62)
+* Assets can now be updated when using `update_space`.
 
 ## v3.8.0
 ### Changed
