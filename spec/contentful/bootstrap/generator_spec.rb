@@ -5,7 +5,7 @@ describe Contentful::Bootstrap::Generator do
 
   describe 'user agent headers' do
     it 'client has proper integration data' do
-      expect(subject.client.integration_info).to eq(name: 'bootstrap', version: Contentful::Bootstrap::VERSION)
+      expect(subject.client.app_info).to eq(name: 'bootstrap', version: Contentful::Bootstrap::VERSION)
     end
   end
 

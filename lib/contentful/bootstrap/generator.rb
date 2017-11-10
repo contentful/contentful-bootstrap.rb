@@ -16,8 +16,8 @@ module Contentful
         @client = Contentful::Client.new(
           access_token: access_token,
           space: space_id,
-          integration_name: 'bootstrap',
-          integration_version: ::Contentful::Bootstrap::VERSION,
+          application_name: 'bootstrap',
+          application_version: ::Contentful::Bootstrap::VERSION,
           api_url: use_preview ? PREVIEW_API_URL : DELIVERY_API_URL
         )
         @content_types_only = content_types_only

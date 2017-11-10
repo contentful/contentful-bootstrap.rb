@@ -3,6 +3,7 @@
 ## Unreleased
 ### Fixed
 * Fixed `quiet` not being forwarded properly to `generate_json` and `update_space`
+* Fixed `X-Contentful-User-Agent` headers now use `application` instead of `integration` header.
 
 ### Added
 * Added `--use-preview` flag to `generate_json` command [#62](https://github.com/contentful/contentful-bootstrap.rb/issues/62)

@@ -39,8 +39,8 @@ module Contentful
             @token.read,
             default_locale: options.fetch(:locale, "en-US"),
             raise_errors: true,
-            integration_name: 'bootstrap',
-            integration_version: ::Contentful::Bootstrap::VERSION
+            application_name: 'bootstrap',
+            application_version: ::Contentful::Bootstrap::VERSION
           )
         end
 
