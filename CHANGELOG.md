@@ -1,6 +1,8 @@
 # Change Log
 
 ## Unreleased
+
+## v3.9.0
 ### Fixed
 * Fixed `quiet` not being forwarded properly to `generate_json` and `update_space`
 * Fixed `X-Contentful-User-Agent` headers now use `application` instead of `integration` header.
