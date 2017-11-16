@@ -1,6 +1,8 @@
 # Change Log
 
 ## Unreleased
+### Fixed
+* Fixed an issue in which assets save as `Contentful::Management::File` objects instead of as JSON when using `--mark-processed`.
 
 ## v3.9.0
 ### Fixed

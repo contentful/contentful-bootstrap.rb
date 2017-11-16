@@ -34,15 +34,18 @@ module Contentful
         def after_run
           return unless mark_processed?
 
-          @json.fetch(CONTENT_TYPES_KEY, []).each do |content_type|
+          # Re-parse JSON to avoid side effects from `Templates::Base`
+          @json = parse_json
+
+          json.fetch(CONTENT_TYPES_KEY, []).each do |content_type|
             content_type[BOOTSTRAP_PROCCESSED_KEY] = true
           end
 
-          @json.fetch(ASSETS_KEY, []).each do |asset|
+          json.fetch(ASSETS_KEY, []).each do |asset|
             asset[BOOTSTRAP_PROCCESSED_KEY] = true
           end
 
-          @json.fetch(ENTRIES_KEY, {}).each do |_content_type_name, entry_list|
+          json.fetch(ENTRIES_KEY, {}).each do |_content_type_name, entry_list|
             entry_list.each do |entry|
               if entry.key?(SYS_KEY)
                 entry[SYS_KEY][BOOTSTRAP_PROCCESSED_KEY] = true
@@ -55,7 +58,18 @@ module Contentful
           ::File.write(@file, JSON.pretty_generate(@json))
         end
 
+        def json
+          @json ||= parse_json
+        end
+
         private
+
+        def parse_json
+          ::JSON.parse(::File.read(@file))
+        rescue
+          output 'File is not JSON. Exiting!'
+          exit(1)
+        end
 
         def check_version
           json_version = json.fetch('version', 0)
@@ -63,13 +77,6 @@ module Contentful
           unless gem_major_version == json_version
             fail "JSON Templates Version Mismatch. Current Version: #{gem_major_version}"
           end
-        end
-
-        def json
-          @json ||= ::JSON.parse(::File.read(@file))
-        rescue
-          output 'File is not JSON. Exiting!'
-          exit(1)
         end
 
         def process_content_types
@@ -127,8 +134,8 @@ module Contentful
               processed_entry['id'] = entry[SYS_KEY]['id'] if entry.key?(SYS_KEY) && entry[SYS_KEY].key?('id')
 
               entry.fetch('fields', {}).each do |field, value|
-                link_fields << field if is_link?(value)
-                array_fields << field if is_array?(value)
+                link_fields << field if link?(value)
+                array_fields << field if array?(value)
 
                 unless link_fields.include?(field) || array_fields.include?(field)
                   processed_entry[field] = value
@@ -141,7 +148,7 @@ module Contentful
 
               array_fields.each do |af|
                 processed_entry[af] = entry['fields'][af].map do |item|
-                  is_link?(item) ? create_link(item) : item
+                  link?(item) ? create_link(item) : item
                 end
               end
 
@@ -173,11 +180,11 @@ module Contentful
           @mark_processed
         end
 
-        def is_link?(value)
+        def link?(value)
           value.is_a?(::Hash) && value.key?('id') && value.key?('linkType')
         end
 
-        def is_array?(value)
+        def array?(value)
           value.is_a?(::Array)
         end
       end
