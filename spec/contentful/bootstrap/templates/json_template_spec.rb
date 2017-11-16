@@ -178,7 +178,50 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
       end
 
       expect(subject).to receive(:after_run).and_call_original
-      expect(::File).to receive(:write)
+
+      expected = {
+        "version": 3,
+        "contentTypes": [
+          {
+            "id": "cat",
+            "name": "Cat",
+            "displayField": "name",
+            "fields": [
+              {
+                "id": "name",
+                "name": "Name",
+                "type": "Symbol"
+              }
+            ],
+            "bootstrapProcessed": true
+          }
+        ],
+        "assets": [
+          {
+            "id": "cat_asset",
+            "title": "Cat",
+            "file": {
+              "filename": "cat",
+              "url": "https://somecat.com/my_cat.jpeg"
+            },
+            "bootstrapProcessed": true
+          }
+        ],
+        "entries": {
+          "cat": [
+            {
+              "sys": {
+                "id": "nyancat",
+                "bootstrapProcessed": true
+              },
+              "fields": {
+                "name": "Nyan Cat"
+              }
+            }
+          ]
+        }
+      }
+      expect(::File).to receive(:write).with(path, JSON.pretty_generate(expected))
 
       subject.run
     end
