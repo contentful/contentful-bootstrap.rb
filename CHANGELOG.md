@@ -1,6 +1,8 @@
 # Change Log
 
 ## Unreleased
+
+## v3.10.0
 ### Added
 * Added `--content-type-ids` filter to `generate_json` command to allow selecting which content types to import.
 

@@ -1,6 +1,6 @@
 module Contentful
   module Bootstrap
-    VERSION = '3.9.1'
+    VERSION = '3.10.0'
 
     def self.major_version
       VERSION.split('.').first.to_i
