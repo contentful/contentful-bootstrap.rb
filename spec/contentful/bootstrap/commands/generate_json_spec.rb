@@ -48,6 +48,38 @@ describe Contentful::Bootstrap::Commands::GenerateJson do
           subject.run
         }
       end
+
+      describe 'specific content types' do
+        it 'can select a single content type' do
+          vcr('generate_json_single_ct') {
+            subject.instance_variable_set(:@space_id, 'cfexampleapi')
+            subject.instance_variable_set(:@access_token, 'b4c0n73n7fu1')
+            subject.instance_variable_set(:@content_type_ids, ['cat'])
+            subject.instance_variable_set(:@quiet, true)
+
+            json_fixture('cfexampleapi_cat') { |json|
+              expect(subject).to receive(:write).with(JSON.pretty_generate(json))
+            }
+
+            subject.run
+          }
+        end
+
+        it 'can select multiple content types' do
+          vcr('generate_json_multi_ct') {
+            subject.instance_variable_set(:@space_id, 'cfexampleapi')
+            subject.instance_variable_set(:@access_token, 'b4c0n73n7fu1')
+            subject.instance_variable_set(:@content_type_ids, ['cat', 'human'])
+            subject.instance_variable_set(:@quiet, true)
+
+            json_fixture('cfexampleapi_cat_human') { |json|
+              expect(subject).to receive(:write).with(JSON.pretty_generate(json))
+            }
+
+            subject.run
+          }
+        end
+      end
     end
 
     describe '#write' do

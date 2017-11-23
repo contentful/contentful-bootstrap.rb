@@ -83,6 +83,9 @@ subcommands = {
     opts.on("-p", "--use-preview", "Use Preview API") do |p|
       options[:use_preview] = p
     end
+    opts.on("-i", "--content-type-ids <ID_1>,<ID_2>", ::Array, "Array of content type IDs to import") do |ids|
+      options[:content_type_ids] = ids
+    end
     opts.on("-o OUTPUT_PATH", "--output-file OUTPUT_PATH", "Specify Output File") do |f|
       options[:filename] = f
     end

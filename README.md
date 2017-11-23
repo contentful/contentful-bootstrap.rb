@@ -38,7 +38,7 @@ $ contentful_bootstrap generate_token <space_id> [--name token_name] [--config C
 You can also generate JSON Templates from existing spaces by doing:
 
 ```bash
-$ contentful_bootstrap generate_json <space_id> <delivery_api_access_token> [--output-file OUTPUT PATH] [--content-types-only] [--use-preview] [--quiet]
+$ contentful_bootstrap generate_json <space_id> <delivery_api_access_token> [--output-file OUTPUT PATH] [--content-type-ids ct_id_1,ct_id_2] [--content-types-only] [--use-preview] [--quiet]
 ```
 
 You can update existing spaces from JSON Templates by doing:
@@ -140,6 +140,7 @@ Contentful::Bootstrap::CommandRunner.new.generate_json(
   use_preview: false, # if true will fetch from the Preview API instead of Delivery API
   filename: nil, # path to file in which to store JSON
   content_types_only: false, # if true will not fetch Entries and Assets
+  content_type_ids: [], # if any ID is specified, JSON will only include those content types and entries that have that content type
   quiet: false, # if true will not output to STDOUT - only when filename is provided
   no_input: false # if true all input operations won't be done, exceptions thrown with alternatives through configuration file in cases in which it cannot proceed
 )
@@ -154,6 +155,7 @@ options = {
   use_preview: false, # if true will fetch from the Preview API instead of Delivery API
   filename: "template.json", # Will save the JSON to the specified file
   content_types_only: false, # if true will not fetch Entries and Assets
+  content_type_ids: [], # if any ID is specified, JSON will only include those content types and entries that have that content type
   quiet: false, # if true will not output to STDOUT
   no_input: false # if true all input operations won't be done, exceptions thrown with alternatives through configuration file in cases in which it cannot proceed
 }
