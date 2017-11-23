@@ -10,9 +10,9 @@ module Contentful
       DELIVERY_API_URL = 'cdn.contentful.com'.freeze
       PREVIEW_API_URL = 'preview.contentful.com'.freeze
 
-      attr_reader :content_types_only, :client
+      attr_reader :content_types_only, :content_type_ids, :client
 
-      def initialize(space_id, access_token, content_types_only, use_preview)
+      def initialize(space_id, access_token, content_types_only, use_preview, content_type_ids)
         @client = Contentful::Client.new(
           access_token: access_token,
           space: space_id,
@@ -21,6 +21,7 @@ module Contentful
           api_url: use_preview ? PREVIEW_API_URL : DELIVERY_API_URL
         )
         @content_types_only = content_types_only
+        @content_type_ids = content_type_ids
       end
 
       def generate_json
@@ -35,7 +36,10 @@ module Contentful
       private
 
       def content_types
-        proccessed_content_types = @client.content_types.map do |type|
+        query = {}
+        query['sys.id[in]'] = content_type_ids.join(',') unless content_type_ids.empty?
+
+        proccessed_content_types = @client.content_types(query).map do |type|
           result = { 'id' => type.sys[:id], 'name' => type.name }
           result['displayField'] = type.display_field unless type.display_field.nil?
 
@@ -80,7 +84,17 @@ module Contentful
         entries = {}
 
         query = { order: 'sys.createdAt', limit: 1000 }
-        entries_count = @client.entries(limit: 1).total
+        count_query = { limit: 1 }
+
+        unless content_type_ids.empty?
+          search_key = 'sys.contentType.sys.id[in]'
+          ids = content_type_ids.join(',')
+
+          query[search_key] = ids
+          count_query[search_key] = ids
+        end
+
+        entries_count = @client.entries(count_query).total
         ((entries_count / 1000) + 1).times do |i|
           query[:skip] = i * 1000
 

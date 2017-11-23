@@ -1,0 +1,202 @@
+{
+  "version": 3,
+  "contentTypes": [
+    {
+      "id": "cat",
+      "name": "Cat",
+      "displayField": "name",
+      "fields": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "Text"
+        },
+        {
+          "id": "likes",
+          "name": "Likes",
+          "type": "Array",
+          "items": {
+            "type": "Symbol"
+          }
+        },
+        {
+          "id": "color",
+          "name": "Color",
+          "type": "Symbol"
+        },
+        {
+          "id": "bestFriend",
+          "name": "Best Friend",
+          "type": "Link",
+          "linkType": "Entry"
+        },
+        {
+          "id": "birthday",
+          "name": "Birthday",
+          "type": "Date"
+        },
+        {
+          "id": "lifes",
+          "name": "Lifes left",
+          "type": "Integer"
+        },
+        {
+          "id": "lives",
+          "name": "Lives left",
+          "type": "Integer"
+        },
+        {
+          "id": "image",
+          "name": "Image",
+          "type": "Link",
+          "linkType": "Asset"
+        }
+      ]
+    },
+    {
+      "id": "human",
+      "name": "Human",
+      "displayField": "name",
+      "fields": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "Text"
+        },
+        {
+          "id": "description",
+          "name": "Description",
+          "type": "Text"
+        },
+        {
+          "id": "likes",
+          "name": "Likes",
+          "type": "Array",
+          "items": {
+            "type": "Symbol"
+          }
+        },
+        {
+          "id": "image",
+          "name": "Image",
+          "type": "Array",
+          "items": {
+            "type": "Link",
+            "linkType": "Asset"
+          }
+        }
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "1x0xpXu4pSGS4OukSyWGUK",
+      "title": "Doge",
+      "file": {
+        "filename": "doge",
+        "url": "https://images.contentful.com/cfexampleapi/1x0xpXu4pSGS4OukSyWGUK/cc1239c6385428ef26f4180190532818/doge.jpg"
+      }
+    },
+    {
+      "id": "happycat",
+      "title": "Happy Cat",
+      "file": {
+        "filename": "happycatw",
+        "url": "https://images.contentful.com/cfexampleapi/3MZPnjZTIskAIIkuuosCss/382a48dfa2cb16c47aa2c72f7b23bf09/happycatw.jpg"
+      }
+    },
+    {
+      "id": "jake",
+      "title": "Jake",
+      "file": {
+        "filename": "jake",
+        "url": "https://images.contentful.com/cfexampleapi/4hlteQAXS8iS0YCMU6QMWg/2a4d826144f014109364ccf5c891d2dd/jake.png"
+      }
+    },
+    {
+      "id": "nyancat",
+      "title": "Nyan Cat",
+      "file": {
+        "filename": "Nyan_cat_250px_frame",
+        "url": "https://images.contentful.com/cfexampleapi/4gp6taAwW4CmSgumq2ekUm/9da0cd1936871b8d72343e895a00d611/Nyan_cat_250px_frame.png"
+      }
+    }
+  ],
+  "entries": {
+    "cat": [
+      {
+        "sys": {
+          "id": "nyancat"
+        },
+        "fields": {
+          "name": "Nyan Cat",
+          "likes": [
+            "rainbows",
+            "fish"
+          ],
+          "color": "rainbow",
+          "bestFriend": {
+            "linkType": "Entry",
+            "id": "happycat"
+          },
+          "birthday": "2011-04-04T22:00:00+00:00",
+          "lives": 1337,
+          "image": {
+            "linkType": "Asset",
+            "id": "nyancat"
+          }
+        }
+      },
+      {
+        "sys": {
+          "id": "happycat"
+        },
+        "fields": {
+          "name": "Happy Cat",
+          "likes": [
+            "cheezburger"
+          ],
+          "color": "gray",
+          "bestFriend": {
+            "linkType": "Entry",
+            "id": "nyancat"
+          },
+          "birthday": "2003-10-28T23:00:00+00:00",
+          "lives": 1,
+          "image": {
+            "linkType": "Asset",
+            "id": "happycat"
+          }
+        }
+      },
+      {
+        "sys": {
+          "id": "garfield"
+        },
+        "fields": {
+          "name": "Garfield",
+          "likes": [
+            "lasagna"
+          ],
+          "color": "orange",
+          "birthday": "1979-06-18T23:00:00+00:00",
+          "lives": 9
+        }
+      }
+    ],
+    "human": [
+      {
+        "sys": {
+          "id": "finn"
+        },
+        "fields": {
+          "name": "Finn",
+          "description": "Fearless adventurer! Defender of pancakes.",
+          "likes": [
+            "adventure"
+          ]
+        }
+      }
+    ]
+  }
+}

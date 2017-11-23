@@ -5,14 +5,15 @@ module Contentful
   module Bootstrap
     module Commands
       class GenerateJson
-        attr_reader :space_id, :filename, :access_token, :content_types_only, :use_preview
-        def initialize(space_id, access_token, filename = nil, content_types_only = false, quiet = false, use_preview = false)
+        attr_reader :space_id, :filename, :access_token, :content_types_only, :use_preview, :content_type_ids
+        def initialize(space_id, access_token, filename = nil, content_types_only = false, quiet = false, use_preview = false, content_type_ids = [])
           @space_id = space_id
           @access_token = access_token
           @filename = filename
           @content_types_only = content_types_only
           @quiet = quiet
           @use_preview = use_preview
+          @content_type_ids = content_type_ids
         end
 
         def run
@@ -29,7 +30,8 @@ module Contentful
             space_id,
             access_token,
             content_types_only,
-            use_preview
+            use_preview,
+            content_type_ids
           ).generate_json
 
           write(json)
