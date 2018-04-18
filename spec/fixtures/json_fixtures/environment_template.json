@@ -1,0 +1,47 @@
+{
+  "version": 3,
+  "contentTypes": [
+    {
+      "id": "foo",
+      "name": "Foo",
+      "displayField": "name",
+      "fields": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "Symbol"
+        },
+        {
+          "id": "content",
+          "name": "Content",
+          "type": "Text"
+        }
+      ]
+    }
+  ],
+  "assets": [
+
+  ],
+  "entries": {
+    "foo": [
+      {
+        "sys": {
+          "id": "6yVdruR4GsKO2iKOqQS2CS"
+        },
+        "fields": {
+          "name": "Test",
+          "content": "Some content"
+        }
+      },
+      {
+        "sys": {
+          "id": "foo_update"
+        },
+        "fields": {
+          "name": "Test updated",
+          "content": "Some content"
+        }
+      }
+    ]
+  }
+}

@@ -30,4 +30,19 @@ describe Contentful::Bootstrap::Generator do
       end
     end
   end
+
+  describe 'integration' do
+    subject { described_class.new('9utsm1g0t7f5', 'a67d4d9011f6d6c1dfe4169d838114d3d3849ab6df6fb1d322cf3ee91690fae4', 'staging', false, false, []) }
+    it 'can generate templates from an environment' do
+      vcr('generate_json_environments') {
+        unparsed_json = subject.generate_json
+        json = JSON.load(unparsed_json)
+
+        json_fixture('environment_template') { |fixture|
+          expect(json).to eq fixture
+        }
+        expect(json['entries']['foo'].size).to eq 2
+      }
+    end
+  end
 end

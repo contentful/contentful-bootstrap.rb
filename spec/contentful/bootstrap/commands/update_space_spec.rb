@@ -157,5 +157,33 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
         expect(delivery_cat.title).to eq 'Foo'
       }
     end
+
+    it 'can update a specific environment different than master' do
+      delivery_client = nil
+      vcr('check_original_staging_environment_status') {
+        delivery_client = Contentful::Client.new(
+          space: '9utsm1g0t7f5',
+          access_token: 'a67d4d9011f6d6c1dfe4169d838114d3d3849ab6df6fb1d322cf3ee91690fae4',
+          environment: 'staging',
+          dynamic_entries: :auto,
+          raise_errors: true
+        )
+
+        expect(delivery_client.entries.size).to eq 1
+      }
+
+      vcr('update_with_environment') {
+        json_path = File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'environment_template.json'))
+        subject = described_class.new(token, '9utsm1g0t7f5', environment: 'staging', json_template: json_path, trigger_oauth: false, quiet: true)
+
+        subject.run
+      }
+
+      vcr('check_staging_environment_status') {
+        entries = delivery_client.entries
+        expect(entries.size).to eq 2
+        expect(entries.items.detect { |i| i.id == 'foo_update' }.name).to eq 'Test updated'
+      }
+    end
   end
 end
