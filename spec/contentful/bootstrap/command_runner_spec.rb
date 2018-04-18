@@ -101,7 +101,7 @@ describe Contentful::Bootstrap::CommandRunner do
         allow_any_instance_of(Contentful::Bootstrap::Commands::GenerateJson).to receive(:run)
 
         expect(Contentful::Bootstrap::Commands::GenerateJson).to receive(:new).with(
-          'foo', 'bar', nil, false, false, false, []
+          'foo', 'bar', 'master', nil, false, false, false, []
         ).and_call_original
 
         subject.generate_json('foo', access_token: 'bar')
@@ -111,7 +111,7 @@ describe Contentful::Bootstrap::CommandRunner do
         allow_any_instance_of(Contentful::Bootstrap::Commands::GenerateJson).to receive(:run)
 
         expect(Contentful::Bootstrap::Commands::GenerateJson).to receive(:new).with(
-          'foo', 'bar', 'baz', true, false, false, []
+          'foo', 'bar', 'master', 'baz', true, false, false, []
         ).and_call_original
 
         subject.generate_json('foo', access_token: 'bar', filename: 'baz', content_types_only: true)

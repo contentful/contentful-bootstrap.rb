@@ -91,8 +91,123 @@ http_interactions:
     http_version: 
   recorded_at: Mon, 23 Nov 2015 10:09:59 GMT
 - request:
+    method: get
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Contentful-User-Agent:
+      - sdk contentful-management.rb/1.8.1; integration bootstrap/3.6.1; platform
+        ruby/2.4.1; os macOS/16;
+      Authorization:
+      - Bearer foobar
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Content-Length:
+      - '0'
+      Connection:
+      - close
+      Host:
+      - api.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature
+      Access-Control-Allow-Methods:
+      - DELETE,GET,HEAD,POST,PUT,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '1728000'
+      Cache-Control:
+      - max-age=0
+      Cf-Organization-Id:
+      - 4SsuxQCaMaemfIms52Jr8s
+      Cf-Space-Id:
+      - 8rbh6yfkme6s
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Date:
+      - Wed, 23 Aug 2017 14:39:29 GMT
+      Etag:
+      - W/"2c014fd49b265333df19faf15077ad23"
+      Server:
+      - Contentful
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Request-Id:
+      - 917a37ae1cf5343e6b089923cc306864
+      X-Frame-Options:
+      - ALLOWALL
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '465'
+      Connection:
+      - Close
+      Set-Cookie:
+      - incap_ses_685_673446=cxF9Q0guCUtZ5BLquZ2BCaGTnVkAAAAAo6M+6ImkjL12BRgksm5Ycw==;
+        path=/; Domain=.contentful.com
+      - nlbi_673446=qgazO//8lgCNPBh/6lKYhQAAAADdCJKiN6QN6XKnlFqZhDYU; path=/; Domain=.contentful.com
+      - visid_incap_673446=2CwPdSAIQPWlQo9wqlIfraGTnVkAAAAAQUIPAAAAAABpkgonlswdvW4VySG7Mwvb;
+        expires=Thu, 23 Aug 2018 07:39:55 GMT; path=/; Domain=.contentful.com
+      X-Iinfo:
+      - 6-53963549-53963569 NNNN CT(141 141 0) RT(1503499169092 147) q(0 0 3 -1) r(5
+        5) U5
+      X-Cdn:
+      - Incapsula
+    body:
+      encoding: ASCII-8BIT
+      string: |+
+        {
+          "name":"Master",
+          "sys":{
+            "type":"Environment",
+            "id":"master",
+            "version":4,
+            "createdBy":{
+              "sys":{
+                "type":"Link",
+                "linkType":"User",
+                "id":"4SejVrWT96dvL9IV4Nb7sQ"
+              }
+            },
+            "createdAt":"2017-08-18T20:55:42Z",
+            "updatedBy":{
+              "sys":{
+                "type":"Link",
+                "linkType":"User",
+                "id":"4SejVrWT96dvL9IV4Nb7sQ"
+              }
+            },
+            "updatedAt":"2017-08-18T20:55:42Z",
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "8rbh6yfkme6s"
+              }
+            }
+          }
+        }
+
+    http_version: 
+  recorded_at: Wed, 23 Aug 2017 14:39:29 GMT
+- request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/content_types/1VX60jHERm6yuem8I2agWG
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/content_types/1VX60jHERm6yuem8I2agWG
     body:
       encoding: UTF-8
       string: '{"displayField":"title","name":"yolo","description":null,"fields":[{"id":"title","name":"title","type":"Symbol"},{"id":"assets","name":"assets","type":"Array","items":{"type":"Link","linkType":"Asset"}}]}'
@@ -204,7 +319,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:03 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/content_types/1VX60jHERm6yuem8I2agWG/published
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/content_types/1VX60jHERm6yuem8I2agWG/published
     body:
       encoding: US-ASCII
       string: ''
@@ -331,7 +446,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:07 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/assets/2cMU9UUngYMqAEmw4Cm8Iw
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/assets/2cMU9UUngYMqAEmw4Cm8Iw
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Screen Shot 2015-11-18 at 11.42.12"},"description":{"en-US":null},"file":{"en-US":{"contentType":"image/jpeg","fileName":"Screen
@@ -436,7 +551,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:08 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/assets/2cMU9UUngYMqAEmw4Cm8Iw/files/en-US/process
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/assets/2cMU9UUngYMqAEmw4Cm8Iw/files/en-US/process
     body:
       encoding: US-ASCII
       string: ''
@@ -495,7 +610,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:11 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/assets/2cMU9UUngYMqAEmw4Cm8Iw
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/assets/2cMU9UUngYMqAEmw4Cm8Iw
     body:
       encoding: US-ASCII
       string: ''
@@ -608,7 +723,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:12 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/assets/2cMU9UUngYMqAEmw4Cm8Iw/published
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/assets/2cMU9UUngYMqAEmw4Cm8Iw/published
     body:
       encoding: US-ASCII
       string: ''
@@ -734,7 +849,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:13 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/assets/4D5sv49qaAoMIkWgAW8g0I
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/assets/4D5sv49qaAoMIkWgAW8g0I
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Screen Shot 2015-11-16 at 21.37.19"},"description":{"en-US":null},"file":{"en-US":{"contentType":"image/jpeg","fileName":"Screen
@@ -839,7 +954,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:14 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/assets/4D5sv49qaAoMIkWgAW8g0I/files/en-US/process
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/assets/4D5sv49qaAoMIkWgAW8g0I/files/en-US/process
     body:
       encoding: US-ASCII
       string: ''
@@ -898,7 +1013,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:14 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/assets/4D5sv49qaAoMIkWgAW8g0I
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/assets/4D5sv49qaAoMIkWgAW8g0I
     body:
       encoding: US-ASCII
       string: ''
@@ -1011,7 +1126,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:15 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/assets/4D5sv49qaAoMIkWgAW8g0I/published
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/assets/4D5sv49qaAoMIkWgAW8g0I/published
     body:
       encoding: US-ASCII
       string: ''
@@ -1137,7 +1252,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:15 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/assets/4eX9aQsDdeqweg6Si00KaW
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/assets/4eX9aQsDdeqweg6Si00KaW
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Screen Shot 2015-11-17 at 17.57.00"},"description":{"en-US":null},"file":{"en-US":{"contentType":"image/jpeg","fileName":"Screen
@@ -1242,7 +1357,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:16 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/assets/4eX9aQsDdeqweg6Si00KaW/files/en-US/process
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/assets/4eX9aQsDdeqweg6Si00KaW/files/en-US/process
     body:
       encoding: US-ASCII
       string: ''
@@ -1301,7 +1416,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:17 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/assets/4eX9aQsDdeqweg6Si00KaW
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/assets/4eX9aQsDdeqweg6Si00KaW
     body:
       encoding: US-ASCII
       string: ''
@@ -1414,7 +1529,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:18 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/assets/4eX9aQsDdeqweg6Si00KaW/published
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/assets/4eX9aQsDdeqweg6Si00KaW/published
     body:
       encoding: US-ASCII
       string: ''
@@ -1540,7 +1655,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:18 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/assets/7i1Ck3BG4o4KeIEUGosEeU
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/assets/7i1Ck3BG4o4KeIEUGosEeU
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Screen Shot 2015-11-17 at 18.04.02"},"description":{"en-US":null},"file":{"en-US":{"contentType":"image/jpeg","fileName":"Screen
@@ -1645,7 +1760,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:19 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/assets/7i1Ck3BG4o4KeIEUGosEeU/files/en-US/process
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/assets/7i1Ck3BG4o4KeIEUGosEeU/files/en-US/process
     body:
       encoding: US-ASCII
       string: ''
@@ -1704,7 +1819,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:20 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/assets/7i1Ck3BG4o4KeIEUGosEeU
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/assets/7i1Ck3BG4o4KeIEUGosEeU
     body:
       encoding: US-ASCII
       string: ''
@@ -1817,7 +1932,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:21 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/assets/7i1Ck3BG4o4KeIEUGosEeU/published
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/assets/7i1Ck3BG4o4KeIEUGosEeU/published
     body:
       encoding: US-ASCII
       string: ''
@@ -1943,7 +2058,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:21 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/content_types/1VX60jHERm6yuem8I2agWG
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/content_types/1VX60jHERm6yuem8I2agWG
     body:
       encoding: US-ASCII
       string: ''
@@ -2068,7 +2183,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:22 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/entries/5nQB3z8RgW8CUG6uGyCsEw
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/entries/5nQB3z8RgW8CUG6uGyCsEw
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -2167,7 +2282,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:23 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/entries/5nQB3z8RgW8CUG6uGyCsEw
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/entries/5nQB3z8RgW8CUG6uGyCsEw
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -2266,7 +2381,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:24 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/entries/5nQB3z8RgW8CUG6uGyCsEw
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/entries/5nQB3z8RgW8CUG6uGyCsEw
     body:
       encoding: US-ASCII
       string: ''
@@ -2365,7 +2480,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:24 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/entries/5nQB3z8RgW8CUG6uGyCsEw
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/entries/5nQB3z8RgW8CUG6uGyCsEw
     body:
       encoding: UTF-8
       string: '{"fields":{"assets":{"en-US":[{"sys":{"type":"Link","linkType":"Asset","id":"4eX9aQsDdeqweg6Si00KaW"}},{"sys":{"type":"Link","linkType":"Asset","id":"4D5sv49qaAoMIkWgAW8g0I"}}]},"title":{"en-US":"yolo"}}}'
@@ -2486,7 +2601,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:25 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/entries/5nQB3z8RgW8CUG6uGyCsEw
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/entries/5nQB3z8RgW8CUG6uGyCsEw
     body:
       encoding: UTF-8
       string: '{"fields":{"assets":{"en-US":[{"sys":{"type":"Link","linkType":"Asset","id":"4eX9aQsDdeqweg6Si00KaW"}},{"sys":{"type":"Link","linkType":"Asset","id":"4D5sv49qaAoMIkWgAW8g0I"}}]},"title":{"en-US":"yolo"}}}'
@@ -2607,7 +2722,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:26 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/entries/5nQB3z8RgW8CUG6uGyCsEw
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/entries/5nQB3z8RgW8CUG6uGyCsEw
     body:
       encoding: US-ASCII
       string: ''
@@ -2728,7 +2843,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:27 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/entries/5nQB3z8RgW8CUG6uGyCsEw
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/entries/5nQB3z8RgW8CUG6uGyCsEw
     body:
       encoding: US-ASCII
       string: ''
@@ -2849,7 +2964,7 @@ http_interactions:
   recorded_at: Mon, 23 Nov 2015 10:10:27 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/entries/5nQB3z8RgW8CUG6uGyCsEw/published
+    uri: https://api.contentful.com/spaces/8rbh6yfkme6s/environments/master/entries/5nQB3z8RgW8CUG6uGyCsEw/published
     body:
       encoding: US-ASCII
       string: ''

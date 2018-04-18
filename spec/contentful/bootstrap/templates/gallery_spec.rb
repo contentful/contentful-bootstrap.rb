@@ -2,7 +2,15 @@ require 'spec_helper'
 
 describe Contentful::Bootstrap::Templates::Gallery do
   let(:space) { Contentful::Management::Space.new }
-  subject { Contentful::Bootstrap::Templates::Gallery.new(space) }
+  subject { described_class.new(space) }
+
+  before :each do
+    environment_proxy = Object.new
+    allow(space).to receive(:environments) { environment_proxy }
+
+    environment = Object.new
+    allow(environment_proxy).to receive(:find) { environment }
+  end
 
   describe 'content types' do
     it 'has Author content type' do

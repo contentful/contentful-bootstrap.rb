@@ -13,8 +13,9 @@ module Contentful
           @template_name = options.fetch(:template, nil)
           @json_template = options.fetch(:json_template, nil)
           @mark_processed = options.fetch(:mark_processed, false)
-          @locale = options.fetch(:locale, "en-US")
+          @locale = options.fetch(:locale, 'en-US')
           @no_publish = options.fetch(:no_publish, false)
+          @environment = 'master' # Can only add content to a new space through the master environment by default
 
           super(token, space, options)
         end
@@ -51,10 +52,9 @@ module Contentful
               defaultLocale: @locale
             }
             options[:organization_id] = @token.read_organization_id unless @token.read_organization_id.nil?
-            management_client_init
             new_space = client.spaces.create(options)
           rescue Contentful::Management::NotFound
-            fail "Organization ID is required, provide it in Configuration File" if no_input
+            raise 'Organization ID is required, provide it in Configuration File' if no_input
 
             output 'Your account has multiple organizations:'
             output organizations.join("\n")
@@ -76,7 +76,6 @@ module Contentful
         private
 
         def organizations
-          management_client_init
           organizations = client.organizations.all
           organization_ids = organizations.map do |organization|
             sprintf('%-30s %s', organization.name, organization.id)
@@ -96,7 +95,7 @@ module Contentful
           if templates.key? @template_name.to_sym
             output "Creating Template '#{@template_name}'"
 
-            templates[@template_name.to_sym].new(space, quiet).run
+            templates[@template_name.to_sym].new(space, @environment, quiet).run
             output "Template '#{@template_name}' created!"
           else
             output "Template '#{@template_name}' not found. Valid templates are '#{templates.keys.map(&:to_s).join('\', \'')}'"
@@ -107,7 +106,7 @@ module Contentful
         def create_json_template(space)
           if ::File.exist?(@json_template)
             output "Creating JSON Template '#{@json_template}'"
-            Templates::JsonTemplate.new(space, @json_template, @mark_processed, true, quiet, false, @no_publish).run
+            Templates::JsonTemplate.new(space, @json_template, @environment, @mark_processed, true, quiet, false, @no_publish).run
             output "JSON Template '#{@json_template}' created!"
           else
             output "JSON Template '#{@json_template}' does not exist. Please check that you specified the correct file name."

@@ -7,105 +7,111 @@ options = {}
 
 subcommands = {
   'create_space' => OptionParser.new do |opts|
-    opts.banner = "Usage: create_space <space_name> [--template TEMPLATE_NAME] [--json-template JSON_PATH] [--locale LOCALE] [--mark-processed] [--config CONFIG_PATH]"
-    opts.on("-t TEMPLATE", "--template TEMPLATE", "Specify Template", "Available Templates: blog, catalogue, gallery") do |t|
+    opts.banner = 'Usage: create_space <space_name> [--template TEMPLATE_NAME] [--json-template JSON_PATH] [--locale LOCALE] [--mark-processed] [--config CONFIG_PATH]'
+    opts.on('-t TEMPLATE', '--template TEMPLATE', 'Specify Template', 'Available Templates: blog, catalogue, gallery') do |t|
       options[:template] = t
     end
-    opts.on("-j JSON_PATH", "--json-template JSON_PATH", "Specify JSON Template Path") do |j|
+    opts.on('-j JSON_PATH', '--json-template JSON_PATH', 'Specify JSON Template Path') do |j|
       options[:json_template] = j
     end
-    opts.on("-l LOCALE", "--locale LOCALE", "Set the Default Locale for the Space", "Defaults to 'en-US'") do |l|
+    opts.on('-l LOCALE', '--locale LOCALE', 'Set the Default Locale for the Space', "Defaults to 'en-US'") do |l|
       options[:locale] = l
     end
-    opts.on('-m', '--mark-processed', "Mark Processed Items on JSON Templates") do |m|
+    opts.on('-m', '--mark-processed', 'Mark Processed Items on JSON Templates') do |m|
       options[:mark_processed] = m
     end
-    opts.on("-c CONFIG_PATH", "--config CONFIG_PATH", "Specify Configuration Path") do |c|
+    opts.on('-c CONFIG_PATH', '--config CONFIG_PATH', 'Specify Configuration Path') do |c|
       options[:config_path] = c
     end
-    opts.on("-q", "--quiet", "Don't output to STDOUT") do |q|
+    opts.on('-q', '--quiet', "Don't output to STDOUT") do |q|
       options[:quiet] = q
     end
-    opts.on("-n", "--no-publish", "Don't publish") do |n|
+    opts.on('-n', '--no-publish', "Don't publish") do |n|
       options[:no_publish] = n
     end
-    opts.on_tail("-h", "--help", "Print this message") do
+    opts.on_tail('-h', '--help', 'Print this message') do
       puts opts
     end
   end,
   'update_space' => OptionParser.new do |opts|
-    opts.banner = "Usage: update_space <space_id> --json-template JSON_PATH [--locale LOCALE] [--mark-processed] [--config CONFIG_PATH]"
-    opts.on("-j JSON_PATH", "--json-template JSON_PATH", "Specify JSON Template Path") do |j|
+    opts.banner = 'Usage: update_space <space_id> --json-template JSON_PATH [--environment ENVIRONMENT_ID] [--locale LOCALE] [--mark-processed] [--config CONFIG_PATH]'
+    opts.on('-j JSON_PATH', '--json-template JSON_PATH', 'Specify JSON Template Path') do |j|
       options[:json_template] = j
     end
-    opts.on("-l LOCALE", "--locale LOCALE", "Set the Default Locale for the Space", "Defaults to 'en-US'") do |l|
+    opts.on('-e ENVIRONMENT_ID', '--environment ENVIRONMENT_ID', 'Specify target environment ID', "Defaults to 'master'") do |e|
+      options[:environment] = e
+    end
+    opts.on('-l LOCALE', '--locale LOCALE', 'Set the Default Locale for the Space', "Defaults to 'en-US'") do |l|
       options[:locale] = l
     end
-    opts.on('-m', '--mark-processed', "Mark Processed Items on JSON Templates") do |m|
+    opts.on('-m', '--mark-processed', 'Mark Processed Items on JSON Templates') do |m|
       options[:mark_processed] = m
     end
-    opts.on('-T', '--skip-content-types', "Skip Content Types on Space update") do |t|
+    opts.on('-T', '--skip-content-types', 'Skip Content Types on Space update') do |t|
       options[:skip_content_types] = t
     end
-    opts.on("-c CONFIG_PATH", "--config CONFIG_PATH", "Specify Configuration Path") do |c|
+    opts.on('-c CONFIG_PATH', '--config CONFIG_PATH', 'Specify Configuration Path') do |c|
       options[:config_path] = c
     end
-    opts.on("-n", "--no-publish", "Don't publish") do |n|
+    opts.on('-n', '--no-publish', "Don't publish") do |n|
       options[:no_publish] = n
     end
-    opts.on("-q", "--quiet", "Don't output to STDOUT") do |q|
+    opts.on('-q', '--quiet', "Don't output to STDOUT") do |q|
       options[:quiet] = q
     end
-    opts.on_tail("-h", "--help", "Print this message") do
+    opts.on_tail('-h', '--help', 'Print this message') do
       puts opts
     end
   end,
   'generate_token' => OptionParser.new do |opts|
-    opts.banner = "Usage: generate_token <space_id> [--name TOKEN_NAME] [--config CONFIG_PATH]"
-    opts.on("-n NAME", "--name TOKEN_NAME", "Specify Token Name") do |n|
+    opts.banner = 'Usage: generate_token <space_id> [--name TOKEN_NAME] [--config CONFIG_PATH]'
+    opts.on('-n NAME', '--name TOKEN_NAME', 'Specify Token Name') do |n|
       options[:name] = n
     end
-    opts.on("-c CONFIG_PATH", "--config CONFIG_PATH", "Specify Configuration Path") do |c|
+    opts.on('-c CONFIG_PATH', '--config CONFIG_PATH', 'Specify Configuration Path') do |c|
       options[:config_path] = c
     end
-    opts.on("-q", "--quiet", "Don't output to STDOUT") do |q|
+    opts.on('-q', '--quiet', "Don't output to STDOUT") do |q|
       options[:quiet] = q
     end
-    opts.on_tail("-h", "--help", "Print this message") do
+    opts.on_tail('-h', '--help', 'Print this message') do
       puts opts
     end
   end,
   'generate_json' => OptionParser.new do |opts|
-    opts.banner = "Usage: generate_json <space_id> <access_token> [--output-file OUTPUT_PATH]"
-    opts.on("-t", "--content-types-only", "Only fetch Content Types") do |t|
+    opts.banner = 'Usage: generate_json <space_id> <access_token> [--environment ENVIRONMENT_ID] [--output-file OUTPUT_PATH] [--content-types-only] [--use-preview] [--content-type-ids <ID_1>, <ID_2>]'
+    opts.on('-e ENVIRONMENT_ID', '--environment ENVIRONMENT_ID', 'Specify target environment ID', "Defaults to 'master'") do |e|
+      options[:environment] = e
+    end
+    opts.on('-t', '--content-types-only', 'Only fetch Content Types') do |t|
       options[:content_types_only] = t
     end
-    opts.on("-p", "--use-preview", "Use Preview API") do |p|
+    opts.on('-p', '--use-preview', 'Use Preview API') do |p|
       options[:use_preview] = p
     end
-    opts.on("-i", "--content-type-ids <ID_1>,<ID_2>", ::Array, "Array of content type IDs to import") do |ids|
+    opts.on('-i', '--content-type-ids <ID_1>,<ID_2>', ::Array, 'Array of content type IDs to import') do |ids|
       options[:content_type_ids] = ids
     end
-    opts.on("-o OUTPUT_PATH", "--output-file OUTPUT_PATH", "Specify Output File") do |f|
+    opts.on('-o OUTPUT_PATH', '--output-file OUTPUT_PATH', 'Specify Output File') do |f|
       options[:filename] = f
     end
-    opts.on("-q", "--quiet", "Don't output to STDOUT") do |q|
+    opts.on('-q', '--quiet', "Don't output to STDOUT") do |q|
       options[:quiet] = q
     end
-    opts.on_tail("-h", "--help", "Print this message") do
+    opts.on_tail('-h', '--help', 'Print this message') do
       puts opts
     end
-  end,
+  end
 }
 
 global = OptionParser.new do |opts|
-  opts.banner = "Usage: contentful_bootstrap <command> <space_name> [options]"
-  opts.separator ""
+  opts.banner = 'Usage: contentful_bootstrap <command> <space_name> [options]'
+  opts.separator ''
   opts.separator <<-HELP
     Available commands are:
     \t#{subcommands.keys.sort.join("\n\t")}
   HELP
-  opts.on_tail("-v", "--version", "Show Version") do
+  opts.on_tail('-v', '--version', 'Show Version') do
     puts "Contentful Bootstrap: #{Contentful::Bootstrap::VERSION}"
     exit(0)
   end
@@ -114,10 +120,10 @@ end
 global.order!
 command = ARGV.shift
 
-is_help = ARGV.include?("-h") || ARGV.include?("--help")
+is_help = ARGV.include?('-h') || ARGV.include?('--help')
 space = ARGV.shift unless is_help
 
-options[:access_token] = ARGV.shift if command == "generate_json" && !is_help
+options[:access_token] = ARGV.shift if command == 'generate_json' && !is_help
 
 if subcommands.key? command
   subcommands[command].order!
@@ -128,23 +134,21 @@ if subcommands.key? command
     exit(1)
   end
 
-  if is_help
-    exit
-  end
+  exit if is_help
 
   if space.nil? || space.empty?
     ARGV << '-h'
     subcommands[command].order!
     puts
-    puts "Required Arguments not specified. Exiting!"
+    puts 'Required Arguments not specified. Exiting!'
     exit
   end
 
   options[:trigger_oauth] = true
 
-  Contentful::Bootstrap::CommandRunner.new(options.fetch(:config_path, "")).send(command, space, options)
+  Contentful::Bootstrap::CommandRunner.new(options.fetch(:config_path, '')).send(command, space, options)
 else
-  puts "Usage: contentful_bootstrap <command> <space> [options]"
+  puts 'Usage: contentful_bootstrap <command> <space> [options]'
   puts
   puts <<-HELP
     Subcommand not available or missing

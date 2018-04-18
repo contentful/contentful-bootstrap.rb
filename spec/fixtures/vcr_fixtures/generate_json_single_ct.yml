@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://cdn.contentful.com/spaces/cfexampleapi/content_types?sys.id%5Bin%5D=cat
+    uri: https://cdn.contentful.com/spaces/cfexampleapi/environments/master/content_types?sys.id%5Bin%5D=cat
     body:
       encoding: US-ASCII
       string: ''
@@ -80,7 +80,7 @@ http_interactions:
   recorded_at: Thu, 23 Nov 2017 10:10:34 GMT
 - request:
     method: get
-    uri: https://cdn.contentful.com/spaces/cfexampleapi/assets?limit=1
+    uri: https://cdn.contentful.com/spaces/cfexampleapi/environments/master/assets?limit=1
     body:
       encoding: US-ASCII
       string: ''
@@ -198,7 +198,7 @@ http_interactions:
   recorded_at: Thu, 23 Nov 2017 10:10:34 GMT
 - request:
     method: get
-    uri: https://cdn.contentful.com/spaces/cfexampleapi/assets?limit=1000&order=sys.createdAt&skip=0
+    uri: https://cdn.contentful.com/spaces/cfexampleapi/environments/master/assets?limit=1000&order=sys.createdAt&skip=0
     body:
       encoding: US-ASCII
       string: ''
@@ -276,7 +276,7 @@ http_interactions:
   recorded_at: Thu, 23 Nov 2017 10:10:34 GMT
 - request:
     method: get
-    uri: https://cdn.contentful.com/spaces/cfexampleapi/entries?limit=1&sys.contentType.sys.id%5Bin%5D=cat
+    uri: https://cdn.contentful.com/spaces/cfexampleapi/environments/master/entries?limit=1&sys.contentType.sys.id%5Bin%5D=cat
     body:
       encoding: US-ASCII
       string: ''
@@ -395,7 +395,7 @@ http_interactions:
   recorded_at: Thu, 23 Nov 2017 10:10:35 GMT
 - request:
     method: get
-    uri: https://cdn.contentful.com/spaces/cfexampleapi/entries?limit=1000&order=sys.createdAt&skip=0&sys.contentType.sys.id%5Bin%5D=cat
+    uri: https://cdn.contentful.com/spaces/cfexampleapi/environments/master/entries?limit=1000&order=sys.createdAt&skip=0&sys.contentType.sys.id%5Bin%5D=cat
     body:
       encoding: US-ASCII
       string: ''

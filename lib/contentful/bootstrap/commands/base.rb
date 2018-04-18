@@ -7,7 +7,7 @@ module Contentful
   module Bootstrap
     module Commands
       class Base
-        attr_reader :space, :token, :options, :quiet, :no_input, :client
+        attr_reader :space, :token, :options, :quiet, :no_input
 
         def initialize(token, space, options = {})
           trigger_oauth = options.fetch(:trigger_oauth, true)
@@ -18,12 +18,22 @@ module Contentful
           @no_input = options.fetch(:no_input, false)
 
           configuration if trigger_oauth
-          management_client_init if trigger_oauth
+          client if trigger_oauth
           @space = space
         end
 
         def run
-          fail 'must implement'
+          raise 'must implement'
+        end
+
+        def client
+          @client ||= ::Contentful::Management::Client.new(
+            @token.read,
+            default_locale: options.fetch(:locale, 'en-US'),
+            raise_errors: true,
+            application_name: 'bootstrap',
+            application_version: ::Contentful::Bootstrap::VERSION
+          )
         end
 
         protected
@@ -34,16 +44,6 @@ module Contentful
 
         private
 
-        def management_client_init
-          @client ||= ::Contentful::Management::Client.new(
-            @token.read,
-            default_locale: options.fetch(:locale, "en-US"),
-            raise_errors: true,
-            application_name: 'bootstrap',
-            application_version: ::Contentful::Bootstrap::VERSION
-          )
-        end
-
         def configuration
           if @token.present?
             output 'OAuth token found, moving on!'
@@ -51,13 +51,13 @@ module Contentful
           end
 
           Support.input('OAuth Token not found, do you want to create a new configuration file? (Y/n): ', no_input) do |answer|
-            if answer.downcase == 'n'
+            if answer.casecmp('n').zero?
               output 'Exiting!'
               exit
             end
           end
 
-          fail 'OAuth token required to proceed' if no_input
+          raise 'OAuth token required to proceed' if no_input
 
           output "Configuration will be saved on #{@token.filename}"
           output 'A new tab on your browser will open for requesting OAuth permissions'

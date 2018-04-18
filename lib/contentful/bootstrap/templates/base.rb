@@ -6,10 +6,10 @@ module Contentful
   module Bootstrap
     module Templates
       class Base
-        attr_reader :space, :skip_content_types
+        attr_reader :environment, :skip_content_types
 
-        def initialize(space, quiet = false, skip_content_types = false, no_publish = false)
-          @space = space
+        def initialize(space, environment_id = 'master', quiet = false, skip_content_types = false, no_publish = false)
+          @environment = space.environments.find(environment_id)
           @quiet = quiet
           @skip_content_types = skip_content_types
           @no_publish = no_publish
@@ -42,8 +42,7 @@ module Contentful
           []
         end
 
-        def after_run
-        end
+        def after_run; end
 
         protected
 
@@ -54,7 +53,7 @@ module Contentful
         def create_file(name, url, properties = {})
           image = Contentful::Management::File.new
           image.properties[:contentType] = properties.fetch(:contentType, 'image/jpeg')
-          image.properties[:fileName] = "#{name}"
+          image.properties[:fileName] = name.to_s
           image.properties[:upload] = url
           image
         end
@@ -67,12 +66,6 @@ module Contentful
               output "Creating Content Type '#{ct['name']}'"
 
               fields = []
-              content_type = space.content_types.new
-              content_type.id = ct['id']
-              content_type.name = ct['name']
-              content_type.display_field = ct['displayField']
-              content_type.description = ct['description']
-
               ct['fields'].each do |f|
                 field = Contentful::Management::Field.new
                 field.id = f['id']
@@ -90,8 +83,14 @@ module Contentful
                 fields << field
               end
 
-              content_type.fields = fields
-              content_type.save
+              content_type = environment.content_types.create(
+                id: ct['id'],
+                name: ct['name'],
+                displayField: ct['displayField'],
+                description: ct['description'],
+                fields: fields
+              )
+
               content_type.activate
             rescue Contentful::Management::Conflict
               output "ContentType '#{ct['id']}' already created! Skipping"
@@ -112,7 +111,7 @@ module Contentful
           assets.each do |asset_json|
             begin
               output "Creating Asset '#{asset_json['title']}'"
-              asset = space.assets.create(
+              asset = environment.assets.create(
                 id: asset_json['id'],
                 title: asset_json['title'],
                 file: asset_json['file']
@@ -121,7 +120,7 @@ module Contentful
             rescue Contentful::Management::Conflict
               output "Asset '#{asset_json['id']}' already created! Updating instead."
 
-              asset = space.assets.find(asset_json['id']).tap do |a|
+              asset = environment.assets.find(asset_json['id']).tap do |a|
                 a.title = asset_json['title']
                 a.file = asset_json['file']
               end
@@ -134,7 +133,7 @@ module Contentful
           assets.each do |asset_json|
             attempts = 0
             while attempts < 10
-              asset = space.assets.find(asset_json['id'])
+              asset = environment.assets.find(asset_json['id'])
               unless asset.file.url.nil?
                 asset.publish unless @no_publish
                 break
@@ -149,7 +148,7 @@ module Contentful
         def create_entries
           content_types = []
           processed_entries = entries.map do |content_type_id, entry_list|
-            content_type = space.content_types.find(content_type_id)
+            content_type = environment.content_types.find(content_type_id)
             content_types << content_type
 
             entry_list.each.map do |e|
@@ -177,15 +176,13 @@ module Contentful
 
               regular_fields.each do |rf|
                 value = e.delete(rf)
-                if value.is_a? ::Contentful::Bootstrap::Templates::Links::Base
-                  value = value.to_management_object
-                end
+                value = value.to_management_object if value.is_a? ::Contentful::Bootstrap::Templates::Links::Base
                 e[rf.to_sym] = value
               end
 
               begin
                 output "Creating Entry #{e[:id]}"
-                entry = content_type.entries.create({:id => e[:id]})
+                entry = content_type.entries.create(id: e[:id])
                 entry.save
 
                 e = e.clone
@@ -201,13 +198,13 @@ module Contentful
           processed_entries = processed_entries.map do |e|
             output "Populating Entry #{e[:id]}"
 
-            entry = space.entries.find(e[:id])
+            entry = environment.entries.find(e[:id])
             e.delete(:id)
             entry.update(e)
             entry.save
 
             10.times do
-              break if space.entries.find(entry.id).sys[:version] >= 4
+              break if environment.entries.find(entry.id).sys[:version] >= 4
               sleep(0.5)
             end
 
@@ -215,7 +212,7 @@ module Contentful
           end
 
           processed_entries.each do |e|
-            space.entries.find(e).publish unless @no_publish
+            environment.entries.find(e).publish unless @no_publish
           end
         end
       end

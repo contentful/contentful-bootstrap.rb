@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Contentful::Bootstrap::Commands::GenerateJson do
-  subject { Contentful::Bootstrap::Commands::GenerateJson.new('foo', 'bar') }
+  subject { described_class.new('foo', 'bar') }
 
   describe 'instance methods' do
     describe '#run' do

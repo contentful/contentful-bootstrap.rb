@@ -100,8 +100,123 @@ http_interactions:
     http_version: 
   recorded_at: Fri, 22 Jul 2016 12:49:28 GMT
 - request:
+    method: get
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Contentful-User-Agent:
+      - sdk contentful-management.rb/1.8.1; integration bootstrap/3.6.1; platform
+        ruby/2.4.1; os macOS/16;
+      Authorization:
+      - Bearer foobar
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Content-Length:
+      - '0'
+      Connection:
+      - close
+      Host:
+      - api.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature
+      Access-Control-Allow-Methods:
+      - DELETE,GET,HEAD,POST,PUT,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '1728000'
+      Cache-Control:
+      - max-age=0
+      Cf-Organization-Id:
+      - 4SsuxQCaMaemfIms52Jr8s
+      Cf-Space-Id:
+      - j17dhfgnz5wi
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Date:
+      - Wed, 23 Aug 2017 14:39:29 GMT
+      Etag:
+      - W/"2c014fd49b265333df19faf15077ad23"
+      Server:
+      - Contentful
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Request-Id:
+      - 917a37ae1cf5343e6b089923cc306864
+      X-Frame-Options:
+      - ALLOWALL
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '465'
+      Connection:
+      - Close
+      Set-Cookie:
+      - incap_ses_685_673446=cxF9Q0guCUtZ5BLquZ2BCaGTnVkAAAAAo6M+6ImkjL12BRgksm5Ycw==;
+        path=/; Domain=.contentful.com
+      - nlbi_673446=qgazO//8lgCNPBh/6lKYhQAAAADdCJKiN6QN6XKnlFqZhDYU; path=/; Domain=.contentful.com
+      - visid_incap_673446=2CwPdSAIQPWlQo9wqlIfraGTnVkAAAAAQUIPAAAAAABpkgonlswdvW4VySG7Mwvb;
+        expires=Thu, 23 Aug 2018 07:39:55 GMT; path=/; Domain=.contentful.com
+      X-Iinfo:
+      - 6-53963549-53963569 NNNN CT(141 141 0) RT(1503499169092 147) q(0 0 3 -1) r(5
+        5) U5
+      X-Cdn:
+      - Incapsula
+    body:
+      encoding: ASCII-8BIT
+      string: |+
+        {
+          "name":"Master",
+          "sys":{
+            "type":"Environment",
+            "id":"master",
+            "version":4,
+            "createdBy":{
+              "sys":{
+                "type":"Link",
+                "linkType":"User",
+                "id":"4SejVrWT96dvL9IV4Nb7sQ"
+              }
+            },
+            "createdAt":"2017-08-18T20:55:42Z",
+            "updatedBy":{
+              "sys":{
+                "type":"Link",
+                "linkType":"User",
+                "id":"4SejVrWT96dvL9IV4Nb7sQ"
+              }
+            },
+            "updatedAt":"2017-08-18T20:55:42Z",
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "j17dhfgnz5wi"
+              }
+            }
+          }
+        }
+
+    http_version: 
+  recorded_at: Wed, 23 Aug 2017 14:39:29 GMT
+- request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/content_types/author
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/content_types/author
     body:
       encoding: UTF-8
       string: '{"displayField":"name","name":"Author","fields":[{"id":"name","name":"Author
@@ -214,7 +329,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:31 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/content_types/author/published
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/content_types/author/published
     body:
       encoding: US-ASCII
       string: ''
@@ -341,7 +456,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:32 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/content_types/post
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/content_types/post
     body:
       encoding: UTF-8
       string: '{"displayField":"title","name":"Post","fields":[{"id":"title","name":"Post
@@ -475,7 +590,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:33 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/content_types/post/published
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/content_types/post/published
     body:
       encoding: US-ASCII
       string: ''
@@ -623,7 +738,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:36 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/content_types/author
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/content_types/author
     body:
       encoding: US-ASCII
       string: ''
@@ -748,7 +863,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:37 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/dan_brown
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/dan_brown
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -856,7 +971,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:38 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/dan_brown
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/dan_brown
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -964,7 +1079,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:39 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/pablo_neruda
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/pablo_neruda
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -1072,7 +1187,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:42 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/pablo_neruda
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/pablo_neruda
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -1180,7 +1295,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:42 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/content_types/post
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/content_types/post
     body:
       encoding: US-ASCII
       string: ''
@@ -1326,7 +1441,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:43 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/inferno
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/inferno
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -1434,7 +1549,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:44 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/inferno
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/inferno
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -1542,7 +1657,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:45 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/alturas
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/alturas
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -1650,7 +1765,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:46 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/alturas
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/alturas
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -1758,7 +1873,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:46 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/dan_brown
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/dan_brown
     body:
       encoding: US-ASCII
       string: ''
@@ -1866,7 +1981,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:47 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/dan_brown
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/dan_brown
     body:
       encoding: UTF-8
       string: '{"fields":{"name":{"en-US":"Dan Brown"}}}'
@@ -1978,7 +2093,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:48 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/dan_brown
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/dan_brown
     body:
       encoding: UTF-8
       string: '{"fields":{"name":{"en-US":"Dan Brown"}}}'
@@ -2090,7 +2205,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:49 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/dan_brown
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/dan_brown
     body:
       encoding: US-ASCII
       string: ''
@@ -2202,7 +2317,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:50 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/pablo_neruda
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/pablo_neruda
     body:
       encoding: US-ASCII
       string: ''
@@ -2310,7 +2425,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:51 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/pablo_neruda
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/pablo_neruda
     body:
       encoding: UTF-8
       string: '{"fields":{"name":{"en-US":"Pablo Neruda"}}}'
@@ -2422,7 +2537,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:52 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/pablo_neruda
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/pablo_neruda
     body:
       encoding: UTF-8
       string: '{"fields":{"name":{"en-US":"Pablo Neruda"}}}'
@@ -2534,7 +2649,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:53 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/pablo_neruda
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/pablo_neruda
     body:
       encoding: US-ASCII
       string: ''
@@ -2646,7 +2761,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:54 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/inferno
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/inferno
     body:
       encoding: US-ASCII
       string: ''
@@ -2754,7 +2869,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:55 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/inferno
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/inferno
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Inferno"},"content":{"en-US":"Inferno
@@ -2879,7 +2994,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:55 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/inferno
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/inferno
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Inferno"},"content":{"en-US":"Inferno
@@ -3004,7 +3119,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:56 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/inferno
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/inferno
     body:
       encoding: US-ASCII
       string: ''
@@ -3128,7 +3243,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:57 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/alturas
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/alturas
     body:
       encoding: US-ASCII
       string: ''
@@ -3236,7 +3351,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:58 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/alturas
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/alturas
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Alturas de Macchu Picchu"},"content":{"en-US":"Alturas
@@ -3361,7 +3476,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:59 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/alturas
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/alturas
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Alturas de Macchu Picchu"},"content":{"en-US":"Alturas
@@ -3486,7 +3601,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:49:59 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/alturas
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/alturas
     body:
       encoding: US-ASCII
       string: ''
@@ -3610,7 +3725,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:01 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/dan_brown
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/dan_brown
     body:
       encoding: US-ASCII
       string: ''
@@ -3722,7 +3837,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:01 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/dan_brown/published
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/dan_brown/published
     body:
       encoding: US-ASCII
       string: ''
@@ -3847,7 +3962,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:02 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/pablo_neruda
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/pablo_neruda
     body:
       encoding: US-ASCII
       string: ''
@@ -3959,7 +4074,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:04 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/pablo_neruda/published
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/pablo_neruda/published
     body:
       encoding: US-ASCII
       string: ''
@@ -4084,7 +4199,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:04 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/inferno
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/inferno
     body:
       encoding: US-ASCII
       string: ''
@@ -4208,7 +4323,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:05 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/inferno/published
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/inferno/published
     body:
       encoding: US-ASCII
       string: ''
@@ -4345,7 +4460,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:07 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/alturas
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/alturas
     body:
       encoding: US-ASCII
       string: ''
@@ -4469,7 +4584,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:07 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/entries/alturas/published
+    uri: https://api.contentful.com/spaces/j17dhfgnz5wi/environments/master/entries/alturas/published
     body:
       encoding: US-ASCII
       string: ''

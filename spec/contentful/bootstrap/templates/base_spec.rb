@@ -2,7 +2,15 @@ require 'spec_helper'
 
 describe Contentful::Bootstrap::Templates::Base do
   let(:space) { Contentful::Management::Space.new }
-  subject { described_class.new(space, true) }
+  subject { described_class.new(space, 'master', true) }
+
+  before :each do
+    environment_proxy = Object.new
+    allow(space).to receive(:environments) { environment_proxy }
+
+    environment = Object.new
+    allow(environment_proxy).to receive(:find) { environment }
+  end
 
   describe 'instance methods' do
     it '#content_types' do
@@ -33,7 +41,7 @@ describe Contentful::Bootstrap::Templates::Base do
       end
 
       context 'with skip_content_types set to true' do
-        subject { described_class.new(space, true, true) }
+        subject { described_class.new(space, 'master', true, true) }
 
         it 'doesnt call create_content_type if skip_content_types is sent' do
           expect(subject).to receive(:create_entries)
@@ -43,12 +51,6 @@ describe Contentful::Bootstrap::Templates::Base do
           subject.run
         end
       end
-    end
-  end
-
-  describe 'attributes' do
-    it ':space' do
-      expect(subject.space).to eq space
     end
   end
 end

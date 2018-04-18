@@ -24,7 +24,7 @@ module Contentful
 
           output "Token '#{token_name}' created! - '#{access_token}'"
           Support.input('Do you want to write the Delivery Token to your configuration file? (Y/n): ', no_input) do |answer|
-            unless answer.downcase == 'n'
+            unless answer.casecmp('n').zero?
               @token.write_access_token(@actual_space.name, access_token)
               @token.write_space_id(@actual_space.name, @actual_space.id)
             end
@@ -34,11 +34,11 @@ module Contentful
         end
 
         def fetch_space
-          if @space.is_a?(String)
-            @actual_space = client.spaces.find(@space)
-          else
-            @actual_space = @space
-          end
+          @actual_space = if @space.is_a?(String)
+                            client.spaces.find(@space)
+                          else
+                            @space
+                          end
         end
 
         def fetch_access_token

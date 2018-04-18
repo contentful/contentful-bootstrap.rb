@@ -1,6 +1,11 @@
 # Change Log
 
 ## Unreleased
+### Added
+* Added `--environment` support to `update_space` and `generate_json`.
+
+### Changed
+* Updated to the new CMA and CDA SDK versions.
 
 ## v3.10.0
 ### Added

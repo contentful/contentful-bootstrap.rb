@@ -100,8 +100,123 @@ http_interactions:
     http_version: 
   recorded_at: Fri, 22 Jul 2016 12:42:57 GMT
 - request:
+    method: get
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Contentful-User-Agent:
+      - sdk contentful-management.rb/1.8.1; integration bootstrap/3.6.1; platform
+        ruby/2.4.1; os macOS/16;
+      Authorization:
+      - Bearer foobar
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Content-Length:
+      - '0'
+      Connection:
+      - close
+      Host:
+      - api.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature
+      Access-Control-Allow-Methods:
+      - DELETE,GET,HEAD,POST,PUT,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '1728000'
+      Cache-Control:
+      - max-age=0
+      Cf-Organization-Id:
+      - 4SsuxQCaMaemfIms52Jr8s
+      Cf-Space-Id:
+      - dtylzsihhqsu
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Date:
+      - Wed, 23 Aug 2017 14:39:29 GMT
+      Etag:
+      - W/"2c014fd49b265333df19faf15077ad23"
+      Server:
+      - Contentful
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Request-Id:
+      - 917a37ae1cf5343e6b089923cc306864
+      X-Frame-Options:
+      - ALLOWALL
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '465'
+      Connection:
+      - Close
+      Set-Cookie:
+      - incap_ses_685_673446=cxF9Q0guCUtZ5BLquZ2BCaGTnVkAAAAAo6M+6ImkjL12BRgksm5Ycw==;
+        path=/; Domain=.contentful.com
+      - nlbi_673446=qgazO//8lgCNPBh/6lKYhQAAAADdCJKiN6QN6XKnlFqZhDYU; path=/; Domain=.contentful.com
+      - visid_incap_673446=2CwPdSAIQPWlQo9wqlIfraGTnVkAAAAAQUIPAAAAAABpkgonlswdvW4VySG7Mwvb;
+        expires=Thu, 23 Aug 2018 07:39:55 GMT; path=/; Domain=.contentful.com
+      X-Iinfo:
+      - 6-53963549-53963569 NNNN CT(141 141 0) RT(1503499169092 147) q(0 0 3 -1) r(5
+        5) U5
+      X-Cdn:
+      - Incapsula
+    body:
+      encoding: ASCII-8BIT
+      string: |+
+        {
+          "name":"Master",
+          "sys":{
+            "type":"Environment",
+            "id":"master",
+            "version":4,
+            "createdBy":{
+              "sys":{
+                "type":"Link",
+                "linkType":"User",
+                "id":"4SejVrWT96dvL9IV4Nb7sQ"
+              }
+            },
+            "createdAt":"2017-08-18T20:55:42Z",
+            "updatedBy":{
+              "sys":{
+                "type":"Link",
+                "linkType":"User",
+                "id":"4SejVrWT96dvL9IV4Nb7sQ"
+              }
+            },
+            "updatedAt":"2017-08-18T20:55:42Z",
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "dtylzsihhqsu"
+              }
+            }
+          }
+        }
+
+    http_version: 
+  recorded_at: Wed, 23 Aug 2017 14:39:29 GMT
+- request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/content_types/author
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/content_types/author
     body:
       encoding: UTF-8
       string: '{"displayField":"name","name":"Author","fields":[{"id":"name","name":"Name","type":"Symbol"}]}'
@@ -213,7 +328,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:00 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/content_types/author/published
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/content_types/author/published
     body:
       encoding: US-ASCII
       string: ''
@@ -340,7 +455,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:02 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/content_types/image
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/content_types/image
     body:
       encoding: UTF-8
       string: '{"displayField":"title","name":"Image","fields":[{"id":"title","name":"Title","type":"Symbol"},{"id":"photo","name":"Photo","type":"Link","linkType":"Asset"}]}'
@@ -463,7 +578,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:04 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/content_types/image/published
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/content_types/image/published
     body:
       encoding: US-ASCII
       string: ''
@@ -601,7 +716,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:05 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/content_types/gallery
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/content_types/gallery
     body:
       encoding: UTF-8
       string: '{"displayField":"title","name":"Gallery","fields":[{"id":"title","name":"Title","type":"Symbol"},{"id":"author","name":"Author","type":"Link","linkType":"Entry"},{"id":"images","name":"Images","type":"Array","items":{"type":"Link","linkType":"Entry"}}]}'
@@ -738,7 +853,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:06 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/content_types/gallery/published
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/content_types/gallery/published
     body:
       encoding: US-ASCII
       string: ''
@@ -890,7 +1005,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:10 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/assets/pie
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/assets/pie
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Pie in the Sky"},"description":{"en-US":null},"file":{"en-US":{"contentType":"image/jpeg","fileName":"pie.jpg","upload":"https://c2.staticflickr.com/6/5245/5335909339_d307a7cbcf_b.jpg"}}}}'
@@ -1003,7 +1118,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:11 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/assets/pie/files/en-US/process
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/assets/pie/files/en-US/process
     body:
       encoding: US-ASCII
       string: ''
@@ -1071,7 +1186,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:11 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/assets/pie
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/assets/pie
     body:
       encoding: US-ASCII
       string: ''
@@ -1186,7 +1301,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:12 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/assets/pie
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/assets/pie
     body:
       encoding: US-ASCII
       string: ''
@@ -1308,7 +1423,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:14 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/assets/pie/published
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/assets/pie/published
     body:
       encoding: US-ASCII
       string: ''
@@ -1443,7 +1558,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:15 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/assets/flower
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/assets/flower
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"The Flower"},"description":{"en-US":null},"file":{"en-US":{"contentType":"image/jpeg","fileName":"flower.jpg","upload":"http://c2.staticflickr.com/4/3922/15045568809_b24591e318_b.jpg"}}}}'
@@ -1556,7 +1671,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:16 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/assets/flower/files/en-US/process
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/assets/flower/files/en-US/process
     body:
       encoding: US-ASCII
       string: ''
@@ -1624,7 +1739,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:17 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/assets/flower
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/assets/flower
     body:
       encoding: US-ASCII
       string: ''
@@ -1746,7 +1861,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:18 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/assets/flower/published
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/assets/flower/published
     body:
       encoding: US-ASCII
       string: ''
@@ -1881,7 +1996,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:19 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/content_types/author
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/content_types/author
     body:
       encoding: US-ASCII
       string: ''
@@ -2006,7 +2121,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:19 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/dave
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/dave
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -2114,7 +2229,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:20 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/dave
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/dave
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -2222,7 +2337,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:21 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/content_types/image
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/content_types/image
     body:
       encoding: US-ASCII
       string: ''
@@ -2358,7 +2473,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:22 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/pie_entry
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/pie_entry
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -2466,7 +2581,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:22 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/pie_entry
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/pie_entry
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -2574,7 +2689,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:23 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/flower_entry
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/flower_entry
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -2682,7 +2797,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:24 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/flower_entry
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/flower_entry
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -2790,7 +2905,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:25 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/content_types/gallery
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/content_types/gallery
     body:
       encoding: US-ASCII
       string: ''
@@ -2940,7 +3055,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:26 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/gallery
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/gallery
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -3048,7 +3163,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:26 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/gallery
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/gallery
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -3156,7 +3271,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:27 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/dave
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/dave
     body:
       encoding: US-ASCII
       string: ''
@@ -3264,7 +3379,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:28 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/dave
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/dave
     body:
       encoding: UTF-8
       string: '{"fields":{"name":{"en-US":"Dave"}}}'
@@ -3376,7 +3491,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:29 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/dave
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/dave
     body:
       encoding: UTF-8
       string: '{"fields":{"name":{"en-US":"Dave"}}}'
@@ -3488,7 +3603,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:29 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/dave
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/dave
     body:
       encoding: US-ASCII
       string: ''
@@ -3600,7 +3715,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:30 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/pie_entry
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/pie_entry
     body:
       encoding: US-ASCII
       string: ''
@@ -3708,7 +3823,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:31 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/pie_entry
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/pie_entry
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"A Pie in the Sky"},"photo":{"en-US":{"sys":{"type":"Link","linkType":"Asset","id":"pie"}}}}}'
@@ -3829,7 +3944,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:32 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/pie_entry
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/pie_entry
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"A Pie in the Sky"},"photo":{"en-US":{"sys":{"type":"Link","linkType":"Asset","id":"pie"}}}}}'
@@ -3950,7 +4065,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:33 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/pie_entry
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/pie_entry
     body:
       encoding: US-ASCII
       string: ''
@@ -4071,7 +4186,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:33 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/flower_entry
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/flower_entry
     body:
       encoding: US-ASCII
       string: ''
@@ -4179,7 +4294,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:34 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/flower_entry
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/flower_entry
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"The Flower"},"photo":{"en-US":{"sys":{"type":"Link","linkType":"Asset","id":"flower"}}}}}'
@@ -4300,7 +4415,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:35 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/flower_entry
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/flower_entry
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"The Flower"},"photo":{"en-US":{"sys":{"type":"Link","linkType":"Asset","id":"flower"}}}}}'
@@ -4421,7 +4536,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:36 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/flower_entry
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/flower_entry
     body:
       encoding: US-ASCII
       string: ''
@@ -4542,7 +4657,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:37 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/gallery
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/gallery
     body:
       encoding: US-ASCII
       string: ''
@@ -4650,7 +4765,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:37 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/gallery
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/gallery
     body:
       encoding: UTF-8
       string: '{"fields":{"images":{"en-US":[{"sys":{"type":"Link","linkType":"Entry","id":"pie_entry"}},{"sys":{"type":"Link","linkType":"Entry","id":"flower_entry"}}]},"title":{"en-US":"Photo
@@ -4790,7 +4905,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:38 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/gallery
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/gallery
     body:
       encoding: UTF-8
       string: '{"fields":{"images":{"en-US":[{"sys":{"type":"Link","linkType":"Entry","id":"pie_entry"}},{"sys":{"type":"Link","linkType":"Entry","id":"flower_entry"}}]},"title":{"en-US":"Photo
@@ -4930,7 +5045,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:39 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/gallery
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/gallery
     body:
       encoding: US-ASCII
       string: ''
@@ -5069,7 +5184,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:40 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/dave
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/dave
     body:
       encoding: US-ASCII
       string: ''
@@ -5181,7 +5296,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:41 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/dave/published
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/dave/published
     body:
       encoding: US-ASCII
       string: ''
@@ -5306,7 +5421,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:41 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/pie_entry
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/pie_entry
     body:
       encoding: US-ASCII
       string: ''
@@ -5427,7 +5542,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:42 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/pie_entry/published
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/pie_entry/published
     body:
       encoding: US-ASCII
       string: ''
@@ -5561,7 +5676,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:43 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/flower_entry
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/flower_entry
     body:
       encoding: US-ASCII
       string: ''
@@ -5682,7 +5797,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:44 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/flower_entry/published
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/flower_entry/published
     body:
       encoding: US-ASCII
       string: ''
@@ -5816,7 +5931,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:45 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/gallery
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/gallery
     body:
       encoding: US-ASCII
       string: ''
@@ -5955,7 +6070,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:43:46 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/dtylzsihhqsu/entries/gallery/published
+    uri: https://api.contentful.com/spaces/dtylzsihhqsu/environments/master/entries/gallery/published
     body:
       encoding: US-ASCII
       string: ''

@@ -1,0 +1,81 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cdn.contentful.com/spaces/9utsm1g0t7f5/environments/staging/entries
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Contentful-User-Agent:
+      - sdk contentful.rb/2.6.0; platform ruby/2.5.1; os macOS/16;
+      Authorization:
+      - Bearer a67d4d9011f6d6c1dfe4169d838114d3d3849ab6df6fb1d322cf3ee91690fae4
+      Content-Type:
+      - application/vnd.contentful.delivery.v1+json
+      Accept-Encoding:
+      - gzip
+      Connection:
+      - close
+      Host:
+      - cdn.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature
+      Access-Control-Allow-Methods:
+      - GET,HEAD,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '86400'
+      Cache-Control:
+      - max-age=0
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/vnd.contentful.delivery.v1+json
+      Etag:
+      - W/"10a24d49d1e7c0a015867c7b311521f5"
+      Server:
+      - Contentful
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Request-Id:
+      - '089705eade747eb544acfdd4be14dd87'
+      Content-Length:
+      - '408'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Wed, 18 Apr 2018 12:13:17 GMT
+      Via:
+      - 1.1 varnish
+      Age:
+      - '0'
+      Connection:
+      - close
+      X-Served-By:
+      - cache-hhn1535-HHN
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      X-Timer:
+      - S1524053597.392641,VS0,VE255
+      Vary:
+      - Accept-Encoding
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA91UTWvDMAy991cEn9diZ0k/ciul7NBB2dLtsDFGSNximthZ7BZC6X+fP5LUDYM0x84nS0h6z0+STwPHAbzkIHBO8ioNUeZYWmBeFFEJpO/8oGIEE1Eq/a62+J7k0oDaSElGhLQQNDYROFMFP3VBU7aFopF4HsUKqo4wTouLcmhnzemZ0D1QmJcj0el+U3EOdcVWAEnUc2YHwTO0g2Ky9dWr6nNu7vqd5gCTs2Xs+5AnkbBrNmSWVBSlBQbiAsvQZK60AC5E0yH0hmi6QSjwxoGPRu7Y/7ATTO0eCZgeScFohqnC6NbNPIOLaEforq3LraIuLdBO4Qp8JJwwqsbB0jNmVEjSVZ+6id/KbWHV/bPtsoXd3U5ZHKV66DEdvoV1QjMQYEtwmlx2RA0JoFGmUzaYC6fq5NU0GGoqJGQZdioJmuJaygrijndkXL4nxeHVe+KrtUtW65+X0F2EthB1L/vsizsL/McRnLh99gWOoAevEu5qX/TPWv0//3xf+u+JlOZrcB78AiLrrpavBgAA
+    http_version: 
+  recorded_at: Wed, 18 Apr 2018 12:13:17 GMT
+recorded_with: VCR 2.9.3

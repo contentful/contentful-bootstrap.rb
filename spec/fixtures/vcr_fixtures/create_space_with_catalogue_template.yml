@@ -100,8 +100,123 @@ http_interactions:
     http_version: 
   recorded_at: Fri, 22 Jul 2016 12:50:13 GMT
 - request:
+    method: get
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Contentful-User-Agent:
+      - sdk contentful-management.rb/1.8.1; integration bootstrap/3.6.1; platform
+        ruby/2.4.1; os macOS/16;
+      Authorization:
+      - Bearer foobar
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Content-Length:
+      - '0'
+      Connection:
+      - close
+      Host:
+      - api.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature
+      Access-Control-Allow-Methods:
+      - DELETE,GET,HEAD,POST,PUT,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '1728000'
+      Cache-Control:
+      - max-age=0
+      Cf-Organization-Id:
+      - 4SsuxQCaMaemfIms52Jr8s
+      Cf-Space-Id:
+      - az2xnj8oqhca
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Date:
+      - Wed, 23 Aug 2017 14:39:29 GMT
+      Etag:
+      - W/"2c014fd49b265333df19faf15077ad23"
+      Server:
+      - Contentful
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Request-Id:
+      - 917a37ae1cf5343e6b089923cc306864
+      X-Frame-Options:
+      - ALLOWALL
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '465'
+      Connection:
+      - Close
+      Set-Cookie:
+      - incap_ses_685_673446=cxF9Q0guCUtZ5BLquZ2BCaGTnVkAAAAAo6M+6ImkjL12BRgksm5Ycw==;
+        path=/; Domain=.contentful.com
+      - nlbi_673446=qgazO//8lgCNPBh/6lKYhQAAAADdCJKiN6QN6XKnlFqZhDYU; path=/; Domain=.contentful.com
+      - visid_incap_673446=2CwPdSAIQPWlQo9wqlIfraGTnVkAAAAAQUIPAAAAAABpkgonlswdvW4VySG7Mwvb;
+        expires=Thu, 23 Aug 2018 07:39:55 GMT; path=/; Domain=.contentful.com
+      X-Iinfo:
+      - 6-53963549-53963569 NNNN CT(141 141 0) RT(1503499169092 147) q(0 0 3 -1) r(5
+        5) U5
+      X-Cdn:
+      - Incapsula
+    body:
+      encoding: ASCII-8BIT
+      string: |+
+        {
+          "name":"Master",
+          "sys":{
+            "type":"Environment",
+            "id":"master",
+            "version":4,
+            "createdBy":{
+              "sys":{
+                "type":"Link",
+                "linkType":"User",
+                "id":"4SejVrWT96dvL9IV4Nb7sQ"
+              }
+            },
+            "createdAt":"2017-08-18T20:55:42Z",
+            "updatedBy":{
+              "sys":{
+                "type":"Link",
+                "linkType":"User",
+                "id":"4SejVrWT96dvL9IV4Nb7sQ"
+              }
+            },
+            "updatedAt":"2017-08-18T20:55:42Z",
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "az2xnj8oqhca"
+              }
+            }
+          }
+        }
+
+    http_version: 
+  recorded_at: Wed, 23 Aug 2017 14:39:29 GMT
+- request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/content_types/brand
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/content_types/brand
     body:
       encoding: UTF-8
       string: '{"displayField":"name","name":"Brand","fields":[{"id":"name","name":"Company
@@ -235,7 +350,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:17 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/content_types/brand/published
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/content_types/brand/published
     body:
       encoding: US-ASCII
       string: ''
@@ -383,7 +498,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:21 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/content_types/category
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/content_types/category
     body:
       encoding: UTF-8
       string: '{"displayField":"title","name":"Category","fields":[{"id":"title","name":"Title","type":"Symbol"},{"id":"description","name":"Description","type":"Text"},{"id":"icon","name":"Icon","type":"Link","linkType":"Asset"}]}'
@@ -516,7 +631,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:22 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/content_types/category/published
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/content_types/category/published
     body:
       encoding: US-ASCII
       string: ''
@@ -664,7 +779,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:23 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/content_types/product
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/content_types/product
     body:
       encoding: UTF-8
       string: '{"displayField":"name","name":"Product","fields":[{"id":"name","name":"name","type":"Symbol"},{"id":"description","name":"Description","type":"Text"},{"id":"image","name":"Image","type":"Link","linkType":"Asset"},{"id":"brand","name":"Brand","type":"Link","linkType":"Entry"},{"id":"category","name":"Category","type":"Link","linkType":"Entry"},{"id":"url","name":"Available
@@ -830,7 +945,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:24 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/content_types/product/published
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/content_types/product/published
     body:
       encoding: US-ASCII
       string: ''
@@ -1010,7 +1125,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:26 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/playsam_image
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/playsam_image
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Playsam"},"description":{"en-US":null},"file":{"en-US":{"contentType":"image/jpeg","fileName":"playsam_image.jpg","upload":"https://images.contentful.com/liicpxzmg1q0/4zj1ZOfHgQ8oqgaSKm4Qo2/3be82d54d45b5297e951aee9baf920da/playsam.jpg?h=250&"}}}}'
@@ -1123,7 +1238,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:27 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/playsam_image/files/en-US/process
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/playsam_image/files/en-US/process
     body:
       encoding: US-ASCII
       string: ''
@@ -1191,7 +1306,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:30 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/playsam_image
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/playsam_image
     body:
       encoding: US-ASCII
       string: ''
@@ -1313,7 +1428,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:30 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/playsam_image/published
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/playsam_image/published
     body:
       encoding: US-ASCII
       string: ''
@@ -1448,7 +1563,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:31 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/normann_image
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/normann_image
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Normann"},"description":{"en-US":null},"file":{"en-US":{"contentType":"image/jpeg","fileName":"normann_image.jpg","upload":"https://images.contentful.com/liicpxzmg1q0/3wtvPBbBjiMKqKKga8I2Cu/75c7c92f38f7953a741591d215ad61d4/zJYzDlGk.jpeg?h=250&"}}}}'
@@ -1561,7 +1676,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:32 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/normann_image/files/en-US/process
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/normann_image/files/en-US/process
     body:
       encoding: US-ASCII
       string: ''
@@ -1629,7 +1744,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:33 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/normann_image
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/normann_image
     body:
       encoding: US-ASCII
       string: ''
@@ -1751,7 +1866,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:34 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/normann_image/published
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/normann_image/published
     body:
       encoding: US-ASCII
       string: ''
@@ -1886,7 +2001,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:34 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/toy_image
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/toy_image
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Toys"},"description":{"en-US":null},"file":{"en-US":{"contentType":"image/jpeg","fileName":"toy_image.jpg","upload":"https://images.contentful.com/liicpxzmg1q0/6t4HKjytPi0mYgs240wkG/866ef53a11af9c6bf5f3808a8ce1aab2/toys_512pxGREY.png?h=250&"}}}}'
@@ -1999,7 +2114,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:35 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/toy_image/files/en-US/process
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/toy_image/files/en-US/process
     body:
       encoding: US-ASCII
       string: ''
@@ -2067,7 +2182,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:36 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/toy_image
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/toy_image
     body:
       encoding: US-ASCII
       string: ''
@@ -2189,7 +2304,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:37 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/toy_image/published
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/toy_image/published
     body:
       encoding: US-ASCII
       string: ''
@@ -2324,7 +2439,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:38 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/kitchen_image
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/kitchen_image
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Kitchen and Home"},"description":{"en-US":null},"file":{"en-US":{"contentType":"image/jpeg","fileName":"kitchen_image.jpg","upload":"https://images.contentful.com/liicpxzmg1q0/6m5AJ9vMPKc8OUoQeoCS4o/ffc20f5a8f2a71cca4801bc9c51b966a/1418244847_Streamline-18-256.png?h=250&"}}}}'
@@ -2437,7 +2552,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:38 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/kitchen_image/files/en-US/process
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/kitchen_image/files/en-US/process
     body:
       encoding: US-ASCII
       string: ''
@@ -2505,7 +2620,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:39 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/kitchen_image
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/kitchen_image
     body:
       encoding: US-ASCII
       string: ''
@@ -2627,7 +2742,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:40 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/kitchen_image/published
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/kitchen_image/published
     body:
       encoding: US-ASCII
       string: ''
@@ -2762,7 +2877,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:41 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/toy_car
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/toy_car
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Playsam Toy Car"},"description":{"en-US":null},"file":{"en-US":{"contentType":"image/jpeg","fileName":"toy_car.jpg","upload":"https://images.contentful.com/liicpxzmg1q0/wtrHxeu3zEoEce2MokCSi/acef70d12fe019228c4238aa791bdd48/quwowooybuqbl6ntboz3.jpg?h=250&"}}}}'
@@ -2875,7 +2990,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:42 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/toy_car/files/en-US/process
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/toy_car/files/en-US/process
     body:
       encoding: US-ASCII
       string: ''
@@ -2943,7 +3058,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:43 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/toy_car
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/toy_car
     body:
       encoding: US-ASCII
       string: ''
@@ -3065,7 +3180,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:43 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/toy_car/published
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/toy_car/published
     body:
       encoding: US-ASCII
       string: ''
@@ -3200,7 +3315,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:44 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/whiskers
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/whiskers
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Normann Whisk Beaters"},"description":{"en-US":null},"file":{"en-US":{"contentType":"image/jpeg","fileName":"whiskers.jpg","upload":"https://images.contentful.com/liicpxzmg1q0/10TkaLheGeQG6qQGqWYqUI/d510dde5e575d40288cf75b42383aa53/ryugj83mqwa1asojwtwb.jpg?h=250&"}}}}'
@@ -3313,7 +3428,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:45 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/whiskers/files/en-US/process
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/whiskers/files/en-US/process
     body:
       encoding: US-ASCII
       string: ''
@@ -3381,7 +3496,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:46 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/whiskers
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/whiskers
     body:
       encoding: US-ASCII
       string: ''
@@ -3503,7 +3618,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:47 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/assets/whiskers/published
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/assets/whiskers/published
     body:
       encoding: US-ASCII
       string: ''
@@ -3638,7 +3753,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:48 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/content_types/brand
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/content_types/brand
     body:
       encoding: US-ASCII
       string: ''
@@ -3784,7 +3899,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:48 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/playsam
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/playsam
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -3892,7 +4007,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:49 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/playsam
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/playsam
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -4000,7 +4115,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:50 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/normann
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/normann
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -4108,7 +4223,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:52 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/normann
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/normann
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -4216,7 +4331,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:52 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/content_types/category
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/content_types/category
     body:
       encoding: US-ASCII
       string: ''
@@ -4362,7 +4477,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:54 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/toys
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/toys
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -4470,7 +4585,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:54 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/toys
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/toys
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -4578,7 +4693,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:55 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/kitchen
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/kitchen
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -4686,7 +4801,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:56 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/kitchen
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/kitchen
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -4794,7 +4909,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:57 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/content_types/product
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/content_types/product
     body:
       encoding: US-ASCII
       string: ''
@@ -4972,7 +5087,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:58 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/playsam_car
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/playsam_car
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -5080,7 +5195,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:58 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/playsam_car
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/playsam_car
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -5188,7 +5303,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:50:59 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/whisk_beater
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/whisk_beater
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -5296,7 +5411,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:00 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/whisk_beater
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/whisk_beater
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -5404,7 +5519,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:01 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/playsam
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/playsam
     body:
       encoding: US-ASCII
       string: ''
@@ -5512,7 +5627,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:02 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/playsam
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/playsam
     body:
       encoding: UTF-8
       string: '{"fields":{"name":{"en-US":"Playsam, Inc"},"website":{"en-US":"http://www.playsam.com"},"logo":{"en-US":{"sys":{"type":"Link","linkType":"Asset","id":"playsam_image"}}}}}'
@@ -5636,7 +5751,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:03 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/playsam
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/playsam
     body:
       encoding: UTF-8
       string: '{"fields":{"name":{"en-US":"Playsam, Inc"},"website":{"en-US":"http://www.playsam.com"},"logo":{"en-US":{"sys":{"type":"Link","linkType":"Asset","id":"playsam_image"}}}}}'
@@ -5760,7 +5875,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:03 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/playsam
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/playsam
     body:
       encoding: US-ASCII
       string: ''
@@ -5884,7 +5999,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:04 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/normann
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/normann
     body:
       encoding: US-ASCII
       string: ''
@@ -5992,7 +6107,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:05 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/normann
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/normann
     body:
       encoding: UTF-8
       string: '{"fields":{"name":{"en-US":"Normann Copenhagen, Inc"},"website":{"en-US":"http://www.normann-copenhagen.com/"},"logo":{"en-US":{"sys":{"type":"Link","linkType":"Asset","id":"normann_image"}}}}}'
@@ -6116,7 +6231,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:06 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/normann
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/normann
     body:
       encoding: UTF-8
       string: '{"fields":{"name":{"en-US":"Normann Copenhagen, Inc"},"website":{"en-US":"http://www.normann-copenhagen.com/"},"logo":{"en-US":{"sys":{"type":"Link","linkType":"Asset","id":"normann_image"}}}}}'
@@ -6240,7 +6355,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:07 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/normann
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/normann
     body:
       encoding: US-ASCII
       string: ''
@@ -6364,7 +6479,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:08 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/toys
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/toys
     body:
       encoding: US-ASCII
       string: ''
@@ -6472,7 +6587,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:08 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/toys
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/toys
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Toys"},"description":{"en-US":"Toys for
@@ -6597,7 +6712,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:09 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/toys
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/toys
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"Toys"},"description":{"en-US":"Toys for
@@ -6722,7 +6837,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:10 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/toys
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/toys
     body:
       encoding: US-ASCII
       string: ''
@@ -6846,7 +6961,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:11 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/kitchen
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/kitchen
     body:
       encoding: US-ASCII
       string: ''
@@ -6954,7 +7069,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:12 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/kitchen
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/kitchen
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"House and Kitchen"},"description":{"en-US":"House
@@ -7079,7 +7194,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:12 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/kitchen
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/kitchen
     body:
       encoding: UTF-8
       string: '{"fields":{"title":{"en-US":"House and Kitchen"},"description":{"en-US":"House
@@ -7204,7 +7319,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:13 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/kitchen
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/kitchen
     body:
       encoding: US-ASCII
       string: ''
@@ -7328,7 +7443,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:14 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/playsam_car
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/playsam_car
     body:
       encoding: US-ASCII
       string: ''
@@ -7436,7 +7551,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:15 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/playsam_car
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/playsam_car
     body:
       encoding: UTF-8
       string: '{"fields":{"name":{"en-US":"Playsam Streamliner Classic Car, Espresso"},"description":{"en-US":"A
@@ -7585,7 +7700,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:16 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/playsam_car
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/playsam_car
     body:
       encoding: UTF-8
       string: '{"fields":{"name":{"en-US":"Playsam Streamliner Classic Car, Espresso"},"description":{"en-US":"A
@@ -7734,7 +7849,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:17 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/playsam_car
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/playsam_car
     body:
       encoding: US-ASCII
       string: ''
@@ -7879,7 +7994,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:18 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/whisk_beater
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/whisk_beater
     body:
       encoding: US-ASCII
       string: ''
@@ -7987,7 +8102,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:19 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/whisk_beater
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/whisk_beater
     body:
       encoding: UTF-8
       string: '{"fields":{"name":{"en-US":"Whisk Beater"},"description":{"en-US":"A
@@ -8134,7 +8249,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:20 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/whisk_beater
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/whisk_beater
     body:
       encoding: UTF-8
       string: '{"fields":{"name":{"en-US":"Whisk Beater"},"description":{"en-US":"A
@@ -8281,7 +8396,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:21 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/whisk_beater
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/whisk_beater
     body:
       encoding: US-ASCII
       string: ''
@@ -8426,7 +8541,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:22 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/playsam
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/playsam
     body:
       encoding: US-ASCII
       string: ''
@@ -8550,7 +8665,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:22 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/playsam/published
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/playsam/published
     body:
       encoding: US-ASCII
       string: ''
@@ -8687,7 +8802,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:23 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/normann
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/normann
     body:
       encoding: US-ASCII
       string: ''
@@ -8811,7 +8926,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:24 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/normann/published
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/normann/published
     body:
       encoding: US-ASCII
       string: ''
@@ -8948,7 +9063,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:25 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/toys
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/toys
     body:
       encoding: US-ASCII
       string: ''
@@ -9072,7 +9187,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:26 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/toys/published
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/toys/published
     body:
       encoding: US-ASCII
       string: ''
@@ -9209,7 +9324,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:27 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/kitchen
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/kitchen
     body:
       encoding: US-ASCII
       string: ''
@@ -9333,7 +9448,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:28 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/kitchen/published
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/kitchen/published
     body:
       encoding: US-ASCII
       string: ''
@@ -9470,7 +9585,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:29 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/playsam_car
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/playsam_car
     body:
       encoding: US-ASCII
       string: ''
@@ -9615,7 +9730,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:29 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/playsam_car/published
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/playsam_car/published
     body:
       encoding: US-ASCII
       string: ''
@@ -9773,7 +9888,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:30 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/whisk_beater
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/whisk_beater
     body:
       encoding: US-ASCII
       string: ''
@@ -9918,7 +10033,7 @@ http_interactions:
   recorded_at: Fri, 22 Jul 2016 12:51:31 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/az2xnj8oqhca/entries/whisk_beater/published
+    uri: https://api.contentful.com/spaces/az2xnj8oqhca/environments/master/entries/whisk_beater/published
     body:
       encoding: US-ASCII
       string: ''

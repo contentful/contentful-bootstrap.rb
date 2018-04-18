@@ -89,8 +89,123 @@ http_interactions:
     http_version: 
   recorded_at: Mon, 21 Dec 2015 09:54:21 GMT
 - request:
+    method: get
+    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/environments/master
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Contentful-User-Agent:
+      - sdk contentful-management.rb/1.8.1; integration bootstrap/3.6.1; platform
+        ruby/2.4.1; os macOS/16;
+      Authorization:
+      - Bearer foobar
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Content-Length:
+      - '0'
+      Connection:
+      - close
+      Host:
+      - api.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature
+      Access-Control-Allow-Methods:
+      - DELETE,GET,HEAD,POST,PUT,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '1728000'
+      Cache-Control:
+      - max-age=0
+      Cf-Organization-Id:
+      - 4SsuxQCaMaemfIms52Jr8s
+      Cf-Space-Id:
+      - fbrhs5tvrf52
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Date:
+      - Wed, 23 Aug 2017 14:39:29 GMT
+      Etag:
+      - W/"2c014fd49b265333df19faf15077ad23"
+      Server:
+      - Contentful
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Request-Id:
+      - 917a37ae1cf5343e6b089923cc306864
+      X-Frame-Options:
+      - ALLOWALL
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '465'
+      Connection:
+      - Close
+      Set-Cookie:
+      - incap_ses_685_673446=cxF9Q0guCUtZ5BLquZ2BCaGTnVkAAAAAo6M+6ImkjL12BRgksm5Ycw==;
+        path=/; Domain=.contentful.com
+      - nlbi_673446=qgazO//8lgCNPBh/6lKYhQAAAADdCJKiN6QN6XKnlFqZhDYU; path=/; Domain=.contentful.com
+      - visid_incap_673446=2CwPdSAIQPWlQo9wqlIfraGTnVkAAAAAQUIPAAAAAABpkgonlswdvW4VySG7Mwvb;
+        expires=Thu, 23 Aug 2018 07:39:55 GMT; path=/; Domain=.contentful.com
+      X-Iinfo:
+      - 6-53963549-53963569 NNNN CT(141 141 0) RT(1503499169092 147) q(0 0 3 -1) r(5
+        5) U5
+      X-Cdn:
+      - Incapsula
+    body:
+      encoding: ASCII-8BIT
+      string: |+
+        {
+          "name":"Master",
+          "sys":{
+            "type":"Environment",
+            "id":"master",
+            "version":4,
+            "createdBy":{
+              "sys":{
+                "type":"Link",
+                "linkType":"User",
+                "id":"4SejVrWT96dvL9IV4Nb7sQ"
+              }
+            },
+            "createdAt":"2017-08-18T20:55:42Z",
+            "updatedBy":{
+              "sys":{
+                "type":"Link",
+                "linkType":"User",
+                "id":"4SejVrWT96dvL9IV4Nb7sQ"
+              }
+            },
+            "updatedAt":"2017-08-18T20:55:42Z",
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "fbrhs5tvrf52"
+              }
+            }
+          }
+        }
+
+    http_version: 
+  recorded_at: Wed, 23 Aug 2017 14:39:29 GMT
+- request:
     method: put
-    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/content_types/cat
+    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/environments/master/content_types/cat
     body:
       encoding: UTF-8
       string: '{"displayField":null,"name":"Cat","description":null,"fields":[{"id":"name","name":"Name","type":"Symbol"}]}'
@@ -189,7 +304,7 @@ http_interactions:
   recorded_at: Mon, 21 Dec 2015 09:54:25 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/content_types/cat/published
+    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/environments/master/content_types/cat/published
     body:
       encoding: US-ASCII
       string: ''
@@ -303,7 +418,7 @@ http_interactions:
   recorded_at: Mon, 21 Dec 2015 09:54:29 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/content_types/cat
+    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/environments/master/content_types/cat
     body:
       encoding: US-ASCII
       string: ''
@@ -415,7 +530,7 @@ http_interactions:
   recorded_at: Mon, 21 Dec 2015 09:54:30 GMT
 - request:
     method: post
-    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/entries/
+    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/environments/master/entries
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -512,7 +627,7 @@ http_interactions:
   recorded_at: Mon, 21 Dec 2015 09:54:30 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/entries/iIRoS058jK8g0E0C0ew2C
+    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/environments/master/entries/iIRoS058jK8g0E0C0ew2C
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -609,7 +724,7 @@ http_interactions:
   recorded_at: Mon, 21 Dec 2015 09:54:31 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/entries/iIRoS058jK8g0E0C0ew2C
+    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/environments/master/entries/iIRoS058jK8g0E0C0ew2C
     body:
       encoding: US-ASCII
       string: ''
@@ -706,7 +821,7 @@ http_interactions:
   recorded_at: Mon, 21 Dec 2015 09:54:35 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/entries/iIRoS058jK8g0E0C0ew2C
+    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/environments/master/entries/iIRoS058jK8g0E0C0ew2C
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -803,7 +918,7 @@ http_interactions:
   recorded_at: Mon, 21 Dec 2015 09:54:36 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/entries/iIRoS058jK8g0E0C0ew2C
+    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/environments/master/entries/iIRoS058jK8g0E0C0ew2C
     body:
       encoding: UTF-8
       string: '{"fields":{}}'
@@ -900,7 +1015,7 @@ http_interactions:
   recorded_at: Mon, 21 Dec 2015 09:54:37 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/entries/iIRoS058jK8g0E0C0ew2C
+    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/environments/master/entries/iIRoS058jK8g0E0C0ew2C
     body:
       encoding: US-ASCII
       string: ''
@@ -997,7 +1112,7 @@ http_interactions:
   recorded_at: Mon, 21 Dec 2015 09:54:37 GMT
 - request:
     method: get
-    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/entries/iIRoS058jK8g0E0C0ew2C
+    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/environments/master/entries/iIRoS058jK8g0E0C0ew2C
     body:
       encoding: US-ASCII
       string: ''
@@ -1094,7 +1209,7 @@ http_interactions:
   recorded_at: Mon, 21 Dec 2015 09:54:38 GMT
 - request:
     method: put
-    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/entries/iIRoS058jK8g0E0C0ew2C/published
+    uri: https://api.contentful.com/spaces/fbrhs5tvrf52/environments/master/entries/iIRoS058jK8g0E0C0ew2C/published
     body:
       encoding: US-ASCII
       string: ''
