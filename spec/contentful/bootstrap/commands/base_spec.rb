@@ -27,22 +27,10 @@ describe Contentful::Bootstrap::Commands::Base do
         described_class.new(token, 'foo', trigger_oauth: false, quiet: true)
       end
     end
-
-    describe 'management_client_init' do
-      it 'runs management_client_init when trigger_oauth is true' do
-        expect_any_instance_of(described_class).to receive(:management_client_init)
-        described_class.new(token, 'foo', quiet: true)
-      end
-
-      it 'doesnt run management_client_init when trigger_oauth is false' do
-        expect_any_instance_of(described_class).not_to receive(:management_client_init)
-        described_class.new(token, 'foo', trigger_oauth: false, quiet: true)
-      end
-    end
   end
 
   describe 'instance methods' do
-    it '#management_client_init' do
+    it '#client' do
       allow_any_instance_of(described_class).to receive(:configuration)
       expect(Contentful::Management::Client).to receive(:new).with(
         token.read,
@@ -57,7 +45,7 @@ describe Contentful::Bootstrap::Commands::Base do
 
     describe '#configuration' do
       before do
-        allow_any_instance_of(subject.class).to receive(:management_client_init)
+        allow_any_instance_of(subject.class).to receive(:client)
       end
 
       it 'passes if token is found' do
@@ -80,7 +68,7 @@ describe Contentful::Bootstrap::Commands::Base do
     end
 
     it '#token_server' do
-      allow_any_instance_of(described_class).to receive(:management_client_init)
+      allow_any_instance_of(described_class).to receive(:client)
 
       expect(Contentful::Bootstrap::Support).to receive(:gets) { "y" }
       expect_any_instance_of(Contentful::Bootstrap::Server).to receive(:start) {}

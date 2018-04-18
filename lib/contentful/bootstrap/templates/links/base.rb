@@ -25,7 +25,7 @@ module Contentful
           end
 
           def management_class
-            fail 'must implement'
+            raise 'must implement'
           end
 
           def ==(other)

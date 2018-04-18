@@ -4,7 +4,7 @@ module Contentful
   module Bootstrap
     module Support
       def self.camel_case(a_string)
-        a_string.split('_').inject([]){ |buffer,e| buffer.push(buffer.empty? ? e : e.capitalize) }.join
+        a_string.split('_').each_with_object([]) { |e, a| a.push(a.empty? ? e : e.capitalize) }.join
       end
 
       def self.silence_stderr

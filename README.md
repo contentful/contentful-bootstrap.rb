@@ -35,13 +35,13 @@ $ contentful_bootstrap generate_token <space_id> [--name token_name] [--config C
 You can also generate JSON Templates from existing spaces by doing:
 
 ```bash
-$ contentful_bootstrap generate_json <space_id> <delivery_api_access_token> [--output-file OUTPUT PATH] [--content-type-ids ct_id_1,ct_id_2] [--content-types-only] [--use-preview] [--quiet]
+$ contentful_bootstrap generate_json <space_id> <delivery_api_access_token> [--environment ENVIRONMENT_ID] [--output-file OUTPUT PATH] [--content-type-ids ct_id_1,ct_id_2] [--content-types-only] [--use-preview] [--quiet]
 ```
 
 You can update existing spaces from JSON Templates by doing:
 
 ```bash
-$ contentful_bootstrap update_space <space_id> -j template_path [--mark-processed] [--skip-content-types] [--no-publish] [--quiet]
+$ contentful_bootstrap update_space <space_id> -j template_path [--environment ENVIRONMENT_ID] [--mark-processed] [--skip-content-types] [--no-publish] [--quiet]
 ```
 
 ### Built-in templates
@@ -99,6 +99,7 @@ To Update an existing Space
 ```ruby
 options = {
   json_template: "/path/to/template.json", # Will use the JSON file specified as a Template
+  environment: "master", # Will update the specified environment, will NOT create the environment if it doesn't exist, defaults to "master"
   locale: "es-AR", # Will create the space with the specified locale code as default locale, defaults to "en-US"
   mark_processed: false, # if true will mark all resources as 'bootstrapProcessed and will be avoided on future update_space calls
   trigger_oauth: true, # if true will trigger OAuth process
@@ -134,6 +135,7 @@ To Generate a JSON Template from an exising Space
 Contentful::Bootstrap::CommandRunner.new.generate_json(
   "space_id",
   access_token: "delivery_or_preview_api_access_token",
+  environment: "master", # Will fetch content from the specified environment, defaults to "master"
   use_preview: false, # if true will fetch from the Preview API instead of Delivery API
   filename: nil, # path to file in which to store JSON
   content_types_only: false, # if true will not fetch Entries and Assets
@@ -149,6 +151,7 @@ Additionally, you can send an options hash with the following keys:
 ```ruby
 options = {
   access_token: "access_token" # REQUIRED
+  environment: "master", # Will fetch content from the specified environment, defaults to "master"
   use_preview: false, # if true will fetch from the Preview API instead of Delivery API
   filename: "template.json", # Will save the JSON to the specified file
   content_types_only: false, # if true will not fetch Entries and Assets

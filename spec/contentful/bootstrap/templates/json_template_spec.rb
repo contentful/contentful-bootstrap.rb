@@ -3,7 +3,15 @@ require 'spec_helper'
 describe Contentful::Bootstrap::Templates::JsonTemplate do
   let(:space) { Contentful::Management::Space.new }
   let(:path) { json_path('simple') }
-  subject { described_class.new space, path, false, true, true }
+  subject { described_class.new space, path, 'master', false, true, true }
+
+  before :each do
+    environment_proxy = Object.new
+    allow(space).to receive(:environments) { environment_proxy }
+
+    environment = Object.new
+    allow(environment_proxy).to receive(:find) { environment }
+  end
 
   before do
     allow(::File).to receive(:write)
@@ -35,7 +43,7 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
       end
 
       it 'uses display_field if not' do
-        subject = described_class.new(space, File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'display_field.json')), false, true, true)
+        subject = described_class.new(space, File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'display_field.json')), 'master', false, true, true)
 
         expect(subject.content_types.first['displayField']).to eq 'name'
       end
@@ -127,7 +135,7 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
         expect(json['contentTypes'].size).to eq(2)
         expect(json['contentTypes'].last['id']).to eq('dog')
 
-        subject = described_class.new(space, processed_path, false, false)
+        subject = described_class.new(space, processed_path, 'master', false, false)
 
         expect(subject.content_types.size).to eq(1)
         expect(subject.content_types.first['id']).to eq('cat')
@@ -139,7 +147,7 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
         expect(json['assets'].size).to eq(2)
         expect(json['assets'].last['id']).to eq('dog_asset')
 
-        subject = described_class.new(space, processed_path, false, false)
+        subject = described_class.new(space, processed_path, 'master', false, false)
 
         expect(subject.assets.size).to eq(1)
         expect(subject.assets.first['id']).to eq('cat_asset')
@@ -151,7 +159,7 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
         expect(json['entries']['dog'].size).to eq(1)
         expect(json['entries']['dog'].first['sys']['id']).to eq('doge')
 
-        subject = described_class.new(space, processed_path, false, false)
+        subject = described_class.new(space, processed_path, 'master', false, false)
 
         expect(subject.entries['dog'].size).to eq(0)
       }
@@ -160,7 +168,7 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
 
   describe 'mark processed' do
     it 'does not write file after run if not mark_processed' do
-      subject = described_class.new(space, path, false, false)
+      subject = described_class.new(space, path, 'master', false, false)
       ['content_types', 'assets', 'entries'].each do |n|
         allow(subject).to receive("create_#{n}".to_sym)
       end
@@ -172,7 +180,7 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
     end
 
     it 'writes file after run if mark_processed' do
-      subject = described_class.new(space, path, true, false)
+      subject = described_class.new(space, path, 'master', true, false)
       ['content_types', 'assets', 'entries'].each do |n|
         allow(subject).to receive("create_#{n}".to_sym)
       end
@@ -229,7 +237,7 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
 
   describe 'skip_content_types' do
     context 'with skip_content_types set to true' do
-      subject { described_class.new(space, path, false, false, true, true) }
+      subject { described_class.new(space, path, 'master', false, false, true, true) }
 
       it 'skips content type creation' do
         ['assets', 'entries'].each do |n|
@@ -245,7 +253,7 @@ describe Contentful::Bootstrap::Templates::JsonTemplate do
     end
 
     context 'with skip_content_types set to false' do
-      subject { described_class.new(space, path, false, false, true, false) }
+      subject { described_class.new(space, path, 'master', false, false, true, false) }
 
       it 'doesnt skip content type creation' do
         ['assets', 'entries', 'content_types'].each do |n|

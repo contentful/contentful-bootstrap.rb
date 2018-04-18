@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://cdn.contentful.com/spaces/wl1z0pal05vy/content_types
+    uri: https://cdn.contentful.com/spaces/wl1z0pal05vy/environments/master/content_types
     body:
       encoding: US-ASCII
       string: ''
@@ -81,7 +81,7 @@ http_interactions:
   recorded_at: Thu, 09 Nov 2017 14:52:42 GMT
 - request:
     method: get
-    uri: https://cdn.contentful.com/spaces/wl1z0pal05vy/assets?limit=1
+    uri: https://cdn.contentful.com/spaces/wl1z0pal05vy/environments/master/assets?limit=1
     body:
       encoding: US-ASCII
       string: ''
@@ -160,7 +160,7 @@ http_interactions:
   recorded_at: Thu, 09 Nov 2017 14:52:42 GMT
 - request:
     method: get
-    uri: https://cdn.contentful.com/spaces/wl1z0pal05vy/assets?limit=1000&order=sys.createdAt&skip=0
+    uri: https://cdn.contentful.com/spaces/wl1z0pal05vy/environments/master/assets?limit=1000&order=sys.createdAt&skip=0
     body:
       encoding: US-ASCII
       string: ''
@@ -239,7 +239,7 @@ http_interactions:
   recorded_at: Thu, 09 Nov 2017 14:52:42 GMT
 - request:
     method: get
-    uri: https://cdn.contentful.com/spaces/wl1z0pal05vy/entries?limit=1
+    uri: https://cdn.contentful.com/spaces/wl1z0pal05vy/environments/master/entries?limit=1
     body:
       encoding: US-ASCII
       string: ''
@@ -318,7 +318,7 @@ http_interactions:
   recorded_at: Thu, 09 Nov 2017 14:52:42 GMT
 - request:
     method: get
-    uri: https://cdn.contentful.com/spaces/wl1z0pal05vy/entries?limit=1000&order=sys.createdAt&skip=0
+    uri: https://cdn.contentful.com/spaces/wl1z0pal05vy/environments/master/entries?limit=1000&order=sys.createdAt&skip=0
     body:
       encoding: US-ASCII
       string: ''

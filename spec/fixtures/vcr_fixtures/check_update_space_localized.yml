@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://cdn.contentful.com/spaces/vsy1ouf6jdcq/content_types?limit=1000
+    uri: https://cdn.contentful.com/spaces/vsy1ouf6jdcq/environments/master/content_types?limit=1000
     body:
       encoding: US-ASCII
       string: ''
@@ -117,7 +117,7 @@ http_interactions:
   recorded_at: Wed, 23 Aug 2017 14:39:47 GMT
 - request:
     method: get
-    uri: https://cdn.contentful.com/spaces/vsy1ouf6jdcq/entries?locale=es-AR
+    uri: https://cdn.contentful.com/spaces/vsy1ouf6jdcq/environments/master/entries?locale=es-AR
     body:
       encoding: US-ASCII
       string: ''

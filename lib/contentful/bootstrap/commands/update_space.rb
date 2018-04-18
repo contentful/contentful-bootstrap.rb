@@ -14,6 +14,7 @@ module Contentful
           @skip_content_types = options.fetch(:skip_content_types, false)
           @no_publish = options.fetch(:no_publish, false)
           @quiet = options.fetch(:quiet, false)
+          @environment = options.fetch(:environment, 'master')
 
           super(token, space_id, options)
         end
@@ -39,7 +40,6 @@ module Contentful
         protected
 
         def fetch_space
-          management_client_init
           client.spaces.find(@space)
         rescue Contentful::Management::NotFound
           output 'Space Not Found. Exiting!'
@@ -51,7 +51,7 @@ module Contentful
         def update_json_template(space)
           if ::File.exist?(@json_template)
             output "Updating from JSON Template '#{@json_template}'"
-            Templates::JsonTemplate.new(space, @json_template, @mark_processed, true, @quiet, @skip_content_types, @no_publish).run
+            Templates::JsonTemplate.new(space, @json_template, @environment, @mark_processed, true, @quiet, @skip_content_types, @no_publish).run
             output "JSON Template '#{@json_template}' updated!"
           else
             output "JSON Template '#{@json_template}' does not exist. Please check that you specified the correct file name."

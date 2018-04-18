@@ -136,7 +136,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
     end
 
     context 'with no_publish set to true' do
-      subject { described_class.new token, 'foo', json_template: 'bar', trigger_oauth: false, quiet: true, no_publish: true }
+      subject { described_class.new token, 'foo', environment: 'master', json_template: 'bar', trigger_oauth: false, quiet: true, no_publish: true }
 
       it 'calls JsonTemplate with no_publish' do
         allow(Contentful::Bootstrap::Support).to receive(:gets).and_return('y')
@@ -148,7 +148,7 @@ describe Contentful::Bootstrap::Commands::CreateSpace do
         expect(subject).to receive(:fetch_space) { space_double }
         expect(mock_template).to receive(:run)
 
-        expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', false, true, true, false, true) { mock_template }
+        expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', 'master', false, true, true, false, true) { mock_template }
 
         subject.run
       end

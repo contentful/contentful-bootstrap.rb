@@ -1,9 +1,13 @@
-Metrics/LineLength:
-  Max: 120
+inherit_from: .rubocop_todo.yml
+
+AllCops:
   Exclude:
-    - 'lib/contentful/bootstrap/templates/blog.rb'
-    - 'lib/contentful/bootstrap/templates/catalogue.rb'
-    - 'lib/contentful/bootstrap/templates/gallery.rb'
+    - contentful_bootstrap.gemspec
+    - spec/**/*
+    - examples/**/*
+    - Guardfile
+    - Gemfile
+    - Rakefile
 
 Style/Documentation:
   Exclude:

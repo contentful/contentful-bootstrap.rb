@@ -12,10 +12,11 @@ module Contentful
 
       attr_reader :content_types_only, :content_type_ids, :client
 
-      def initialize(space_id, access_token, content_types_only, use_preview, content_type_ids)
+      def initialize(space_id, access_token, environment, content_types_only, use_preview, content_type_ids)
         @client = Contentful::Client.new(
-          access_token: access_token,
           space: space_id,
+          access_token: access_token,
+          environment: environment,
           application_name: 'bootstrap',
           application_version: ::Contentful::Bootstrap::VERSION,
           api_url: use_preview ? PREVIEW_API_URL : DELIVERY_API_URL
@@ -137,9 +138,9 @@ module Contentful
       def map_field_properties(field)
         properties = {}
 
-        [:id, :name, :type, :link_type, :required, :localized].each do |property|
+        %i[id name type link_type required localized].each do |property|
           value = field.public_send(property) if field.respond_to?(property)
-          properties[Support.camel_case(property.to_s).to_sym] = value unless value.nil? || [:required, :localized].include?(property)
+          properties[Support.camel_case(property.to_s).to_sym] = value unless value.nil? || %i[required localized].include?(property)
         end
 
         items = field.items if field.respond_to?(:items)

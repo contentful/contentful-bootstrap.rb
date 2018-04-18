@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Contentful::Bootstrap::Commands::UpdateSpace do
   let(:path) { File.expand_path(File.join('spec', 'fixtures', 'ini_fixtures', 'contentfulrc.ini')) }
   let(:token) { Contentful::Bootstrap::Token.new path }
-  subject { described_class.new token, 'foo', json_template: 'bar', mark_processed: false, trigger_oauth: false, quiet: true }
+  subject { described_class.new token, 'foo', environment: 'master', json_template: 'bar', mark_processed: false, trigger_oauth: false, quiet: true }
   let(:space_double) { SpaceDouble.new }
 
   before do
@@ -42,7 +42,7 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
       describe 'runs JSON Template without already processed elements' do
         [true, false].each do |mark_processed|
           context "mark_processed is #{mark_processed}" do
-            subject { described_class.new token, 'foo', json_template: 'bar', mark_processed: mark_processed, trigger_oauth: false, quiet: true}
+            subject { described_class.new token, 'foo', environment: 'master', json_template: 'bar', mark_processed: mark_processed, trigger_oauth: false, quiet: true}
 
             it "calls JsonTemplate with mark_processed as #{mark_processed}" do
               allow(::File).to receive(:exist?) { true }
@@ -52,7 +52,7 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
               expect(subject).to receive(:fetch_space) { space_double }
               expect(mock_template).to receive(:run)
 
-              expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', mark_processed, true, true, false, false) { mock_template }
+              expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', 'master', mark_processed, true, true, false, false) { mock_template }
 
               subject.run
             end
@@ -71,14 +71,14 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
           expect(subject).to receive(:fetch_space) { space_double }
           expect(mock_template).to receive(:run)
 
-          expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', false, true, true, true, false) { mock_template }
+          expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', 'master', false, true, true, true, false) { mock_template }
 
           subject.run
         end
       end
 
       context 'with no_publish set to true' do
-        subject { described_class.new token, 'foo', json_template: 'bar', trigger_oauth: false, skip_content_types: true, quiet: true, no_publish: true }
+        subject { described_class.new token, 'foo', environment: 'master', json_template: 'bar', trigger_oauth: false, skip_content_types: true, quiet: true, no_publish: true }
 
         it 'calls JsonTemplate with no_publish' do
           allow(::File).to receive(:exist?) { true }
@@ -88,7 +88,7 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
           expect(subject).to receive(:fetch_space) { space_double }
           expect(mock_template).to receive(:run)
 
-          expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', false, true, true, true, true) { mock_template }
+          expect(::Contentful::Bootstrap::Templates::JsonTemplate).to receive(:new).with(space_double, 'bar', 'master', false, true, true, true, true) { mock_template }
 
           subject.run
         end
@@ -106,7 +106,7 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
     it 'can update localized spaces' do
       vcr('update_space_localized') {
         json_path = File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'update_space_localized.json'))
-        subject = described_class.new(token, 'vsy1ouf6jdcq', locale: 'es-AR', json_template: json_path, mark_processed: false, trigger_oauth: false, quiet: true)
+        subject = described_class.new(token, 'vsy1ouf6jdcq', environment: 'master', locale: 'es-AR', json_template: json_path, mark_processed: false, trigger_oauth: false, quiet: true)
 
         subject.run
       }
@@ -128,7 +128,7 @@ describe Contentful::Bootstrap::Commands::UpdateSpace do
     it 'can update an existing asset and keep it as draft' do
       vcr('update_existing_asset') {
         json_path = File.expand_path(File.join('spec', 'fixtures', 'json_fixtures', 'assets_draft.json'))
-        subject = described_class.new(token, 'f3abi4dqvrhg', json_template: json_path, no_publish: true, trigger_oauth: false, quiet: true)
+        subject = described_class.new(token, 'f3abi4dqvrhg', environment: 'master', json_template: json_path, no_publish: true, trigger_oauth: false, quiet: true)
 
         subject.run
       }

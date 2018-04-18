@@ -23,7 +23,7 @@ describe Contentful::Bootstrap::Commands::GenerateToken do
 
   describe 'instance methods' do
     before do
-      subject.send(:management_client_init)
+      subject.send(:client)
     end
 
     describe '#run' do

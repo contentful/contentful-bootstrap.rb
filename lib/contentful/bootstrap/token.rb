@@ -66,7 +66,7 @@ module Contentful
       end
 
       def config_file
-        @file ||= ::File.exist?(filename) ? IniFile.load(filename) : IniFile.new(filename: filename)
+        @config_file ||= ::File.exist?(filename) ? IniFile.load(filename) : IniFile.new(filename: filename)
       end
     end
   end

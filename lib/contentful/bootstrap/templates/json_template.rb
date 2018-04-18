@@ -6,29 +6,29 @@ module Contentful
   module Bootstrap
     module Templates
       class JsonTemplate < Base
-        CONTENT_TYPES_KEY = 'contentTypes'
-        ENTRIES_KEY = 'entries'
-        ASSETS_KEY = 'assets'
-        BOOTSTRAP_PROCCESSED_KEY = 'bootstrapProcessed'
-        DISPLAY_FIELD_KEY = 'displayField'
-        ALTERNATE_DISPLAY_FIELD_KEY = 'display_field'
-        SYS_KEY = 'sys'
+        CONTENT_TYPES_KEY = 'contentTypes'.freeze
+        ENTRIES_KEY = 'entries'.freeze
+        ASSETS_KEY = 'assets'.freeze
+        BOOTSTRAP_PROCCESSED_KEY = 'bootstrapProcessed'.freeze
+        DISPLAY_FIELD_KEY = 'displayField'.freeze
+        ALTERNATE_DISPLAY_FIELD_KEY = 'display_field'.freeze
+        SYS_KEY = 'sys'.freeze
 
         attr_reader :assets, :entries, :content_types
 
-        def initialize(space, file, mark_processed = false, all = true, quiet = false, skip_content_types = false, no_publish = false)
-          super(space, quiet, skip_content_types, no_publish)
+        def initialize(space, file, environment = 'master', mark_processed = false, all = true, quiet = false, skip_content_types = false, no_publish = false)
           @file = file
+          json
+          check_version
+
+          super(space, environment, quiet, skip_content_types, no_publish)
+
           @all = all
           @mark_processed = mark_processed
-
-          json
 
           @assets = process_assets
           @entries = process_entries
           @content_types = process_content_types
-
-          check_version
         end
 
         def after_run
@@ -66,30 +66,32 @@ module Contentful
 
         def parse_json
           ::JSON.parse(::File.read(@file))
-        rescue
+        rescue StandardError
           output 'File is not JSON. Exiting!'
           exit(1)
         end
 
         def check_version
           json_version = json.fetch('version', 0)
-          gem_major_version = Contentful::Bootstrap.major_version
-          unless gem_major_version == json_version
-            fail "JSON Templates Version Mismatch. Current Version: #{gem_major_version}"
-          end
+          gem_major = Contentful::Bootstrap.major_version
+          raise "JSON Templates Version Mismatch. Current Version: #{gem_major}" unless gem_major == json_version
         end
 
         def process_content_types
           processed_content_types = json.fetch(CONTENT_TYPES_KEY, [])
 
           unless all?
-            processed_content_types = processed_content_types.select do |content_type|
-              !content_type.fetch(BOOTSTRAP_PROCCESSED_KEY, false)
+            processed_content_types = processed_content_types.reject do |content_type|
+              content_type.fetch(BOOTSTRAP_PROCCESSED_KEY, false)
             end
           end
 
           processed_content_types.each do |content_type|
-            content_type[DISPLAY_FIELD_KEY] = content_type.key?(ALTERNATE_DISPLAY_FIELD_KEY) ? content_type.delete(ALTERNATE_DISPLAY_FIELD_KEY) : content_type[DISPLAY_FIELD_KEY]
+            content_type[DISPLAY_FIELD_KEY] = if content_type.key?(ALTERNATE_DISPLAY_FIELD_KEY)
+                                                content_type.delete(ALTERNATE_DISPLAY_FIELD_KEY)
+                                              else
+                                                content_type[DISPLAY_FIELD_KEY]
+                                              end
           end
 
           processed_content_types
@@ -99,8 +101,8 @@ module Contentful
           unprocessed_assets = json.fetch(ASSETS_KEY, [])
 
           unless all?
-            unprocessed_assets = unprocessed_assets.select do |asset|
-              !asset.fetch(BOOTSTRAP_PROCCESSED_KEY, false)
+            unprocessed_assets = unprocessed_assets.reject do |asset|
+              asset.fetch(BOOTSTRAP_PROCCESSED_KEY, false)
             end
           end
 
@@ -108,57 +110,48 @@ module Contentful
             asset['file'] = create_file(
               asset['file']['filename'],
               asset['file']['url'],
-              { contentType: asset['file'].fetch('contentType', 'image/jpeg') }
+              contentType: asset['file'].fetch('contentType', 'image/jpeg')
             )
             asset
           end
         end
 
+        def process_entry(entry)
+          processed_entry = {}
+          processed_entry['id'] = entry[SYS_KEY]['id'] if entry.key?(SYS_KEY) && entry[SYS_KEY].key?('id')
+
+          entry.fetch('fields', {}).each do |field, value|
+            if link?(value)
+              processed_entry[field] = create_link(value)
+              next
+            elsif array?(value)
+              processed_entry[field] = value.map { |i| link?(i) ? create_link(i) : i }
+              next
+            end
+
+            processed_entry[field] = value
+          end
+
+          processed_entry
+        end
+
         def process_entries
-          processed_entries = {}
           unprocessed_entries = json.fetch(ENTRIES_KEY, {})
-          unprocessed_entries.each do |content_type_id, entry_list|
+          unprocessed_entries.each_with_object({}) do |(content_type_id, entry_list), processed_entries|
             entries_for_content_type = []
 
             unless all?
-              entry_list = entry_list.select do |entry|
-                !entry[SYS_KEY].fetch(BOOTSTRAP_PROCCESSED_KEY, false)
+              entry_list = entry_list.reject do |entry|
+                entry[SYS_KEY].fetch(BOOTSTRAP_PROCCESSED_KEY, false)
               end
             end
 
             entry_list.each do |entry|
-              processed_entry = {}
-              array_fields = []
-              link_fields = []
-
-              processed_entry['id'] = entry[SYS_KEY]['id'] if entry.key?(SYS_KEY) && entry[SYS_KEY].key?('id')
-
-              entry.fetch('fields', {}).each do |field, value|
-                link_fields << field if link?(value)
-                array_fields << field if array?(value)
-
-                unless link_fields.include?(field) || array_fields.include?(field)
-                  processed_entry[field] = value
-                end
-              end
-
-              link_fields.each do |lf|
-                processed_entry[lf] = create_link(entry['fields'][lf])
-              end
-
-              array_fields.each do |af|
-                processed_entry[af] = entry['fields'][af].map do |item|
-                  link?(item) ? create_link(item) : item
-                end
-              end
-
-              entries_for_content_type << processed_entry
+              entries_for_content_type << process_entry(entry)
             end
 
             processed_entries[content_type_id] = entries_for_content_type
           end
-
-          processed_entries
         end
 
         def create_link(link_properties)
