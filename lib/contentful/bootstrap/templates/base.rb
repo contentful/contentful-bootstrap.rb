@@ -73,7 +73,7 @@ module Contentful
                 field.type = f['type']
                 field.link_type = f['linkType'] if link?(f)
 
-                if array?(f)
+                if array_field?(f)
                   array_field = Contentful::Management::Field.new
                   array_field.type = f['items']['type']
                   array_field.link_type = f['items']['linkType']
@@ -103,7 +103,7 @@ module Contentful
           field.key?('linkType')
         end
 
-        def array?(field)
+        def array_field?(field)
           field.key?('items')
         end
 
