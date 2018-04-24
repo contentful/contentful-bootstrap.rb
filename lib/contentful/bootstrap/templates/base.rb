@@ -212,6 +212,7 @@ module Contentful
           end
 
           processed_entries.each do |e|
+            output "Publishing Entry #{e}"
             environment.entries.find(e).publish unless @no_publish
           end
         end
