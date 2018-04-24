@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v3.11.1
+### Fixed
+* Fixed array importing. [#70](https://github.com/contentful/contentful-bootstrap.rb/pull/70)
+
 ## v3.11.0
 ### Added
 * Added `--environment` support to `update_space` and `generate_json`.

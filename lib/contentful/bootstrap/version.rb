@@ -1,6 +1,6 @@
 module Contentful
   module Bootstrap
-    VERSION = '3.11.0'.freeze
+    VERSION = '3.11.1'.freeze
 
     def self.major_version
       VERSION.split('.').first.to_i
