@@ -1,6 +1,9 @@
 # Change Log
 
 ## Unreleased
+## v3.12.0
+### Added
+* Added logging for publishing actions. [#71](https://github.com/contentful/contentful-bootstrap.rb/pull/71)
 
 ## v3.11.1
 ### Fixed
