@@ -83,7 +83,7 @@ http_interactions:
   recorded_at: Wed, 08 Nov 2017 09:43:18 GMT
 - request:
     method: get
-    uri: https://api.contentful.com//organizations
+    uri: https://api.contentful.com/organizations
     body:
       encoding: US-ASCII
       string: ''
